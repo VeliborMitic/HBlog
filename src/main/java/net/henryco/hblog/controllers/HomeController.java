@@ -13,7 +13,12 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class HomeController {
 
 	@RequestMapping(method = GET)
-	public String index() {
+	public String home() {
 		return "index";
+	}
+
+	@RequestMapping(path = "/index", method = GET)
+	public String index() {
+		return "redirect:/";
 	}
 }
