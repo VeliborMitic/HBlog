@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Doozy</title>
+    <title>Escapy project</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="css/style.css" type="text/css" media="screen"/>
     <link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css"/>
@@ -48,21 +48,27 @@
     <div class="banner-image"><img src="images/bg.jpg" alt=""/></div>
     <div class="intro-2"><span>Donec justo dui, pellentesque auctor condimentum eu, vulputate et ligula. Mauris ultrices ultricies est quis varius. Fusce vel purus metus, id semper arcu. Nunc quis venenatis diam.</span>
     </div>
+
+
     <div class="one_third">
-        <h3>Hey</h3>
-        <p>In neque nulla, rutrum vitae faucibus id, tristique faucibus urna. Praesent semper pharetra mattis. Aliquam
-            placerat rhoncus leo, sit amet tristique lorem aliquet fringilla. </p>
+        <h3><span th:text="${lastNewsTittle_1}">Tittle1</span></h3>
+        <p><span th:text="${lastNewsContent_1}">Content1</span></p>
     </div>
+
+
     <div class="one_third">
-        <h3>So...</h3>
-        <p>In neque nulla, rutrum vitae faucibus id, tristique faucibus urna. Praesent semper pharetra mattis. Aliquam
-            placerat rhoncus leo, sit amet tristique lorem aliquet fringilla.</p>
+        <h3><span th:text="${lastNewsTittle_2}">Tittle2</span></h3>
+        <p><span th:text="${lastNewsContent_2}">Content2</span></p>
     </div>
+
+
     <div class="one_third column-last">
-        <h3>Yeah!</h3>
-        <p>In neque nulla, rutrum vitae faucibus id, tristique faucibus urna. Praesent semper pharetra mattis. Aliquam
-            placerat rhoncus leo, sit amet tristique lorem aliquet fringilla.</p>
+        <h3><span th:text="${lastNewsTittle_3}">Tittle3</span></h3>
+        <p><span th:text="${lastNewsContent_3}">Content3</span></p>
     </div>
+
+
+
     <div id="footer">
         <!--start footer-->
         <div class="footer-text">
