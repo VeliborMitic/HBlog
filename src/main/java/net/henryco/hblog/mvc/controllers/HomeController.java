@@ -1,6 +1,6 @@
 package net.henryco.hblog.mvc.controllers;
 
-import net.henryco.hblog.mvc.projs.StandardPost;
+import net.henryco.hblog.mvc.model.StandardPost;
 import net.henryco.hblog.mvc.servives.PostFormService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,21 +25,24 @@ public class HomeController {
 		this.postFormService = postFormService;
 	}
 
+
+
 	@RequestMapping(method = GET)
 	public String home(Model model) {
 
 		List<StandardPost> posts = postFormService.getLastPosts(4);
+		if (posts == null || posts.size() == 0) return "index";
 		int i = 0;
 		for (StandardPost post: posts) {
 
-			String content = post.getContent();
-			content = content.length() > 185 ? content.substring(0, 185) : content;
-			model.addAttribute("lastNewsContent_"+i, content);
+			model.addAttribute("lastNewsPreview_"+i, post.getPreview());
 			model.addAttribute("lastNewsTittle_"+i, post.getTitle());
 			i += 1;
 		}
 		return "index";
 	}
+
+
 
 	@RequestMapping(path = "/index", method = GET)
 	public String index() {

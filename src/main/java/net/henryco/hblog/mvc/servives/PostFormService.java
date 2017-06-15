@@ -1,7 +1,7 @@
 package net.henryco.hblog.mvc.servives;
 
 import net.henryco.hblog.mvc.dao.PostFormDao;
-import net.henryco.hblog.mvc.projs.StandardPost;
+import net.henryco.hblog.mvc.model.StandardPost;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class PostFormService {
 	private final PostFormDao postFormDao;
 
 	@Autowired
-	public PostFormService(@Qualifier("fakePostFormDaoImp") PostFormDao postFormDao) {
+	public PostFormService(@Qualifier("mockDao") PostFormDao postFormDao) {
 		this.postFormDao = postFormDao;
 	}
 
@@ -33,7 +33,7 @@ public class PostFormService {
 		return postFormDao.removePostById(id);
 	}
 
-	public boolean addPost(StandardPost post) {
+	public StandardPost addPost(StandardPost post) {
 		return postFormDao.addPost(post);
 	}
 

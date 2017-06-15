@@ -1,6 +1,6 @@
 package net.henryco.hblog.mvc.dao;
 
-import net.henryco.hblog.mvc.projs.StandardPost;
+import net.henryco.hblog.mvc.model.StandardPost;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ public interface PostFormDao {
 	StandardPost getPostById(long id);
 	List<StandardPost> getLastPosts(long numb);
 	boolean removePostById(long id);
-	boolean addPost(StandardPost post);
+	StandardPost addPost(StandardPost post);
 	boolean isPostExists(long id);
 
 }
