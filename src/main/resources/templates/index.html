@@ -22,7 +22,7 @@
             </ul>
 
             <ul>
-                <li class="title"><a href="#">News</a></li>
+                <li class="title"><a href="news">News</a></li>
             </ul>
 
             <ul>
@@ -46,7 +46,10 @@
     </div>
     <!--end header-->
     <div class="banner-image"><img src="images/bg.jpg" alt=""/></div>
-    <div class="intro-2"><span>Donec justo dui, pellentesque auctor condimentum eu, vulputate et ligula. Mauris ultrices ultricies est quis varius. Fusce vel purus metus, id semper arcu. Nunc quis venenatis diam.</span>
+    <div class="intro-2">
+        <!--<span>Donec justo dui, pellentesque auctor condimentum eu, vulputate et ligula. Mauris ultrices ultricies est quis varius. Fusce vel purus metus, id semper arcu. Nunc quis venenatis diam.</span>-->
+        <h2><span th:text="${lastNewsTittle_0}">Tittle1</span></h2>
+        <p><span th:text="${lastNewsPreview_0}">Content1</span></p>
     </div>
 
 

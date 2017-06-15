@@ -83,6 +83,11 @@ h3 {
     margin: 10px auto;
 }
 
+h2 {
+    font-size: 18px;
+    margin: 15px auto;
+}
+
 div.nav {
     height: 130px;
     width: 490px;
@@ -177,8 +182,8 @@ div.nav li a.active {
 
 .intro-2 {
     float: left;
-    margin: 10px 0 30px;
-    padding-top: 10px;
+    margin: 0 0 50px;
+    /*padding-top: 10px;*/
     width: 100%;
     font-size: 16px;
     color: #414141;
@@ -188,7 +193,7 @@ div.nav li a.active {
     border-top: 1px solid #CCC;
     /*float: center;*/
     margin: 10px 0 30px;
-    padding-top: 20px;
+    /*padding-top: 20px;*/
     width: 100%;
 }
 

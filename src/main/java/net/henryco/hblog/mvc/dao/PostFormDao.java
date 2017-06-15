@@ -15,4 +15,6 @@ public interface PostFormDao {
 	StandardPost addPost(StandardPost post);
 	boolean isPostExists(long id);
 
+	StandardPost getNewestPost();
+	StandardPost getOldestPost();
 }

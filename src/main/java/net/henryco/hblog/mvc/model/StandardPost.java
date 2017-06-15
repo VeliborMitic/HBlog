@@ -23,7 +23,7 @@ public class StandardPost {
 
 	@Column(name = "date")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date createTime;
+	private Date updateTime;
 
 
 	public StandardPost() {
@@ -81,10 +81,20 @@ public class StandardPost {
 	}
 
 	public Date getUpdateTime() {
-		return createTime;
+		return updateTime;
 	}
 
 	public void setUpdateTime(Date updateTime) {
-		this.createTime = updateTime;
+		this.updateTime = updateTime;
+	}
+
+
+	@Override
+	public String toString() {
+		return "StandardPost{" +
+				"id=" + id +
+				", title='" + title + '\'' +
+				", updateTime=" + updateTime +
+				'}';
 	}
 }

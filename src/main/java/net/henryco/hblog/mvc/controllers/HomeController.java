@@ -39,6 +39,10 @@ public class HomeController {
 			model.addAttribute("lastNewsTittle_"+i, post.getTitle());
 			i += 1;
 		}
+
+		StandardPost latest = postFormService.getLatestPost();
+		if (latest != null) System.out.println(latest);
+
 		return "index";
 	}
 

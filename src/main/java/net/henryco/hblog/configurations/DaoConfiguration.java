@@ -1,9 +1,12 @@
 package net.henryco.hblog.configurations;
 
 import net.henryco.hblog.mvc.dao.PostFormDao;
-import net.henryco.hblog.mvc.dao.imp.PostFormDaoImp;
+import net.henryco.hblog.mvc.dao.PostFormDaoImp;
 import net.henryco.hblog.mvc.model.StandardPost;
 import net.henryco.hblog.mvc.repository.PostFormRepository;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -20,7 +23,7 @@ public class DaoConfiguration {
 
 
 
-	@Bean
+	@Bean @Qualifier("testMockDao")
 	public PostFormDao mockDao(PostFormRepository repository) {
 
 		PostFormDaoImp postFormDaoImp = new PostFormDaoImp(repository);
@@ -29,6 +32,7 @@ public class DaoConfiguration {
 			post.setTitle("Tittle"+i);
 			post.setContent(LOREM_IPSUM);
 			post.setPreview(LOREM_IPSUM.substring(0, 185));
+			post.setUpdateTime(DateTime.now(DateTimeZone.UTC).toDate());
 			postFormDaoImp.addPost(post);
 		}
 		return postFormDaoImp;

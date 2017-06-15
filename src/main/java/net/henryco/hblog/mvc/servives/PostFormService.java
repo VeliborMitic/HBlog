@@ -17,7 +17,7 @@ public class PostFormService {
 	private final PostFormDao postFormDao;
 
 	@Autowired
-	public PostFormService(@Qualifier("mockDao") PostFormDao postFormDao) {
+	public PostFormService(@Qualifier("testMockDao") PostFormDao postFormDao) {
 		this.postFormDao = postFormDao;
 	}
 
@@ -27,6 +27,10 @@ public class PostFormService {
 
 	public List<StandardPost> getLastPosts(long numb) {
 		return postFormDao.getLastPosts(numb);
+	}
+
+	public StandardPost getLatestPost() {
+		return postFormDao.getNewestPost();
 	}
 
 	public boolean removePostById(long id) {
