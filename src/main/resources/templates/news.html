@@ -12,16 +12,16 @@
     <!--start wrapper-->
     <div id="header" class="clearfix">
         <!--start header-->
-        <h1 class="logo"><a th:href="@{/index}">Logo</a></h1>
+        <h1 class="logo"><a th:href="@{~/index}">Logo</a></h1>
         <div class="nav">
             <!--start navigation-->
 
             <ul>
-                <li class="title"><a th:href="@{/index}">Home</a></li>
+                <li class="title"><a th:href="@{~/index}">Home</a></li>
             </ul>
 
             <ul>
-                <li class="title"><a th:href="@{/news}">News</a></li>
+                <li class="title"><a th:href="@{~/news}">News</a></li>
             </ul>
 
             <ul>
@@ -41,7 +41,7 @@
 
         </div>
         <!--end navigation-->
-        <div class="intro-p"><span>I'm just chilling here being a page, you know.</span></div>
+        <div class="intro-p"><span>News page&nbsp;<span th:text="*{pageNumber} ?: ''"></span></span></div>
     </div>
     <!--end header-->
 
@@ -73,8 +73,8 @@
     <!--start footer-->
     <div id="footer">
         <div class="footer-text">
-            <p><span>&copy; Copyright 2012 <a href="#">Company Name</a>. All Rights Reserved</span> | Website Template
-                By <a target="_blank" href="http://www.pixelqraft.com/">Maki Myers</a></p>
+            <p><span>&copy; Copyright 2017 <a href="#">HenryCo</a>. All Rights Reserved</span> | Website Template
+                By <a href="#">Maki Myers</a></p>
         </div>
     </div>
     <!--end footer-->

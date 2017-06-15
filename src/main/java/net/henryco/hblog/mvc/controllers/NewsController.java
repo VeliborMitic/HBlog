@@ -25,6 +25,8 @@ public class NewsController {
 	@RequestMapping(value = "/page/{numb}", method = GET)
 	public String newsPage(@PathVariable("numb") int pageNumb, Model model) {
 
+		if (pageNumb > 0) model.addAttribute("pageNumber", pageNumb);
+
 		return "news";
 	}
 }

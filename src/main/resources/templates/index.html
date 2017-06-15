@@ -12,16 +12,16 @@
     <!--start wrapper-->
     <div id="header" class="clearfix">
         <!--start header-->
-        <h1 class="logo"><a th:href="@{/index}">Logo</a></h1>
+        <h1 class="logo"><a th:href="@{~/index}">Logo</a></h1>
         <div class="nav">
             <!--start navigation-->
 
             <ul>
-                <li class="title"><a th:href="@{/index}">Home</a></li>
+                <li class="title"><a th:href="@{~/index}">Home</a></li>
             </ul>
 
             <ul>
-                <li class="title"><a th:href="@{/news}">News</a></li>
+                <li class="title"><a th:href="@{~/news}">News</a></li>
             </ul>
 
             <ul>
@@ -44,29 +44,29 @@
         <div class="intro-p"><span>We are a group of enthusiasts who intend to create a deep 2D story</span></div>
     </div>
     <!--end header-->
-    <div class="banner-image"><img src="images/bg.jpg" alt=""/></div>
+    <div class="banner-image"><img th:src="@{~/images/bg.jpg}" alt=""/></div>
 
 
-    <div class="intro-2" th:with="linkVariable=@{|/news/article/${post_id0}|}">
-        <h2><a th:text="${lastNewsTittle_0}" th:href="@{|${linkVariable}|}"></a></h2>
-        <p><a th:text="${lastNewsPreview_0}" th:href="@{|${linkVariable}|}">Content1</a>...</p>
+    <div class="intro-2" th:with="linkVariable=@{|~/news/article/${post_id0}|}">
+        <h2><a th:text="*{lastNewsTittle_0} ?: '' " th:href="@{|${linkVariable}|}"></a></h2>
+        <p><a th:text="*{lastNewsPreview_0} ?: '' " th:href="@{|${linkVariable}|}">Content1</a>...</p>
     </div>
 
-    <div class="one_third" th:with="linkVariable=@{|/news/article/${post_id1}|}">
-        <h3><a th:text="${lastNewsTittle_1}" th:href="@{|${linkVariable}|}"></a></h3>
-        <p><span th:text="${lastNewsPreview_1}">Content1</span>... &nbsp;<a class="in_link" th:href="@{|${linkVariable}|}">read more.</a></p>
-    </div>
-
-
-    <div class="one_third" th:with="linkVariable=@{|/news/article/${post_id2}|}">
-        <h3><a th:text="${lastNewsTittle_2}" th:href="@{|${linkVariable}|}"></a></h3>
-        <p><span th:text="${lastNewsPreview_2}">Content2</span>... &nbsp;<a class="in_link" th:href="@{|${linkVariable}|}">read more.</a></p>
+    <div class="one_third" th:with="linkVariable=@{|~/news/article/${post_id1}|}">
+        <h3><a th:text="*{lastNewsTittle_1} ?: '' " th:href="@{|${linkVariable}|}"></a></h3>
+        <p><span th:text="*{lastNewsPreview_1} ?: '' ">Content1</span>... &nbsp;<a class="in_link" th:href="@{|${linkVariable}|}">read more.</a></p>
     </div>
 
 
-    <div class="one_third column-last" th:with="linkVariable=@{|/news/article/${post_id3}|}">
-        <h3><a th:text="${lastNewsTittle_3}" th:href="@{|${linkVariable}|}"></a></h3>
-        <p><span th:text="${lastNewsPreview_3}">Content3</span>... &nbsp;<a class="in_link" th:href="@{|${linkVariable}|}">read more.</a></p>
+    <div class="one_third" th:with="linkVariable=@{|~/news/article/${post_id2}|}">
+        <h3><a th:text="*{lastNewsTittle_2} ?: '' " th:href="@{|${linkVariable}|}"></a></h3>
+        <p><span th:text="*{lastNewsPreview_2} ?: '' ">Content2</span>... &nbsp;<a class="in_link" th:href="@{|${linkVariable}|}">read more.</a></p>
+    </div>
+
+
+    <div class="one_third column-last" th:with="linkVariable=@{|~/news/article/${post_id3}|}">
+        <h3><a th:text="*{lastNewsTittle_3} ?: '' " th:href="@{|${linkVariable}|}"></a></h3>
+        <p><span th:text="*{lastNewsPreview_3} ?: '' ">Content3</span>... &nbsp;<a class="in_link" th:href="@{|${linkVariable}|}">read more.</a></p>
     </div>
 
 
