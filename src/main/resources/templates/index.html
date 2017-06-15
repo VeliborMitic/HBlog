@@ -3,9 +3,8 @@
 <head>
     <title>Escapy project</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" th:href="@{~/css/style.css}" type="text/css" media="screen"/>
     <link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css"/>
-    <!--<link href="http://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css"/>-->
     <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans:700i" rel="stylesheet" type="text/css"/>
 </head>
 <body>
@@ -50,7 +49,7 @@
 
     <div class="intro-2" th:with="linkVariable=@{|/news/article/${post_id0}|}">
         <h2><a th:text="${lastNewsTittle_0}" th:href="@{|${linkVariable}|}"></a></h2>
-        <p><span th:text="${lastNewsPreview_0}">Content1</span>... &nbsp;<a class="in_link2" th:href="@{|${linkVariable}|}">read more.</a></p>
+        <p><a th:text="${lastNewsPreview_0}" th:href="@{|${linkVariable}|}">Content1</a>...</p>
     </div>
 
     <div class="one_third" th:with="linkVariable=@{|/news/article/${post_id1}|}">
