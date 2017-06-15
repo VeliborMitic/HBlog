@@ -1,7 +1,7 @@
 package net.henryco.hblog.mvc.controllers;
 
 import net.henryco.hblog.mvc.model.StandardPost;
-import net.henryco.hblog.mvc.servives.PostFormService;
+import net.henryco.hblog.mvc.servives.HomePageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,11 +18,11 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RequestMapping("/")
 public class HomeController {
 
-	private final PostFormService postFormService;
+	private final HomePageService postFormService;
 
 	@Autowired
-	public HomeController(PostFormService postFormService) {
-		this.postFormService = postFormService;
+	public HomeController(HomePageService homePageService) {
+		this.postFormService = homePageService;
 	}
 
 
