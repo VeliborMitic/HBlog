@@ -88,6 +88,12 @@ h2 {
     margin: 15px auto;
 }
 
+h2 a, h3 a {
+    text-decoration: none;
+    text-transform: none;
+    color: inherit;
+}
+
 div.nav {
     height: 130px;
     width: 490px;
@@ -203,6 +209,23 @@ div.nav li a.active {
 
 .one_third {
     width: 30.5%;
+}
+
+.in_link {
+    font-size: 95%;
+    float: right;
+    margin-right: 10px;
+    font-weight: 700;
+}
+
+.in_link2 {
+    font-size: 80%;
+    font-weight: 600;
+}
+
+.in_link, .in_link2 {
+    color: inherit;
+    text-decoration: none;
 }
 
 .one_fourth {

@@ -46,28 +46,28 @@
     </div>
     <!--end header-->
     <div class="banner-image"><img src="images/bg.jpg" alt=""/></div>
-    <div class="intro-2">
-        <!--<span>Donec justo dui, pellentesque auctor condimentum eu, vulputate et ligula. Mauris ultrices ultricies est quis varius. Fusce vel purus metus, id semper arcu. Nunc quis venenatis diam.</span>-->
-        <h2><span th:text="${lastNewsTittle_0}">Tittle1</span></h2>
-        <p><span th:text="${lastNewsPreview_0}">Content1</span></p>
+
+
+    <div class="intro-2" th:with="linkVariable=@{|/news/article/${post_id0}|}">
+        <h2><a th:text="${lastNewsTittle_0}" th:href="@{|${linkVariable}|}"></a></h2>
+        <p><span th:text="${lastNewsPreview_0}">Content1</span>... &nbsp;<a class="in_link2" th:href="@{|${linkVariable}|}">read more.</a></p>
+    </div>
+
+    <div class="one_third" th:with="linkVariable=@{|/news/article/${post_id1}|}">
+        <h3><a th:text="${lastNewsTittle_1}" th:href="@{|${linkVariable}|}"></a></h3>
+        <p><span th:text="${lastNewsPreview_1}">Content1</span>... &nbsp;<a class="in_link" th:href="@{|${linkVariable}|}">read more.</a></p>
     </div>
 
 
-    <div class="one_third">
-        <h3><span th:text="${lastNewsTittle_1}">Tittle1</span></h3>
-        <p><span th:text="${lastNewsPreview_1}">Content1</span></p>
+    <div class="one_third" th:with="linkVariable=@{|/news/article/${post_id2}|}">
+        <h3><a th:text="${lastNewsTittle_2}" th:href="@{|${linkVariable}|}"></a></h3>
+        <p><span th:text="${lastNewsPreview_2}">Content2</span>... &nbsp;<a class="in_link" th:href="@{|${linkVariable}|}">read more.</a></p>
     </div>
 
 
-    <div class="one_third">
-        <h3><span th:text="${lastNewsTittle_2}">Tittle2</span></h3>
-        <p><span th:text="${lastNewsPreview_2}">Content2</span></p>
-    </div>
-
-
-    <div class="one_third column-last">
-        <h3><span th:text="${lastNewsTittle_3}">Tittle3</span></h3>
-        <p><span th:text="${lastNewsPreview_3}">Content3</span></p>
+    <div class="one_third column-last" th:with="linkVariable=@{|/news/article/${post_id3}|}">
+        <h3><a th:text="${lastNewsTittle_3}" th:href="@{|${linkVariable}|}"></a></h3>
+        <p><span th:text="${lastNewsPreview_3}">Content3</span>... &nbsp;<a class="in_link" th:href="@{|${linkVariable}|}">read more.</a></p>
     </div>
 
 
