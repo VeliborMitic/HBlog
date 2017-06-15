@@ -34,16 +34,11 @@ public class HomeController {
 		if (posts == null || posts.size() == 0) return "index";
 		int i = 0;
 		for (StandardPost post: posts) {
-
 			model.addAttribute("post_id"+i, post.getId());
 			model.addAttribute("lastNewsPreview_"+i, post.getPreview());
 			model.addAttribute("lastNewsTittle_"+i, post.getTitle());
 			i += 1;
 		}
-
-		StandardPost latest = postFormService.getLatestPost();
-		if (latest != null) System.out.println(latest);
-
 		return "index";
 	}
 
