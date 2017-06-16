@@ -31,7 +31,8 @@ public class DaoConfiguration {
 			StandardPost post = new StandardPost();
 			post.setTitle("Tittle"+i);
 			post.setContent(LOREM_IPSUM);
-			post.setPreview(LOREM_IPSUM.substring(0, 185));
+			post.setPreviewShort(LOREM_IPSUM.substring(0, Math.min(LOREM_IPSUM.length(), 185)));
+			post.setPreviewLong(LOREM_IPSUM.substring(0, Math.min(LOREM_IPSUM.length(), 330)));
 			post.setUpdateTime(DateTime.now(DateTimeZone.UTC).toDate());
 			postFormDaoImp.addPost(post);
 		}

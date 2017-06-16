@@ -35,7 +35,7 @@ public class HomeController {
 		int i = 0;
 		for (StandardPost post: posts) {
 			model.addAttribute("post_id"+i, post.getId());
-			model.addAttribute("lastNewsPreview_"+i, post.getPreview());
+			model.addAttribute("lastNewsPreview_"+i, post.getPreviewShort());
 			model.addAttribute("lastNewsTittle_"+i, post.getTitle());
 			i += 1;
 		}

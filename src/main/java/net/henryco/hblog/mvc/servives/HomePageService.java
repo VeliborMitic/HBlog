@@ -23,7 +23,7 @@ public class HomePageService {
 
 
 
-	public List<StandardPost> getLastPosts(long numb) {
+	public List<StandardPost> getLastPosts(int numb) {
 		return postFormDao.getLastPosts(numb);
 	}
 

@@ -43,6 +43,10 @@ public class PostFormDaoImp implements PostFormDao {
 		return postFormRepository.exists(id);
 	}
 
+	@Override
+	public long getPostsCount() {
+		return postFormRepository.count();
+	}
 
 	@Override
 	public StandardPost getNewestPost() {
@@ -56,11 +60,14 @@ public class PostFormDaoImp implements PostFormDao {
 
 	@Override
 	public List<StandardPost> getLastPosts(long numb) {
-		final Pageable limit = new PageRequest(0, (int) numb);
-		return postFormRepository.findDistinctByUpdateTimeBeforeOrderByUpdateTimeDesc(getActualDateTime(), limit);
+		return getPostsInRange(0, numb);
 	}
 
-
+	@Override
+	public List<StandardPost> getPostsInRange(long from, long numb) {
+		final Pageable limit = new PageRequest((int)from, (int)numb);
+		return postFormRepository.findDistinctByUpdateTimeBeforeOrderByUpdateTimeDesc(getActualDateTime(), limit);
+	}
 
 	@Override
 	public boolean removePostById(long id) {

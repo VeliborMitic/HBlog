@@ -16,21 +16,10 @@
         <div class="nav">
             <!--start navigation-->
 
-            <ul>
-                <li class="title"><a th:href="@{~/index}">Home</a></li>
-            </ul>
-
-            <ul>
-                <li class="title"><a th:href="@{~/news}">News</a></li>
-            </ul>
-
-            <ul>
-                <li class="title"><a href="#">About</a></li>
-            </ul>
-
-            <ul>
-                <li class="title"><a href="#">Join us</a></li>
-            </ul>
+            <ul><li class="title"><a th:href="@{~/index}">Home</a></li></ul>
+            <ul><li class="title"><a th:href="@{~/news}">News</a></li></ul>
+            <ul><li class="title"><a href="#">About</a></li></ul>
+            <ul><li class="title"><a href="#">Join us</a></li></ul>
 
             <ul class="menu-side">
                 <li><a href="#">Facebook</a></li>
@@ -42,28 +31,41 @@
         </div>
         <!--end navigation-->
         <div class="intro-p"><span>News page&nbsp;<span th:text="*{pageNumber} ?: ''"></span></span></div>
+        <div class="void_space"></div>
     </div>
     <!--end header-->
 
 
 
+    <div>
+        <div class="banner-right">
+            <!--VOID SPACE FOR SOME BANNERS-->
+        </div>
 
-    <div class="one_third">
-        <p>In neque nulla, rutrum vitae faucibus id, tristique faucibus urna. Praesent semper pharetra mattis.</p>
-        <br/>
-        <p>Aliquam placerat rhoncus leo, sit amet tristique lorem aliquet fringilla. Ut tristique nisi tellus. Donec ut
-            lacus vitae ipsum rhoncus convallis. Aliquam laoreet pharetra mi et pharetra.</p>
+        <div class="news_container">
+            <th:block th:each="post: ${posts}">
+
+                <div class="half_box">
+                    <p>
+                        <!--There will be image preview-->
+                    </p>
+                </div>
+
+                <div class="half_box">
+                    <h3><a th:text="*{post.title} ?: '' " th:href="@{|~/news/article/${post.id}|}"></a></h3>
+                    <p>
+                        <span th:text="*{post.previewLong} ?: ''"></span>...&nbsp;
+                    </p>
+                </div>
+                <br/>
+                <div class="void_space"></div>
+            </th:block>
+        </div>
+
     </div>
-    <div class="one_third">
-        <h3>So...</h3>
-        <p>In neque nulla, rutrum vitae faucibus id, tristique faucibus urna. Praesent semper pharetra mattis.</p>
-        <br/>
-        <p>Aliquam placerat rhoncus leo, sit amet tristique lorem aliquet fringilla. Ut tristique nisi tellus. Donec ut
-            lacus vitae ipsum rhoncus convallis. Aliquam laoreet pharetra mi et pharetra.</p>
-    </div>
-    <div class="one_third column-last">
-       <!--VOID SPACE FOR SOME BANNERS-->
-    </div>
+
+
+
 
 
 
@@ -73,8 +75,7 @@
     <!--start footer-->
     <div id="footer">
         <div class="footer-text">
-            <p><span>&copy; Copyright 2017 <a href="#">HenryCo</a>. All Rights Reserved</span> | Website Template
-                By <a href="#">Maki Myers</a></p>
+            <p><span>&copy; Copyright 2017 <a href="#">HenryCo</a>. All Rights Reserved</span> | <a href="#">Login</a></p>
         </div>
     </div>
     <!--end footer-->

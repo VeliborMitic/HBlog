@@ -28,6 +28,11 @@ body, input, textarea {
     clear: both;
 }
 
+.void_space {
+    clear: both;
+    margin-bottom: 20px;
+}
+
 strong {
     font-weight: bold;
 }
@@ -271,7 +276,24 @@ div.nav li a.active {
     width: 82.67%;
 }
 
-.one_half, .one_third, .two_third, .three_fourth, .one_fourth, .one_fifth, .two_fifth, .three_fifth, .four_fifth, .one_sixth, .five_sixth {
+.news_container {
+    float: left;
+    width: 77%;
+}
+
+.banner-right {
+    float: right;
+    position: relative;
+    width: 23%;
+    clear: right;
+    margin-bottom: 5px;
+}
+
+.half_box {
+    width: 40.5%;
+}
+
+.half_box, .one_half, .one_third, .two_third, .three_fourth, .one_fourth, .one_fifth, .two_fifth, .three_fifth, .four_fifth, .one_sixth, .five_sixth {
     position: relative;
     margin-right: 4%;
     margin-bottom: 20px;

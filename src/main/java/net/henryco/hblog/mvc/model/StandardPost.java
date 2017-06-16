@@ -18,7 +18,8 @@ public class StandardPost {
 
 	@Column private String title;
 	@Column(length = 20480) private String content;
-	@Column private String preview;
+	@Column(length = 185) private String previewShort;
+	@Column(length = 330) private String previewLong;
 	@Column private String imgLink;
 
 	@Column(name = "date")
@@ -64,12 +65,20 @@ public class StandardPost {
 		this.content = content;
 	}
 
-	public String getPreview() {
-		return preview;
+	public String getPreviewShort() {
+		return previewShort;
 	}
 
-	public void setPreview(String preview) {
-		this.preview = preview;
+	public void setPreviewShort(String previewShort) {
+		this.previewShort = previewShort;
+	}
+
+	public String getPreviewLong() {
+		return previewLong;
+	}
+
+	public void setPreviewLong(String previewLong) {
+		this.previewLong = previewLong;
 	}
 
 	public String getImgLink() {
@@ -87,6 +96,7 @@ public class StandardPost {
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
+
 
 
 	@Override

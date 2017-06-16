@@ -1,13 +1,14 @@
 package net.henryco.hblog.mvc.controllers;
 
-import net.henryco.hblog.mvc.servives.PostFormService;
+import net.henryco.hblog.mvc.model.StandardPost;
+import net.henryco.hblog.mvc.servives.NewsPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -18,11 +19,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RequestMapping("/news")
 public class NewsController {
 
-	private final PostFormService postFormService;
+	private static final long NEWS_ON_PAGE = 6;
+
+	private final NewsPageService newsPageService;
 
 	@Autowired
-	public NewsController(PostFormService postFormService) {
-		this.postFormService = postFormService;
+	public NewsController(NewsPageService newsPageService) {
+		this.newsPageService = newsPageService;
 	}
 
 
@@ -34,10 +37,17 @@ public class NewsController {
 
 
 	@RequestMapping(value = "/{numb}", method = GET)
-	public String newsPage(@PathVariable("numb") int pageNumb, Model model) {
+	public String newsPage(@PathVariable("numb") long pageNumb, Model model) {
 
+		long newsCount = newsPageService.getNewsCount();
+		long maxPages = (long) Math.ceil((double)newsCount / (double)NEWS_ON_PAGE) - 1;
+
+		if (pageNumb > maxPages) return "redirect:/news/"+maxPages;
+		if (pageNumb < 0) return news();
 		if (pageNumb > 0) model.addAttribute("pageNumber", pageNumb);
 
+		List<StandardPost> posts = newsPageService.getLastPostsInRange(pageNumb, NEWS_ON_PAGE);
+		model.addAttribute("posts", posts);
 
 		return "news";
 	}
