@@ -32,7 +32,7 @@ public class NewsController {
 
 	@RequestMapping(method = GET)
 	public String news() {
-		return "redirect:/news/0";
+		return "redirect:/news/1";
 	}
 
 
@@ -40,13 +40,13 @@ public class NewsController {
 	public String newsPage(@PathVariable("numb") long pageNumb, Model model) {
 
 		long newsCount = newsPageService.getNewsCount();
-		long maxPages = (long) Math.ceil((double)newsCount / (double)NEWS_ON_PAGE) - 1;
+		long maxPages = (long) Math.ceil((double)newsCount / (double)NEWS_ON_PAGE);
 
 		if (pageNumb > maxPages) return "redirect:/news/"+maxPages;
-		if (pageNumb < 0) return news();
-		if (pageNumb > 0) model.addAttribute("pageNumber", pageNumb);
+		if (pageNumb <= 0) return news();
+		if (pageNumb > 1) model.addAttribute("pageNumber", pageNumb);
 
-		List<StandardPostPreview> posts = newsPageService.getLastPostsInRange(pageNumb, NEWS_ON_PAGE);
+		List<StandardPostPreview> posts = newsPageService.getLastPostsInRange(pageNumb - 1, NEWS_ON_PAGE);
 		model.addAttribute("posts", posts);
 
 		return "news";
