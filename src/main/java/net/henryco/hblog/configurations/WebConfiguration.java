@@ -12,6 +12,8 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
+import java.io.File;
+
 
 /**
  * @author Henry on 14/06/17.
@@ -58,8 +60,29 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 //		registry.addViewController("/index").setViewName("index");
 //	}
 
+
+
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+
+		final String workDir = System.getProperty("user.dir");
+		final String homeDir = System.getProperty("user.home");
+		System.out.println(
+				"\n***\n\n" +
+				"WORK DIR: "+workDir+"\n" +
+				"HOME DIR: "+homeDir+"\n" +
+				"\n***\n"
+		);
+
+		System.out.println(System.getProperty("user.home"));
+
+		registry.addResourceHandler("/**")
+				.addResourceLocations("classpath:/static/");
+
+		registry.addResourceHandler("/rel/**")
+				.addResourceLocations("file:" + workDir + File.separator);
+
+		registry.addResourceHandler("/abs/**")
+				.addResourceLocations("file:" + homeDir + File.separator);
 	}
 }

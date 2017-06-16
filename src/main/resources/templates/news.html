@@ -38,12 +38,17 @@
 
 
     <div>
-        <div class="banner-right"><!--VOID SPACE FOR SOME BANNERS--></div>
+        <div class="banner-right">
+            <!--VOID SPACE FOR SOME BANNERS-->
+        </div>
 
         <div class="news_container">
             <th:block th:each="post: ${posts}">
 
-                <div class="half_box"><!--There will be image preview--></div>
+                <div class="half_box">
+                    <img th:src="@{/rel/res/public/some_img.png}"/>
+                    <!--There will be image preview-->
+                </div>
 
                 <div class="half_box">
                     <h3><a th:text="*{post.title} ?: '' " th:href="@{|~/news/article/${post.id}|}"></a></h3>
@@ -51,9 +56,14 @@
                 </div>
                 <br/>
                 <div class="void_space"></div>
+                <br/>
+                <div class="void_space"></div>
             </th:block>
         </div>
     </div>
+
+
+
 
 
 
@@ -83,6 +93,8 @@
             </div>
         </div>
     </div>
+
+
 
 
 

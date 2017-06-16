@@ -20,6 +20,7 @@ public class HomeController {
 
 	private final HomePageService postFormService;
 
+
 	@Autowired
 	public HomeController(HomePageService homePageService) {
 		this.postFormService = homePageService;
@@ -29,7 +30,6 @@ public class HomeController {
 
 	@RequestMapping(method = GET)
 	public String home(Model model) {
-
 		List<StandardPostPreview> posts = postFormService.getLastPosts(4);
 		if (posts == null || posts.size() == 0) return "index";
 		int i = 0;
