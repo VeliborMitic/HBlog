@@ -27,7 +27,7 @@ public class DaoConfiguration {
 	public PostFormDao mockDao(PostFormRepository repository) {
 
 		PostFormDaoImp postFormDaoImp = new PostFormDaoImp(repository);
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 76; i++) {
 			StandardPost post = new StandardPost();
 			post.setTitle("Tittle"+i);
 			post.setContent(LOREM_IPSUM);
