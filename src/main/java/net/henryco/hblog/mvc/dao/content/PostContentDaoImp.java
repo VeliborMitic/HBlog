@@ -24,6 +24,11 @@ public class PostContentDaoImp implements PostContentDao {
 	}
 
 	@Override
+	public StandardPostContent getPostContentById(long id) {
+		return contentRepository.getOne(id);
+	}
+
+	@Override
 	public void removePostContentById(Long id) {
 		contentRepository.delete(id);
 	}

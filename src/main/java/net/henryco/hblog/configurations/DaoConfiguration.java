@@ -2,7 +2,9 @@ package net.henryco.hblog.configurations;
 
 import net.henryco.hblog.mvc.dao.preview.PostPreviewDao;
 import net.henryco.hblog.mvc.dao.preview.PostPreviewDaoImp;
+import net.henryco.hblog.mvc.model.StandardPostContent;
 import net.henryco.hblog.mvc.model.StandardPostPreview;
+import net.henryco.hblog.mvc.repository.PostContentRepository;
 import net.henryco.hblog.mvc.repository.PostPreviewRepository;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -24,7 +26,8 @@ public class DaoConfiguration {
 
 
 	@Bean @Qualifier("testMockDao")
-	public PostPreviewDao mockDao(PostPreviewRepository previewRepository) {
+	public PostPreviewDao mockDao(PostPreviewRepository previewRepository,
+								  PostContentRepository contentRepository) {
 
 		PostPreviewDaoImp postFormDaoImp = new PostPreviewDaoImp(previewRepository);
 		for (int i = 0; i < 76; i++) {
@@ -33,7 +36,12 @@ public class DaoConfiguration {
 			post.setPreviewShort(LOREM_IPSUM.substring(0, Math.min(LOREM_IPSUM.length(), 185)));
 			post.setPreviewLong(LOREM_IPSUM.substring(0, Math.min(LOREM_IPSUM.length(), 330)));
 			post.setUpdateTime(DateTime.now(DateTimeZone.UTC).toDate());
-			postFormDaoImp.addPostPreview(post);
+			StandardPostPreview saved = postFormDaoImp.addPostPreview(post);
+
+			StandardPostContent content = new StandardPostContent();
+			content.setId(saved.getId());
+			content.setContent(LOREM_IPSUM);
+			contentRepository.saveAndFlush(content);
 		}
 		return postFormDaoImp;
 	}

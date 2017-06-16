@@ -31,6 +31,10 @@ public class StandardPostContent {
 		this.content = content;
 	}
 
+	public StandardPostContent(String content) {
+		this.content = content;
+	}
+
 	@Override
 	public String toString() {
 		return "StandardPostContent{" +

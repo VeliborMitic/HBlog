@@ -8,6 +8,7 @@ import net.henryco.hblog.mvc.model.StandardPostContent;
 public interface PostContentDao {
 
 	StandardPostContent addPostContent(StandardPostContent content);
+	StandardPostContent getPostContentById(long id);
 	void removePostContentById(Long id);
 	boolean isPostContentExists(long id);
 }
