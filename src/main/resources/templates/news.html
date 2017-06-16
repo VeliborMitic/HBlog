@@ -70,10 +70,10 @@
         <div class="void_space"></div>
 
         <div>
-            <p style="float: left;">
-                Last page | Next page
+            <p>
+                <a th:if="${page_prev} &gt; 0" th:href="@{|~/news/${page_prev}|}">Previous page</a> &nbsp;| &nbsp;
+                <a th:if="${page_next} &lt; ${page_max}" th:href="@{|~/news/${page_next}|}">Next page</a>
             </p>
-
         </div>
     </div>
 

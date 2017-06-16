@@ -48,6 +48,9 @@ public class NewsController {
 
 		List<StandardPostPreview> posts = newsPageService.getLastPostsInRange(pageNumb - 1, NEWS_ON_PAGE);
 		model.addAttribute("posts", posts);
+		model.addAttribute("page_prev", pageNumb - 1);
+		model.addAttribute("page_next", pageNumb + 1);
+		model.addAttribute("page_max", maxPages);
 
 		return "news";
 	}
