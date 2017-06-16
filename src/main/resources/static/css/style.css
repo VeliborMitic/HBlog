@@ -93,10 +93,21 @@ h2 {
     margin: 15px auto;
 }
 
-h2 a, h3 a {
+h2 a, h3 a, .page_linker a, .array_linker a{
     text-decoration: none;
     text-transform: none;
     color: inherit;
+}
+
+div.page_linker, div.array_linker {
+    width: 33%;
+    float: left;
+}
+
+.array_linker {
+    text-align: center;
+    letter-spacing: 1px;
+    font-size: inherit;
 }
 
 div.nav {
