@@ -1,6 +1,6 @@
 package net.henryco.hblog.mvc.repository;
 
-import net.henryco.hblog.mvc.model.StandardPost;
+import net.henryco.hblog.mvc.model.StandardPostPreview;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Temporal;
@@ -12,21 +12,21 @@ import java.util.List;
 /**
  * @author Henry on 15/06/17.
  */
-public interface PostFormRepository extends JpaRepository<StandardPost, Long> {
+public interface PostPreviewRepository extends JpaRepository<StandardPostPreview, Long> {
 
 
-	List<StandardPost> findDistinctByUpdateTimeBeforeOrderByUpdateTimeDesc(
+	List<StandardPostPreview> findDistinctByUpdateTimeBeforeOrderByUpdateTimeDesc(
 			@Temporal(TemporalType.TIMESTAMP) Date updateTime,
 			Pageable pageable
 	);
 
 
-	StandardPost findDistinctFirstByUpdateTimeBeforeOrderByUpdateTimeDesc(
+	StandardPostPreview findDistinctFirstByUpdateTimeBeforeOrderByUpdateTimeDesc(
 			@Temporal(TemporalType.TIMESTAMP) Date updateTime
 	);
 
 
-	StandardPost findDistinctFirstByUpdateTimeBeforeOrderByUpdateTimeAsc(
+	StandardPostPreview findDistinctFirstByUpdateTimeBeforeOrderByUpdateTimeAsc(
 			@Temporal(TemporalType.TIMESTAMP) Date updateTime
 	);
 

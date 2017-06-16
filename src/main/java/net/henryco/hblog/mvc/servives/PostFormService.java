@@ -1,7 +1,7 @@
 package net.henryco.hblog.mvc.servives;
 
-import net.henryco.hblog.mvc.dao.PostFormDao;
-import net.henryco.hblog.mvc.model.StandardPost;
+import net.henryco.hblog.mvc.dao.preview.PostPreviewDao;
+import net.henryco.hblog.mvc.model.StandardPostPreview;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -13,30 +13,30 @@ import org.springframework.stereotype.Service;
 @Service
 public class PostFormService {
 
-	private final PostFormDao postFormDao;
+	private final PostPreviewDao postPreviewDao;
 
 	@Autowired
-	public PostFormService(@Qualifier("testMockDao") PostFormDao postFormDao) {
-		this.postFormDao = postFormDao;
+	public PostFormService(@Qualifier("testMockDao") PostPreviewDao postPreviewDao) {
+		this.postPreviewDao = postPreviewDao;
 	}
 
 
-	public StandardPost getPostById(long id) {
-		return postFormDao.getPostById(id);
+	public StandardPostPreview getPostById(long id) {
+		return postPreviewDao.getPostById(id);
 	}
 
 
 	public boolean removePostById(long id) {
-		return postFormDao.removePostById(id);
+		return postPreviewDao.removePostPreviewById(id);
 	}
 
 
-	public StandardPost addPost(StandardPost post) {
-		return postFormDao.addPost(post);
+	public StandardPostPreview addPost(StandardPostPreview post) {
+		return postPreviewDao.addPostPreview(post);
 	}
 
 
 	public boolean isPostExists(long id) {
-		return postFormDao.isPostExists(id);
+		return postPreviewDao.isPostExists(id);
 	}
 }

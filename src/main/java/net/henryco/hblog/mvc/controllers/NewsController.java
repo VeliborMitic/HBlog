@@ -1,6 +1,6 @@
 package net.henryco.hblog.mvc.controllers;
 
-import net.henryco.hblog.mvc.model.StandardPost;
+import net.henryco.hblog.mvc.model.StandardPostPreview;
 import net.henryco.hblog.mvc.servives.NewsPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,7 +46,7 @@ public class NewsController {
 		if (pageNumb < 0) return news();
 		if (pageNumb > 0) model.addAttribute("pageNumber", pageNumb);
 
-		List<StandardPost> posts = newsPageService.getLastPostsInRange(pageNumb, NEWS_ON_PAGE);
+		List<StandardPostPreview> posts = newsPageService.getLastPostsInRange(pageNumb, NEWS_ON_PAGE);
 		model.addAttribute("posts", posts);
 
 		return "news";

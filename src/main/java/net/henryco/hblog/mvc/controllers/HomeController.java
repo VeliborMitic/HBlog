@@ -1,6 +1,6 @@
 package net.henryco.hblog.mvc.controllers;
 
-import net.henryco.hblog.mvc.model.StandardPost;
+import net.henryco.hblog.mvc.model.StandardPostPreview;
 import net.henryco.hblog.mvc.servives.HomePageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,10 +30,10 @@ public class HomeController {
 	@RequestMapping(method = GET)
 	public String home(Model model) {
 
-		List<StandardPost> posts = postFormService.getLastPosts(4);
+		List<StandardPostPreview> posts = postFormService.getLastPosts(4);
 		if (posts == null || posts.size() == 0) return "index";
 		int i = 0;
-		for (StandardPost post: posts) {
+		for (StandardPostPreview post: posts) {
 			model.addAttribute("post_id"+i, post.getId());
 			model.addAttribute("lastNewsPreview_"+i, post.getPreviewShort());
 			model.addAttribute("lastNewsTittle_"+i, post.getTitle());

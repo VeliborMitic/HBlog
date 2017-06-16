@@ -9,15 +9,14 @@ import java.util.Date;
  */
 
 @Entity
-@Table(name = "standard_posts")
-public class StandardPost {
+@Table(name = "standard_post_preview")
+public class StandardPostPreview {
 
 
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id @Column(name = "id") private long id;
 
 	@Column private String title;
-	@Column(length = 20480) private String content;
 	@Column(length = 185) private String previewShort;
 	@Column(length = 330) private String previewLong;
 	@Column private String imgLink;
@@ -27,16 +26,15 @@ public class StandardPost {
 	private Date updateTime;
 
 
-	public StandardPost() {
+	public StandardPostPreview() {
 	}
 
-	public StandardPost(String title, String content) {
+	public StandardPostPreview(String title) {
 		this.title = title;
-		this.content = content;
 	}
 
-	public StandardPost(long id, String title, String content) {
-		this(title, content);
+	public StandardPostPreview(long id, String title) {
+		this(title);
 		this.id = id;
 	}
 
@@ -55,14 +53,6 @@ public class StandardPost {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
 	}
 
 	public String getPreviewShort() {
@@ -101,7 +91,7 @@ public class StandardPost {
 
 	@Override
 	public String toString() {
-		return "StandardPost{" +
+		return "StandardPostPreview{" +
 				"id=" + id +
 				", title='" + title + '\'' +
 				", updateTime=" + updateTime +
