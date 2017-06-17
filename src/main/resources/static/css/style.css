@@ -201,10 +201,17 @@ div.nav li a.active {
     padding-top: 30px;
     width: 100%;
     /*TODO change font*/
-    /*font-family: 'Lobster', cursive;*/
     font-family: 'Quattrocento Sans', sans-serif;
     font-size: 20px;
     color: #414141;
+}
+
+.intro-p h1 {
+
+    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    float: left;
 }
 
 .intro-2 {

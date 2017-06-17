@@ -18,8 +18,8 @@
 
             <ul><li class="title"><a th:href="@{~/index}">Home</a></li></ul>
             <ul><li class="title"><a th:href="@{~/news}">News</a></li></ul>
-            <ul><li class="title"><a href="#">About</a></li></ul>
-            <ul><li class="title"><a href="#">Join us</a></li></ul>
+            <ul><li class="title"><a th:href="@{~/about}">About</a></li></ul>
+            <ul><li class="title"><a th:href="@{~/join}">Join us</a></li></ul>
 
             <ul class="menu-side">
                 <li><a href="#">Facebook</a></li>
@@ -45,11 +45,11 @@
         <div class="news_container">
             <th:block th:each="post: ${posts}" th:with="post_link=@{|~/news/article/${post.id}|}">
 
-                <div class="half_box">
+                <div class="half_box"> <!--IMAGE PREVIEW-->
                     <a th:href="@{|${post_link}|}"><img th:src="@{|/rel/res/public/${post.imgLink}|}"/></a>
                 </div>
 
-                <div class="half_box">
+                <div class="half_box"> <!--TEXT PREVIEW-->
                     <h3><a th:text="*{post.title} ?: '' " th:href="@{|${post_link}|}"></a></h3>
                     <p>
                         <span th:text="*{post.previewLong} ?: ''"></span>...&nbsp;<br/>

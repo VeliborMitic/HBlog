@@ -16,7 +16,7 @@ public class StandardPostPreview {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id @Column(name = "id") private long id;
 
-	@Column private String title;
+	@Column(length = 40) private String title;
 	@Column(length = 185) private String previewShort;
 	@Column(length = 700) private String previewLong;
 	@Column private String imgLink;
