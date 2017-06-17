@@ -20,13 +20,19 @@ public interface PostPreviewRepository extends JpaRepository<StandardPostPreview
 			Pageable pageable
 	);
 
-
 	StandardPostPreview findDistinctFirstByUpdateTimeBeforeOrderByUpdateTimeDesc(
 			@Temporal(TemporalType.TIMESTAMP) Date updateTime
 	);
 
-
 	StandardPostPreview findDistinctFirstByUpdateTimeBeforeOrderByUpdateTimeAsc(
+			@Temporal(TemporalType.TIMESTAMP) Date updateTime
+	);
+
+	StandardPostPreview findFirstByUpdateTimeBeforeOrderByUpdateTimeDesc(
+			@Temporal(TemporalType.TIMESTAMP) Date updateTime
+	);
+
+	StandardPostPreview findFirstByUpdateTimeAfter(
 			@Temporal(TemporalType.TIMESTAMP) Date updateTime
 	);
 

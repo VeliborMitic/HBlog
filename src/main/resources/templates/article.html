@@ -37,41 +37,43 @@
 
         <!-- POST TITLE -->
         <div class="intro-p"><h1><span th:text="${post_title}"></span></h1></div>
+
+        <!-- POST DATE -->
+        <span th:text="${post_update_time}" class="date_span"></span>
+
     </div>
     <!--end header-->
 
 
 
-    <div class="intro-2">
-        <span>Donec justo dui, pellentesque auctor condimentum eu, vulputate et ligula. Mauris ultrices ultricies est quis varius. Fusce vel purus metus, id semper arcu. Nunc quis venenatis diam. Donec justo dui, pellentesque auctor condimentum eu, vulputate et ligula. Mauris ultrices ultricies est quis varius. Fusce vel purus metus, id semper arcu. Nunc quis venenatis diam.</span>
+    <!-- POST CONTENT -->
+    <div class="post_content"><span th:utext="${post_content}"></span></div>
+
+    <div class="page_linker">
+        <p>
+            <a th:if="${article_id} != ${article_prev}" th:href="@{|~/news/article/${article_prev}|}">Previous article</a> &nbsp;|&nbsp;
+            <a th:if="${article_id} != ${article_next}" th:href="@{|~/news/article/${article_next}|}">Next article</a>
+        </p>
     </div>
 
 
     <div class="clear"></div>
+    <div class="post_content_line">&nbsp;</div>
+    <div class="clear"></div>
 
 
 
-    <div class="one_fourth">
-        <h3>1/4</h3>
-        <p>Aliquam placerat rhoncus leo, sit amet tristique lorem aliquet fringilla. Ut tristique nisi tellus. Donec ut
-            lacus vitae ipsum rhoncus convallis. Aliquam laoreet pharetra mi et pharetra.</p>
-    </div>
-    <div class="one_fourth">
-        <h3>1/4</h3>
-        <p>Aliquam placerat rhoncus leo, sit amet tristique lorem aliquet fringilla. Ut tristique nisi tellus. Donec ut
-            lacus vitae ipsum rhoncus convallis. Aliquam laoreet pharetra mi et pharetra.</p>
-    </div>
-    <div class="one_fourth">
-        <h3>1/4</h3>
-        <p>Aliquam placerat rhoncus leo, sit amet tristique lorem aliquet fringilla. Ut tristique nisi tellus. Donec ut
-            lacus vitae ipsum rhoncus convallis. Aliquam laoreet pharetra mi et pharetra.</p>
-    </div>
-    <div class="one_fourth column-last">
-        <h3>1/4</h3>
-        <p>Aliquam placerat rhoncus leo, sit amet tristique lorem aliquet fringilla. Ut tristique nisi tellus. Donec ut
-            lacus vitae ipsum rhoncus convallis. Aliquam laoreet pharetra mi et pharetra.</p>
-    </div>
+    <th:block th:each="perview: ${post_previews}">
+        <div class="one_fourth" th:with="linkVariable = @{|~/news/article/${perview.id}|}">
+            <h3><a th:text="*{perview.title} ?: '' " th:href="@{|${linkVariable}|}"></a></h3>
+            <p><a th:text="*{perview.previewShort} ?: '' " th:href="@{|${linkVariable}|}"></a>...</p>
+        </div>
+    </th:block>
 
+    <div class="one_fourth column-last" th:with="linkVariable = @{|~/news/article/${last_preview.id}|}">
+        <h3><a th:text="*{last_preview.title} ?: '' " th:href="@{|${linkVariable}|}"></a></h3>
+        <p><a th:text="*{last_preview.previewShort} ?: '' " th:href="@{|${linkVariable}|}"></a>...</p>
+    </div>
 
 
 

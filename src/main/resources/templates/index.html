@@ -38,7 +38,7 @@
 
     <div class="intro-2" th:with="linkVariable=@{|~/news/article/${post_id0}|}">
         <h2><a th:text="*{lastNewsTittle_0} ?: '' " th:href="@{|${linkVariable}|}"></a></h2>
-        <p><a th:text="*{lastNewsPreview_0} ?: '' " th:href="@{|${linkVariable}|}">Content1</a>...</p>
+        <p><a th:text="*{lastNewsPreview_0} ?: '' " th:href="@{|${linkVariable}|}"></a>...</p>
     </div>
 
     <div class="one_third" th:with="linkVariable=@{|~/news/article/${post_id1}|}">

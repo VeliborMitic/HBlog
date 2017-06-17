@@ -21,4 +21,6 @@ public interface PostPreviewDao {
 
 	StandardPostPreview getNewestPost();
 	StandardPostPreview getOldestPost();
+	StandardPostPreview getPostOlderThen(long id);
+	StandardPostPreview getPostYoungerThen(long id);
 }

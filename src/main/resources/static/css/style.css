@@ -98,7 +98,7 @@ h2 {
     margin: 15px auto;
 }
 
-h2 a, h3 a, .page_linker a, .array_linker a{
+h2 a, h3 a, .page_linker a, .array_linker a {
     text-decoration: none;
     text-transform: none;
     color: inherit;
@@ -196,31 +196,61 @@ div.nav li a.active {
 }
 
 .intro-p {
-    float: left;
-    margin: 0 0 15px;
     padding-top: 30px;
     width: 100%;
     /*TODO change font*/
     font-family: 'Quattrocento Sans', sans-serif;
     font-size: 20px;
-    color: #414141;
 }
 
 .intro-p h1 {
-
-    font-size: 30px;
+    font-size: 31px;
     margin-top: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     float: left;
 }
 
-.intro-2 {
+.intro-p, .date_span {
+    color: #414141;
     float: left;
-    margin: 0 0 50px;
-    /*padding-top: 10px;*/
+}
+
+.date_span {
+    margin-bottom: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+.post_content {
+    width: 75%;
+    font-size: 15px;
+    margin: 0 0 85px;
+}
+
+.post_content img {
+    width: 100%;
+    height: auto;
+    display:inline-block;
+}
+
+.intro-2 {
     width: 100%;
     font-size: 16px;
+    margin: 0 0 50px;
+}
+
+.intro-2, .post_content {
+    float: left;
     color: #414141;
+}
+
+.post_content_line {
+    width: 75%;
+    margin: 0 0 35px;
+    border-bottom: 1px solid #CCC;
+    float: left;
 }
 
 .intro-2 a {
@@ -232,9 +262,7 @@ div.nav li a.active {
 
 .banner-image {
     border-top: 1px solid #CCC;
-    /*float: center;*/
     margin: 10px 0 30px;
-    /*padding-top: 20px;*/
     width: 100%;
 }
 
@@ -272,6 +300,19 @@ div.nav li a.active {
 
 .one_fourth {
     width: 22%;
+    font-size: 11px;
+}
+
+.one_fourth h3 {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.one_fourth a {
+    text-decoration: inherit;
+    text-transform: inherit;
+    font-size: inherit;
+    color: inherit;
 }
 
 .one_fifth {

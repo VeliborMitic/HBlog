@@ -77,7 +77,19 @@ public class PostPreviewDaoImp implements PostPreviewDao {
 		return true;
 	}
 
+	@Override
+	public StandardPostPreview getPostOlderThen(long id) {
+		return postPreviewRepository.findFirstByUpdateTimeBeforeOrderByUpdateTimeDesc(
+				postPreviewRepository.getOne(id).getUpdateTime()
+		);
+	}
 
+	@Override
+	public StandardPostPreview getPostYoungerThen(long id) {
+		return postPreviewRepository.findFirstByUpdateTimeAfter(
+				postPreviewRepository.getOne(id).getUpdateTime()
+		);
+	}
 
 	private static Date getActualDateTime() {
 		return DateTime.now(DateTimeZone.UTC).toDate();

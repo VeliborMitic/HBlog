@@ -32,11 +32,11 @@ public class NewsController {
 	}
 
 
-
 	@RequestMapping(method = GET)
 	public String news() {
 		return "redirect:/news/1";
 	}
+
 
 
 	@RequestMapping(value = "/{numb}", method = GET)
@@ -50,7 +50,6 @@ public class NewsController {
 		if (pageNumb > 1) model.addAttribute("pageNumber", pageNumb);
 
 		List<Long> linksArray = getLinksArray(LINK_PAGE_NUMB, pageNumb, maxPages);
-
 		List<StandardPostPreview> posts = newsPageService.getLastPostsInRange(pageNumb - 1, NEWS_ON_PAGE);
 		model.addAttribute("posts", posts);
 		model.addAttribute("page_prev", pageNumb - 1);
@@ -62,6 +61,8 @@ public class NewsController {
 
 		return "news";
 	}
+
+
 
 	private static List<Long> getLinksArray(int size, long page, long max) {
 
@@ -86,4 +87,5 @@ public class NewsController {
 
 		return list;
 	}
+
 }
