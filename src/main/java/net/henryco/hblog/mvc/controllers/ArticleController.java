@@ -2,7 +2,9 @@ package net.henryco.hblog.mvc.controllers;
 
 import net.henryco.hblog.mvc.model.post.StandardPostContent;
 import net.henryco.hblog.mvc.model.post.StandardPostPreview;
+import net.henryco.hblog.mvc.model.promo.PinnedBanners;
 import net.henryco.hblog.mvc.servives.ArticlePageService;
+import net.henryco.hblog.mvc.servives.SimpExtraMediaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,11 +24,15 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class ArticleController {
 
 	private final ArticlePageService articlePageService;
+	private final SimpExtraMediaService mediaService;
 	private final SimpleDateFormat dateFormat;
 
+
 	@Autowired
-	public ArticleController(ArticlePageService articlePageService) {
+	public ArticleController(ArticlePageService articlePageService,
+							 SimpExtraMediaService mediaService) {
 		this.articlePageService = articlePageService;
+		this.mediaService = mediaService;
 		this.dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 	}
 
@@ -38,6 +44,10 @@ public class ArticleController {
 
 	@RequestMapping(value = "/{id}", method = GET)
 	public String article(@PathVariable("id") long id, Model model) {
+
+		List<PinnedBanners> pinnedBanners = mediaService.getActualBanners(1);
+		if (pinnedBanners != null)
+			model.addAttribute("banners", pinnedBanners);
 
 		List<StandardPostPreview> previews = articlePageService.getLastPostPreviews(4);
 		if (previews != null && !previews.isEmpty()) {

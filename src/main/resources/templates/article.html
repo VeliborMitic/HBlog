@@ -48,7 +48,12 @@
 
     <div>
         <div class="banner-right">
-            <!--VOID SPACE FOR SOME BANNERS-->
+            <th:block th:each="banner: ${banners}">
+                <a th:href="@{|${banner.mediaHref}|}">
+                    <img th:src="@{|~/rel/res/public/${banner.mediaUrl}|}"/>
+                </a>
+                <div class="void_space2"></div>
+            </th:block>
         </div>
 
         <!-- POST CONTENT -->

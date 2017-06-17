@@ -46,7 +46,7 @@ public class DaoConfiguration {
 		PostPreviewDaoImp postFormDaoImp = new PostPreviewDaoImp(previewRepository);
 		for (int i = 0; i < 76; i++) {
 			StandardPostPreview post = new StandardPostPreview();
-			post.setTitle("Some lorem ipsum tittle"+i);
+			post.setTitle("Some lorem ipsum tittle"+Integer.toString(i + 1));
 			post.setImgLink("some_img.png");
 			post.setPreviewShort(LOREM_IPSUM.substring(0, Math.min(LOREM_IPSUM.length(), 185)));
 			post.setPreviewLong(LOREM_IPSUM.substring(0, Math.min(LOREM_IPSUM.length(), 700)));

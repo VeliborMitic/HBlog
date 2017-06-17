@@ -1,7 +1,9 @@
 package net.henryco.hblog.mvc.controllers;
 
 import net.henryco.hblog.mvc.model.post.StandardPostPreview;
+import net.henryco.hblog.mvc.model.promo.PinnedBanners;
 import net.henryco.hblog.mvc.servives.NewsPageService;
+import net.henryco.hblog.mvc.servives.SimpExtraMediaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,10 +26,13 @@ public class NewsController {
 	private static final int LINK_PAGE_NUMB = 7;
 
 	private final NewsPageService newsPageService;
+	private final SimpExtraMediaService mediaService;
 
 	@Autowired
-	public NewsController(NewsPageService newsPageService) {
+	public NewsController(NewsPageService newsPageService,
+						  SimpExtraMediaService mediaService) {
 		this.newsPageService = newsPageService;
+		this.mediaService = mediaService;
 	}
 
 
@@ -47,6 +52,10 @@ public class NewsController {
 		if (pageNumb > maxPages) return "redirect:/news/"+maxPages;
 		if (pageNumb <= 0) return news();
 		if (pageNumb > 1) model.addAttribute("pageNumber", pageNumb);
+
+		List<PinnedBanners> pinnedBanners = mediaService.getActualBanners(1);
+		if (pinnedBanners != null)
+			model.addAttribute("banners", pinnedBanners);
 
 		List<Long> linksArray = getLinksArray(LINK_PAGE_NUMB, pageNumb, maxPages);
 		List<StandardPostPreview> posts = newsPageService.getLastPostsInRange(pageNumb - 1, NEWS_ON_PAGE);

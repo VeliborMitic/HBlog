@@ -229,7 +229,7 @@ div.nav li a.active {
     margin: 0 0 85px;
 }
 
-.post_content img {
+.post_content img, .banner-right img {
     width: 100%;
     height: auto;
     display:inline-block;
