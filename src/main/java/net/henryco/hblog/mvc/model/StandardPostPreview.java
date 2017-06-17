@@ -18,7 +18,7 @@ public class StandardPostPreview {
 
 	@Column private String title;
 	@Column(length = 185) private String previewShort;
-	@Column(length = 330) private String previewLong;
+	@Column(length = 700) private String previewLong;
 	@Column private String imgLink;
 
 	@Column(name = "date")

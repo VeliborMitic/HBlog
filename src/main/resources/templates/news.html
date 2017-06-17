@@ -31,7 +31,7 @@
         </div>
         <!--end navigation-->
         <div class="intro-p"><span>News page&nbsp;<span th:text="*{pageNumber} ?: ''"></span></span></div>
-        <div class="void_space"></div>
+        <div class="void_space2"></div>
     </div>
     <!--end header-->
 
@@ -43,16 +43,21 @@
         </div>
 
         <div class="news_container">
-            <th:block th:each="post: ${posts}">
+            <th:block th:each="post: ${posts}" th:with="post_link=@{|~/news/article/${post.id}|}">
 
                 <div class="half_box">
-                    <img th:src="@{/rel/res/public/some_img.png}"/>
-                    <!--There will be image preview-->
+
+                    <a th:href="@{|${post_link}|}">
+                        <img th:src="@{|/rel/res/public/${post.imgLink}|}"/>
+                    </a>
                 </div>
 
                 <div class="half_box">
-                    <h3><a th:text="*{post.title} ?: '' " th:href="@{|~/news/article/${post.id}|}"></a></h3>
-                    <p><span th:text="*{post.previewLong} ?: ''"></span>...&nbsp;</p>
+                    <h3><a th:text="*{post.title} ?: '' " th:href="@{|${post_link}|}"></a></h3>
+                    <p>
+                        <span th:text="*{post.previewLong} ?: ''"></span>...&nbsp;<br/>
+                        <a class="in_link3" th:href="@{|${post_link}|}">read more.</a>
+                    </p>
                 </div>
                 <br/>
                 <div class="void_space"></div>
@@ -83,7 +88,7 @@
                     <a th:if="${link_page_min} == 2" th:href="@{~/news}">1&nbsp;</a>
                     <th:block th:each="page_link: ${link_array}">
                         &nbsp;<a th:href="@{|~/news/${page_link}|}">
-                            <span th:if="${page_link} == ${pageNumber}" th:text="${page_link}" style="text-decoration: underline"></span>
+                            <span th:if="${page_link} == ${pageNumber}" th:text="${page_link}" style="text-decoration: underline;"></span>
                             <span th:unless="${page_link} == ${pageNumber}" th:text="${page_link}"></span>
                         </a>&nbsp;
                     </th:block>

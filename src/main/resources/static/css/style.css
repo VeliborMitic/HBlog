@@ -33,6 +33,11 @@ body, input, textarea {
     margin-bottom: 20px;
 }
 
+.void_space2 {
+    clear: both;
+    margin-bottom: 30px;
+}
+
 strong {
     font-weight: bold;
 }
@@ -246,6 +251,13 @@ div.nav li a.active {
     font-weight: 600;
 }
 
+.in_link3 {
+    font-size: 100%;
+    float: left;
+    font-weight: 700;
+    color: inherit;
+}
+
 .in_link, .in_link2 {
     color: inherit;
     text-decoration: none;
@@ -302,6 +314,13 @@ div.nav li a.active {
 
 .half_box {
     width: 40.5%;
+}
+
+.half_box a img {
+    min-width: 100%;
+    height: auto;
+    max-height: 340px;
+    display:inline-block;
 }
 
 .half_box, .one_half, .one_third, .two_third, .three_fourth, .one_fourth, .one_fifth, .two_fifth, .three_fifth, .four_fifth, .one_sixth, .five_sixth {
