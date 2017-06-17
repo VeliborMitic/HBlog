@@ -1,6 +1,6 @@
 package net.henryco.hblog.mvc.repository;
 
-import net.henryco.hblog.mvc.model.StandardPostContent;
+import net.henryco.hblog.mvc.model.post.StandardPostContent;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

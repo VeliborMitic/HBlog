@@ -1,6 +1,6 @@
 package net.henryco.hblog.mvc.controllers;
 
-import net.henryco.hblog.mvc.model.StandardPostPreview;
+import net.henryco.hblog.mvc.model.post.StandardPostPreview;
 import net.henryco.hblog.mvc.servives.NewsPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -55,9 +54,14 @@ public class NewsController {
 		model.addAttribute("page_prev", pageNumb - 1);
 		model.addAttribute("page_next", pageNumb + 1);
 		model.addAttribute("page_max", maxPages);
-		model.addAttribute("link_page_min", linksArray.get(0));
-		model.addAttribute("link_page_max", linksArray.get(linksArray.size() - 1));
 		model.addAttribute("link_array", linksArray);
+		if (!linksArray.isEmpty()) {
+			model.addAttribute("link_page_min", linksArray.get(0));
+			model.addAttribute("link_page_max", linksArray.get(linksArray.size() - 1));
+		} else {
+			model.addAttribute("link_page_min", 1);
+			model.addAttribute("link_page_max", 1);
+		}
 
 		return "news";
 	}
@@ -67,8 +71,12 @@ public class NewsController {
 	private static List<Long> getLinksArray(int size, long page, long max) {
 
 		List<Long> list = new ArrayList<>();
-		long start = page - ((size - 1) / 2);
+		if (size > max) {
+			for (long i = 1; i < max; i++) list.add(i);
+			return list;
+		}
 
+		long start = page - ((size - 1) / 2);
 		if (start <= 0) {
 			for (long i = 1; i < size; i++) list.add(i);
 			return list;

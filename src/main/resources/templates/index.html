@@ -35,29 +35,33 @@
     <!--end header-->
     <div class="banner-image"><img th:src="@{~/images/bg.jpg}" alt=""/></div>
 
+    <th:block th:each="hot_post: ${actual_news}">
+        <div class="intro-2" th:with="linkVariable=@{|~/news/article/${hot_post.id}|}">
+            <h2><a th:text="${hot_post.title}" th:href="@{|${linkVariable}|}"></a></h2>
+            <p><a th:text="${hot_post.previewShort}" th:href="@{|${linkVariable}|}"></a>...</p>
+        </div>
+    </th:block>
 
-    <div class="intro-2" th:with="linkVariable=@{|~/news/article/${post_id0}|}">
-        <h2><a th:text="*{lastNewsTittle_0} ?: '' " th:href="@{|${linkVariable}|}"></a></h2>
-        <p><a th:text="*{lastNewsPreview_0} ?: '' " th:href="@{|${linkVariable}|}"></a>...</p>
+    <div>
+        <div class="banner-right">
+            <!--VOID SPACE FOR SOME BANNERS-->
+        </div>
+        <div class="home_container" style="width:77%; float: left;">
+            <th:block th:each="preview: ${previews}" th:with="linkVariable=@{|~/news/article/${preview.id}|}">
+                <div class="half_box">
+                    <h3><a th:text="${preview.title}" th:href="@{|${linkVariable}|}"></a></h3>
+                    <p>
+                        <span th:text="${preview.previewShort}"></span>...
+                        <a class="in_link" th:href="@{|${linkVariable}|}">read more.</a>
+                    </p>
+                </div>
+            </th:block>
+        </div>
     </div>
 
-    <div class="one_third" th:with="linkVariable=@{|~/news/article/${post_id1}|}">
-        <h3><a th:text="*{lastNewsTittle_1} ?: '' " th:href="@{|${linkVariable}|}"></a></h3>
-        <p><span th:text="*{lastNewsPreview_1} ?: '' ">Content1</span>... &nbsp;<a class="in_link" th:href="@{|${linkVariable}|}">read more.</a></p>
-    </div>
 
 
-    <div class="one_third" th:with="linkVariable=@{|~/news/article/${post_id2}|}">
-        <h3><a th:text="*{lastNewsTittle_2} ?: '' " th:href="@{|${linkVariable}|}"></a></h3>
-        <p><span th:text="*{lastNewsPreview_2} ?: '' ">Content2</span>... &nbsp;<a class="in_link" th:href="@{|${linkVariable}|}">read more.</a></p>
-    </div>
-
-
-    <div class="one_third column-last" th:with="linkVariable=@{|~/news/article/${post_id3}|}">
-        <h3><a th:text="*{lastNewsTittle_3} ?: '' " th:href="@{|${linkVariable}|}"></a></h3>
-        <p><span th:text="*{lastNewsPreview_3} ?: '' ">Content3</span>... &nbsp;<a class="in_link" th:href="@{|${linkVariable}|}">read more.</a></p>
-    </div>
-
+    <div class="clear"></div>
 
     <div id="footer">
         <!--start footer-->

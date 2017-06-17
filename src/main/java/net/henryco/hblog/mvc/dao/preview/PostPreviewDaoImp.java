@@ -1,6 +1,6 @@
 package net.henryco.hblog.mvc.dao.preview;
 
-import net.henryco.hblog.mvc.model.StandardPostPreview;
+import net.henryco.hblog.mvc.model.post.StandardPostPreview;
 import net.henryco.hblog.mvc.repository.PostPreviewRepository;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;

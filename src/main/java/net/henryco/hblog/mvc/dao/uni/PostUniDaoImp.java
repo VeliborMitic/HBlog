@@ -1,7 +1,7 @@
 package net.henryco.hblog.mvc.dao.uni;
 
-import net.henryco.hblog.mvc.model.StandardPostContent;
-import net.henryco.hblog.mvc.model.StandardPostPreview;
+import net.henryco.hblog.mvc.model.post.StandardPostContent;
+import net.henryco.hblog.mvc.model.post.StandardPostPreview;
 import net.henryco.hblog.mvc.repository.PostContentRepository;
 import net.henryco.hblog.mvc.repository.PostPreviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;

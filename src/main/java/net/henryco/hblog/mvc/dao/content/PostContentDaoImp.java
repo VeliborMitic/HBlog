@@ -1,6 +1,6 @@
 package net.henryco.hblog.mvc.dao.content;
 
-import net.henryco.hblog.mvc.model.StandardPostContent;
+import net.henryco.hblog.mvc.model.post.StandardPostContent;
 import net.henryco.hblog.mvc.repository.PostContentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

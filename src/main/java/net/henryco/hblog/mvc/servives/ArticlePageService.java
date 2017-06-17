@@ -2,15 +2,12 @@ package net.henryco.hblog.mvc.servives;
 
 import net.henryco.hblog.mvc.dao.content.PostContentDao;
 import net.henryco.hblog.mvc.dao.preview.PostPreviewDao;
-import net.henryco.hblog.mvc.model.StandardPostContent;
-import net.henryco.hblog.mvc.model.StandardPostPreview;
-import net.henryco.hblog.utils.Utils;
-import org.joda.time.DateTime;
+import net.henryco.hblog.mvc.model.post.StandardPostContent;
+import net.henryco.hblog.mvc.model.post.StandardPostPreview;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 /**

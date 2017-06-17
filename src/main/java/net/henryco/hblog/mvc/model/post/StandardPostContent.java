@@ -1,4 +1,4 @@
-package net.henryco.hblog.mvc.model;
+package net.henryco.hblog.mvc.model.post;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -75,7 +75,7 @@
         <div>
             <div class="page_linker">
                 <p>
-                    <a th:if="${page_prev} &gt; 0" th:href="@{|~/news/${page_prev}|}">Previous page</a> &nbsp;|&nbsp;
+                    <a th:if="${page_prev} &gt; 0" th:href="@{|~/news/${page_prev}|}">Previous page &nbsp;|&nbsp;</a>
                     <a th:if="${page_next} &lt; ${page_max}" th:href="@{|~/news/${page_next}|}">Next page</a>
                 </p>
             </div>
