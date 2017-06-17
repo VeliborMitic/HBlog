@@ -74,8 +74,6 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 				"\n***\n"
 		);
 
-		System.out.println(System.getProperty("user.home"));
-
 		registry.addResourceHandler("/**")
 				.addResourceLocations("classpath:/static/");
 

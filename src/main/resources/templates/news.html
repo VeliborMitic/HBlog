@@ -46,10 +46,7 @@
             <th:block th:each="post: ${posts}" th:with="post_link=@{|~/news/article/${post.id}|}">
 
                 <div class="half_box">
-
-                    <a th:href="@{|${post_link}|}">
-                        <img th:src="@{|/rel/res/public/${post.imgLink}|}"/>
-                    </a>
+                    <a th:href="@{|${post_link}|}"><img th:src="@{|/rel/res/public/${post.imgLink}|}"/></a>
                 </div>
 
                 <div class="half_box">
