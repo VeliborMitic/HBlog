@@ -18,6 +18,9 @@ public class StandardPostContent {
 	@Column(length = 102400)
 	private String content;
 
+	@Column(length = 1024)
+	private String attached;
+
 
 	public StandardPostContent() {
 	}
@@ -40,6 +43,7 @@ public class StandardPostContent {
 		return "StandardPostContent{" +
 				"id=" + id +
 				", content='" + content + '\'' +
+				", attached='" + attached + '\'' +
 				'}';
 	}
 
@@ -57,5 +61,13 @@ public class StandardPostContent {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getAttached() {
+		return attached;
+	}
+
+	public void setAttached(String attached) {
+		this.attached = attached;
 	}
 }

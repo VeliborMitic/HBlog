@@ -67,12 +67,6 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 
 		final String workDir = System.getProperty("user.dir");
 		final String homeDir = System.getProperty("user.home");
-		System.out.println(
-				"\n***\n\n" +
-				"WORK DIR: "+workDir+"\n" +
-				"HOME DIR: "+homeDir+"\n" +
-				"\n***\n"
-		);
 
 		registry.addResourceHandler("/**")
 				.addResourceLocations("classpath:/static/");
@@ -82,5 +76,13 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 
 		registry.addResourceHandler("/abs/**")
 				.addResourceLocations("file:" + homeDir + File.separator);
+
+		System.out.println(
+				"\n***\n\n" +
+						"WORK DIR: "+workDir+" \t[mapping: /rel/**" + "]\n" +
+						"HOME DIR: "+homeDir+" \t[mapping: /abs/**" + "]\n"+
+				"\n***\n"
+		);
+
 	}
 }
