@@ -1,4 +1,4 @@
-package net.henryco.hblog.mvc.controllers;
+package net.henryco.hblog.mvc.controllers.pub;
 
 import net.henryco.hblog.mvc.model.post.StandardPostPreview;
 import net.henryco.hblog.mvc.model.promo.PinnedBanners;

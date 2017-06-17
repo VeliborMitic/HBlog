@@ -30,7 +30,9 @@
 
         </div>
         <!--end navigation-->
-        <div class="intro-p"><span>We are a group of enthusiasts who intend to create a deep 2D story</span></div>
+        <div class="intro-p">
+            <!--<span>We are a group of enthusiasts who intend to create a deep 2D story</span>-->
+        </div>
     </div>
     <!--end header-->
     <div class="banner-image"><img th:src="@{~/images/bg.jpg}" alt=""/></div>
@@ -71,7 +73,7 @@
     <div id="footer">
         <!--start footer-->
         <div class="footer-text">
-            <p><span>&copy; Copyright 2017 <a href="#">HenryCo</a>. All Rights Reserved</span> | <a href="#">Login</a></p>
+            <p><span>&copy; Copyright 2017 <a href="#">HenryCo</a>. All Rights Reserved</span> | <a th:href="@{~/acc/login}">Login</a></p>
         </div>
     </div>
     <!--end footer-->
