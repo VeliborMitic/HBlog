@@ -16,7 +16,7 @@ public class ProfileController {
 	@RequestMapping(method = GET)
 	public String profile(Model model) {
 
-		return "profile";
+		return "account";
 	}
 
 }

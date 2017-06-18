@@ -433,3 +433,13 @@ div.footer-text a {
     color: #999;
     text-decoration: none;
 }
+
+.input_space {
+    background-color: #E2E2E2;
+}
+
+.errors {
+    float: right;
+    color: crimson;
+    font-style: italic;
+}
