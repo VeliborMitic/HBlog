@@ -12,21 +12,11 @@
 <div id="wrapper" class="clearfix">
 
     <!-- BODY -->
-    <span style="float: left; width: 60%">
-             <a th:href="@{~/acc/registration}"
-                style="
-                text-decoration: inherit;
-                text-transform: inherit;
-                font-size: inherit;
-                color: inherit;">
-                 Don't have an account yet?
-             </a>
-         </span>
     <div style="width: 60%; margin-bottom: 20px">
         <h1 class="logo"><a th:href="@{/index}">Index</a></h1>
     </div><br/>
-    <div style="width: 60%; padding-top: 10px">
-        <div style="width: 40%; float: left; margin-bottom: 20px; padding-top: 30px; padding-left: 3%">
+    <div style="width: 100%; padding-top: 10px">
+        <div style="width: 40%; float: left; margin-bottom: 20px; padding-top: 1%; padding-left: 1%">
             <form method="post" th:object="${loginForm}" th:action="@{~/acc/login}">
                 <div class="errors" th:if="${#fields.hasErrors('*')}">
                     <ul><li th:each="err: ${#fields.errors('*')}" th:text="${err}">Input data error</li></ul>
@@ -39,6 +29,7 @@
                 <br/><br/>
                 <input type="submit" value="Login"/>
             </form>
+
         </div>
     </div>
 
