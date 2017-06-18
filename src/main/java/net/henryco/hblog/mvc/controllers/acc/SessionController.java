@@ -2,7 +2,6 @@ package net.henryco.hblog.mvc.controllers.acc;
 
 import net.henryco.hblog.mvc.controllers.acc.form.RegistrationForm;
 import net.henryco.hblog.mvc.model.account.BaseUserProfile;
-import net.henryco.hblog.mvc.servives.account.BaseProfileService;
 import net.henryco.hblog.mvc.servives.account.ExtendedProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
@@ -32,17 +31,12 @@ public class SessionController {
 
 	private final Environment environment;
 	private final ExtendedProfileService profileService;
-	private final BaseProfileService baseProfileService;
 
 	@Autowired
 	public SessionController(Environment environment,
-							 ExtendedProfileService profileService,
-							 BaseProfileService baseProfileService
-
-	) {
+							 ExtendedProfileService profileService) {
 		this.environment = environment;
 		this.profileService = profileService;
-		this.baseProfileService = baseProfileService;
 	}
 
 
@@ -98,18 +92,6 @@ public class SessionController {
 		profileService.saveNewBaseUserProfile(profile, form.getPassword(), r_admin ? ROLES_ADMIN : ROLES_USER);
 
 		return "redirect:/acc/login";
-	}
-
-	@RequestMapping("/acc/test")
-	public String test() {
-
-		System.out.println("\nTEST: ");
-		for (BaseUserProfile profile: baseProfileService.getAllProfiles()) {
-			System.out.println(profile);
-			System.out.println(profileService.getAuthProfile(profile.getId()));
-			System.out.println();
-		}
-		return "test";
 	}
 
 }
