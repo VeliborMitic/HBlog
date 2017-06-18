@@ -1,9 +1,8 @@
 package net.henryco.hblog.mvc.controllers.acc;
 
-import net.henryco.hblog.mvc.controllers.acc.form.LoginForm;
 import net.henryco.hblog.mvc.controllers.acc.form.RegistrationForm;
 import net.henryco.hblog.mvc.model.account.BaseUserProfile;
-import net.henryco.hblog.mvc.model.account.ProfilePassword;
+import net.henryco.hblog.mvc.servives.account.BaseProfileService;
 import net.henryco.hblog.mvc.servives.account.ExtendedProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
@@ -17,8 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
+import java.util.List;
+
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
  * @author Henry on 18/06/17.
@@ -27,17 +27,23 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @PropertySource("static/props/base.properties")
 public class SessionController {
 
+	private static final String[] ROLES_ADMIN = {"ROLE_USER", "ROLE_ADMIN"};
+	private static final String[] ROLES_USER = {"ROLE_USER"};
+
 	private final Environment environment;
 	private final ExtendedProfileService profileService;
+	private final BaseProfileService baseProfileService;
 
 	@Autowired
 	public SessionController(Environment environment,
-							 ExtendedProfileService profileService) {
+							 ExtendedProfileService profileService,
+							 BaseProfileService baseProfileService
+
+	) {
 		this.environment = environment;
 		this.profileService = profileService;
+		this.baseProfileService = baseProfileService;
 	}
-
-
 
 
 	//	--------- LOGIN PART ------------------------------------------------------------
@@ -48,38 +54,7 @@ public class SessionController {
 	}
 
 
-	@RequestMapping(value = "/acc/login", method = GET)
-	public String login(Model model) {
-		model.addAttribute("loginForm", new LoginForm());
-		return "login";
-	}
-
-
-	@RequestMapping(value = "/acc/login/finish", method = POST)
-	public String login(@ModelAttribute @Valid LoginForm loginForm, BindingResult bindingResult) {
-		if (bindingResult.hasErrors()) return "login";
-
-		BaseUserProfile profile = profileService.getProfileByNameOrEmail(loginForm.getUserName());
-		if (profile == null) {
-			bindingResult.addError(new ObjectError("username", "Invalid username or password"));
-			return "login";
-		}
-		ProfilePassword password = profileService.getProfilePassword(profile.getId());
-		if (password.getPassword() != null && !password.getPassword().equals(loginForm.getPassword())) {
-			bindingResult.addError(new ObjectError("pass", "Invalid username or password"));
-			return "login";
-		}
-
-		return "redirect:/account/"+profile.getId();
-	}
-
-
-
-
-
-
-
-//	--------- REGISTRATION PART ----------------------------------------------------------
+	//	--------- REGISTRATION PART -----------------------------------------------------
 
 	@RequestMapping(value = "/registration", method = GET)
 	public String registration() {
@@ -99,12 +74,16 @@ public class SessionController {
 							   BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) return "registration";
-		if (!form.getGpgPubKey().equals(environment.getProperty("access.keys.gpg"))) {
-			bindingResult.addError(new ObjectError("pgp_key", "GPG KEY is invalid"));
+
+		boolean r_user = form.getGpgPubKey().equals(environment.getProperty("access.keys.gpg.user"));
+		boolean r_admin = form.getGpgPubKey().equals(environment.getProperty("access.keys.gpg.admin"));
+
+		if (!r_user && !r_admin) {
+			bindingResult.addError(new ObjectError("gpg_key", "GPG KEY is invalid"));
 			return "registration";
 		}
 
-		BaseUserProfile existing = profileService.getProfileByNameOrEmail(form.getUserName());
+		BaseUserProfile existing = profileService.getBaseProfileByNameOrEmail(form.getUserName());
 		if (existing != null) {
 			bindingResult.addError(new ObjectError("e_mail", "Username or email already exists"));
 			return "registration";
@@ -116,9 +95,21 @@ public class SessionController {
 		profile.setUserName(form.getUserName());
 		profile.setEmail(form.getEmail());
 
-		profileService.saveUserProfile(profile, form.getPassword());
+		profileService.saveNewBaseUserProfile(profile, form.getPassword(), r_admin ? ROLES_ADMIN : ROLES_USER);
 
 		return "redirect:/acc/login";
+	}
+
+	@RequestMapping("/acc/test")
+	public String test() {
+
+		System.out.println("\nTEST: ");
+		for (BaseUserProfile profile: baseProfileService.getAllProfiles()) {
+			System.out.println(profile);
+			System.out.println(profileService.getAuthProfile(profile.getId()));
+			System.out.println();
+		}
+		return "test";
 	}
 
 }

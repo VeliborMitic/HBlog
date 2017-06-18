@@ -29,22 +29,26 @@
     <div style="padding-top: 10px">
         <div style="width: 40%; float: left; margin-bottom: 20px; padding-top: 30px;">
 
-            <form method="post" th:object="${loginForm}" th:action="@{~/acc/login/finish}" style="padding-left: 10%">
+            <form method="post" th:action="@{~/acc/login}" style="padding-left: 10%">
 
                 <div style="float: left; width: 50%">
                     <label for="username">Username or email</label><br/>
-                    <input id="username" type="text" th:field="*{userName}" class="input_space"/><br/>
+                    <input id="username" type="text" class="input_space"/><br/>
 
-                    <label for="pass">Password</label><br/>
-                    <input id="pass" type="password" th:field="*{password}" title="Password" class="input_space"/><br/>
+                    <label for="password">Password</label><br/>
+                    <input id="password" type="password" class="input_space"/><br/>
 
-                    <br/><input type="submit" value="Login"/>
+                    <label for="remember-me">Remember Me?</label><br/>
+                    <input type="checkbox" id="remember-me" name="remember-me"/><br/>
+
+                    <br/>
+                    <div>
+                        <button type="submit">Log in</button>
+                    </div>
                 </div>
-
-                <div class="errors" th:if="${#fields.hasErrors('*')}" style="width:50%;">
-                    <ul><li th:each="err: ${#fields.errors('*')}" th:text="${err}">Input data error</li></ul>
+                <div th:if="${param.error}" style="color: crimson; font-style: italic">
+                    Invalid username and password.
                 </div>
-
 
             </form>
         </div>

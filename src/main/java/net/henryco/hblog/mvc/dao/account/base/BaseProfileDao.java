@@ -21,5 +21,5 @@ public interface BaseProfileDao {
 
 	List<BaseUserProfile> getMany(int numb);
 
-	void deleteById(long id);
+	void deleteBaseUserProfile(long id);
 }

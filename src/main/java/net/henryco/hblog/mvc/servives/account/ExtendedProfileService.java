@@ -1,9 +1,9 @@
 package net.henryco.hblog.mvc.servives.account;
 
 import net.henryco.hblog.mvc.dao.account.base.BaseProfileDao;
-import net.henryco.hblog.mvc.dao.account.priv.ProfilePassDao;
+import net.henryco.hblog.mvc.dao.account.priv.AuthProfileDao;
+import net.henryco.hblog.mvc.model.account.AuthUserProfile;
 import net.henryco.hblog.mvc.model.account.BaseUserProfile;
-import net.henryco.hblog.mvc.model.account.ProfilePassword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,43 +14,51 @@ import org.springframework.stereotype.Service;
 public class ExtendedProfileService {
 
 	private final BaseProfileDao profileDao;
-	private final ProfilePassDao passDao;
+	private final AuthProfileDao authDao;
 
 	@Autowired
 	public ExtendedProfileService(BaseProfileDao profileDao,
-								  ProfilePassDao passDao) {
+								  AuthProfileDao authDao) {
 		this.profileDao = profileDao;
-		this.passDao = passDao;
+		this.authDao = authDao;
 	}
 
-	public void saveUserProfile(BaseUserProfile profile, String password) {
+	public void saveNewBaseUserProfile(BaseUserProfile profile, String password, String ... authorities) {
 
 		BaseUserProfile savedProfile = profileDao.addProfile(profile);
-		passDao.saveUserProfilePassword(new ProfilePassword(savedProfile.getId(), password));
+		AuthUserProfile auth = new AuthUserProfile(savedProfile.getId(), password, authorities);
+		auth.setEnabled(true);
+		auth.setExpired(false);
+		auth.setLocked(false);
+		authDao.saveAuthUserProfile(auth);
 	}
 
 	public void deleteProfile(long id) {
-		passDao.deletePassword(id);
-		profileDao.deleteById(id);
+		authDao.deleteAuthUserProfile(id);
+		profileDao.deleteBaseUserProfile(id);
 	}
 
 	public void setPassword(long id, String password) {
-		passDao.setPassword(new ProfilePassword(id, password));
+		authDao.setPassword(id, password);
 	}
 
-	public ProfilePassword getProfilePassword(long id) {
-		return passDao.getUserProfilePassword(id);
+	public AuthUserProfile getAuthProfile(long id) {
+		return authDao.getAuthUserProfile(id);
 	}
 
-	public boolean isProfileExists(long id) {
+	public AuthUserProfile getAuthProfileReference(long id) {
+		return authDao.getAuthUserProfileReference(id);
+	}
+
+	public boolean isBaseProfileExists(long id) {
 		return profileDao.isProfileExists(id);
 	}
 
-	public boolean isPasswordExists(long id) {
-		return passDao.isPasswordExists(id);
+	public boolean isAuthProfileExists(long id) {
+		return authDao.isAuthUserProfileExists(id);
 	}
 
-	public BaseUserProfile getProfileByNameOrEmail(String nameOrEmail) {
+	public BaseUserProfile getBaseProfileByNameOrEmail(String nameOrEmail) {
 		return profileDao.getProfileByUserNameOrEmail(nameOrEmail);
 	}
 

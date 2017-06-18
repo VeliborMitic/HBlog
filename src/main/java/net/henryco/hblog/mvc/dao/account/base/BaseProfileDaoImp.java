@@ -47,7 +47,7 @@ public class BaseProfileDaoImp implements BaseProfileDao {
 	}
 
 	@Override
-	public void deleteById(long id) {
+	public void deleteBaseUserProfile(long id) {
 		userProfileRepository.delete(id);
 	}
 
