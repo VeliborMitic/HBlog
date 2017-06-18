@@ -1,4 +1,4 @@
-package net.henryco.hblog.mvc.dao.uni;
+package net.henryco.hblog.mvc.dao.post.uni;
 
 import net.henryco.hblog.mvc.model.post.StandardPostContent;
 import net.henryco.hblog.mvc.model.post.StandardPostPreview;

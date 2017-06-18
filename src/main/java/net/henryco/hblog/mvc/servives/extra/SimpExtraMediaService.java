@@ -1,8 +1,8 @@
-package net.henryco.hblog.mvc.servives;
+package net.henryco.hblog.mvc.servives.extra;
 
-import net.henryco.hblog.mvc.dao.extra.ExtraMediaDao;
-import net.henryco.hblog.mvc.model.promo.PinnedBanners;
-import net.henryco.hblog.mvc.model.promo.PinnedNews;
+import net.henryco.hblog.mvc.dao.extra.ExtraContentDao;
+import net.henryco.hblog.mvc.model.extra.PinnedBanners;
+import net.henryco.hblog.mvc.model.extra.PinnedNews;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +14,10 @@ import java.util.List;
 @Service
 public class SimpExtraMediaService {
 
-	private final ExtraMediaDao mediaDao;
+	private final ExtraContentDao mediaDao;
 
 	@Autowired
-	public SimpExtraMediaService(ExtraMediaDao mediaDao) {
+	public SimpExtraMediaService(ExtraContentDao mediaDao) {
 		this.mediaDao = mediaDao;
 	}
 

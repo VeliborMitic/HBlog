@@ -29,7 +29,7 @@ public class RegistrationForm {
 
 	@NotNull
 	@Size(min = 8, max = 8, message = "Size of (pgp public key) field is 8")
-	private String pgpPubKey;
+	private String gpgPubKey;
 
 
 	public RegistrationForm() {
@@ -43,7 +43,7 @@ public class RegistrationForm {
 				", lastName='" + lastName + '\'' +
 				", email='" + email + '\'' +
 				", password='" + password + '\'' +
-				", pgpPubKey='" + pgpPubKey + '\'' +
+				", gpgPubKey='" + gpgPubKey + '\'' +
 				'}';
 	}
 
@@ -88,11 +88,11 @@ public class RegistrationForm {
 		this.password = password;
 	}
 
-	public String getPgpPubKey() {
-		return pgpPubKey;
+	public String getGpgPubKey() {
+		return gpgPubKey;
 	}
 
-	public void setPgpPubKey(String pgpPubKey) {
-		this.pgpPubKey = pgpPubKey;
+	public void setGpgPubKey(String gpgPubKey) {
+		this.gpgPubKey = gpgPubKey;
 	}
 }

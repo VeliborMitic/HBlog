@@ -1,6 +1,6 @@
-package net.henryco.hblog.mvc.servives;
+package net.henryco.hblog.mvc.servives.post;
 
-import net.henryco.hblog.mvc.dao.preview.PostPreviewDao;
+import net.henryco.hblog.mvc.dao.post.preview.PostPreviewDao;
 import net.henryco.hblog.mvc.model.post.StandardPostPreview;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,12 +11,12 @@ import org.springframework.stereotype.Service;
  * @author Henry on 15/06/17.
  */
 @Service
-public class PostFormService {
+public class PostDirectService {
 
 	private final PostPreviewDao postPreviewDao;
 
 	@Autowired
-	public PostFormService(@Qualifier("testMockDao") PostPreviewDao postPreviewDao) {
+	public PostDirectService(@Qualifier("testMockDao") PostPreviewDao postPreviewDao) {
 		this.postPreviewDao = postPreviewDao;
 	}
 

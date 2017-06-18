@@ -1,7 +1,7 @@
 package net.henryco.hblog.mvc.dao.extra;
 
-import net.henryco.hblog.mvc.model.promo.PinnedBanners;
-import net.henryco.hblog.mvc.model.promo.PinnedNews;
+import net.henryco.hblog.mvc.model.extra.PinnedBanners;
+import net.henryco.hblog.mvc.model.extra.PinnedNews;
 import net.henryco.hblog.mvc.repository.PinnedBannersRepository;
 import net.henryco.hblog.mvc.repository.PinnedNewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +14,14 @@ import java.util.List;
  * @author Henry on 17/06/17.
  */
 @Repository
-public class ExtraMediaDaoImp implements ExtraMediaDao {
+public class ExtraContentDaoImp implements ExtraContentDao {
 
 	private final PinnedBannersRepository bannersRepository;
 	private final PinnedNewsRepository newsRepository;
 
 	@Autowired
-	public ExtraMediaDaoImp(PinnedBannersRepository bannersRepository,
-							PinnedNewsRepository newsRepository) {
+	public ExtraContentDaoImp(PinnedBannersRepository bannersRepository,
+							  PinnedNewsRepository newsRepository) {
 		this.bannersRepository = bannersRepository;
 		this.newsRepository = newsRepository;
 	}

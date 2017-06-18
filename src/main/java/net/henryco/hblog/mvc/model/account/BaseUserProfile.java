@@ -8,13 +8,15 @@ import static javax.persistence.GenerationType.AUTO;
  * @author Henry on 18/06/17.
  */
 @Entity
-public class UserProfileBase {
+public class BaseUserProfile {
 
 	@Column(name = "id") @Id
 	@GeneratedValue(strategy = AUTO)
 	private long id;
 
-	@Column(nullable = false, length = 20)
+	@Column(nullable = false,
+			length = 20,
+			unique = true)
 	private String userName;
 
 	@Column(length = 20)
@@ -23,17 +25,18 @@ public class UserProfileBase {
 	@Column(length = 20)
 	private String lastName;
 
-	@Column(nullable = false)
+	@Column(nullable = false,
+			unique = true)
 	private String email;
 
 	@Column
 	private String iconLink;
 
 
-	public UserProfileBase() {
+	public BaseUserProfile() {
 	}
 
-	public UserProfileBase(String userName, String firstName, String lastName, String email, String iconLink) {
+	public BaseUserProfile(String userName, String firstName, String lastName, String email, String iconLink) {
 		this.userName = userName;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -43,7 +46,7 @@ public class UserProfileBase {
 
 	@Override
 	public String toString() {
-		return "UserProfileBase{" +
+		return "BaseUserProfile{" +
 				"id=" + id +
 				", userName='" + userName + '\'' +
 				", firstName='" + firstName + '\'' +

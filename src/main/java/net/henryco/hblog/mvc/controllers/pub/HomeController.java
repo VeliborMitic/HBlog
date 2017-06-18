@@ -1,10 +1,10 @@
 package net.henryco.hblog.mvc.controllers.pub;
 
 import net.henryco.hblog.mvc.model.post.StandardPostPreview;
-import net.henryco.hblog.mvc.model.promo.PinnedBanners;
-import net.henryco.hblog.mvc.model.promo.PinnedNews;
-import net.henryco.hblog.mvc.servives.HomePageService;
-import net.henryco.hblog.mvc.servives.SimpExtraMediaService;
+import net.henryco.hblog.mvc.model.extra.PinnedBanners;
+import net.henryco.hblog.mvc.model.extra.PinnedNews;
+import net.henryco.hblog.mvc.servives.post.HomePageService;
+import net.henryco.hblog.mvc.servives.extra.SimpExtraMediaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

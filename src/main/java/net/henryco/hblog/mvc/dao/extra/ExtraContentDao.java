@@ -1,14 +1,14 @@
 package net.henryco.hblog.mvc.dao.extra;
 
-import net.henryco.hblog.mvc.model.promo.PinnedBanners;
-import net.henryco.hblog.mvc.model.promo.PinnedNews;
+import net.henryco.hblog.mvc.model.extra.PinnedBanners;
+import net.henryco.hblog.mvc.model.extra.PinnedNews;
 
 import java.util.List;
 
 /**
  * @author Henry on 17/06/17.
  */
-public interface ExtraMediaDao {
+public interface ExtraContentDao {
 
 	PinnedNews getPinnedNewsById(long id);
 

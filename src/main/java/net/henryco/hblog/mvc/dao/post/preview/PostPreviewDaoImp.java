@@ -1,4 +1,4 @@
-package net.henryco.hblog.mvc.dao.preview;
+package net.henryco.hblog.mvc.dao.post.preview;
 
 import net.henryco.hblog.mvc.model.post.StandardPostPreview;
 import net.henryco.hblog.mvc.repository.PostPreviewRepository;

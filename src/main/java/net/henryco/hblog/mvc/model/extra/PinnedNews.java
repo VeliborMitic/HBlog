@@ -1,4 +1,4 @@
-package net.henryco.hblog.mvc.model.promo;
+package net.henryco.hblog.mvc.model.extra;
 
 import javax.persistence.*;
 
