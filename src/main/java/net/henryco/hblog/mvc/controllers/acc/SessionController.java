@@ -42,7 +42,7 @@ public class SessionController {
 	//	--------- ACCOUNT PART ----------------------------------------------------------
 	@RequestMapping(value = "/account", method = GET)
 	public String account() {
-		System.out.println("SUCCESS");
+		// TODO: 19/06/17
 		return "redirect:/";
 	}
 
