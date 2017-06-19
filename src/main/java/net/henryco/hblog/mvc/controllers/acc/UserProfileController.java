@@ -16,7 +16,8 @@ public class UserProfileController {
 	@RequestMapping(method = GET)
 	public String profile(Model model) {
 
-		return "account";
+
+		return "profile";
 	}
 
 }

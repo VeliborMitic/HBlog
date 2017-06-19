@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+>
 <head>
     <title th:text="${profile_name}">Escapy | Profile</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -25,9 +28,12 @@
     <!--end header-->
     <div class="void_space"></div>
 
-
     <!-- BODY -->
-
+    <span sec:authorize="isAuthenticated()">
+        Logged user: <span sec:authentication="name"></span> |
+        Roles: <span sec:authentication="principal.authorities"></span> |
+        <a th:href="@{/logout}">Sign Out</a>
+    </span>
 
     <div class="void_space2"></div>
     <div class="void_space2"></div>
