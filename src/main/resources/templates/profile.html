@@ -12,23 +12,8 @@
     <!--start wrapper-->
     <div id="header" class="clearfix">
         <!--start header-->
-        <h1 class="logo"><a th:href="@{~/index}">Logo</a></h1>
-        <div class="nav">
-            <!--start navigation-->
-
-            <ul><li class="title"><a th:href="@{~/index}">Home</a></li></ul>
-            <ul><li class="title"><a th:href="@{~/news}">News</a></li></ul>
-            <ul><li class="title"><a th:href="@{~/about}">About</a></li></ul>
-            <ul><li class="title"><a th:href="@{~/join}">Join us</a></li></ul>
-
-            <ul class="menu-side">
-                <li><a href="#">Facebook</a></li>
-                <li><a href="#">Vk.com</a></li>
-                <li><a href="#">Twitter</a></li>
-                <li><a href="#">Github</a></li>
-            </ul>
-
-        </div>
+        <h1 th:replace="nav :: logo"></h1>
+        <div th:replace="nav :: navigation"></div>
         <!--end navigation-->
         <div class="void_space2"></div>
         <div class="intro-p">
@@ -46,14 +31,8 @@
 
     <div class="void_space2"></div>
     <div class="void_space2"></div>
-    <div class="clear"></div>
-    <div id="footer">
-        <!--start footer-->
-        <div class="footer-text">
-            <p><span>&copy; Copyright 2017 <a href="#">HenryCo</a>. All Rights Reserved</span> | <a href="#">Login</a></p>
-        </div>
-    </div>
-    <!--end footer-->
+    <div th:replace="nav :: nav_footer"></div>
+
 </div>
 <!--end wrapper-->
 </body>

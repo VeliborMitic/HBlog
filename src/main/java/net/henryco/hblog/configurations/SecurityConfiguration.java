@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.access.AccessDeniedHandler;
 
 /**
  * @author Henry on 14/06/17.
@@ -18,23 +19,27 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	private final UserDetailsService userDetailsService;
+	private final AccessDeniedHandler accessDeniedHandler;
 
 	@Autowired
-	public SecurityConfiguration(UserDetailsService userDetailsService) {
+	public SecurityConfiguration(UserDetailsService userDetailsService,
+								 AccessDeniedHandler accessDeniedHandler) {
 		this.userDetailsService = userDetailsService;
+		this.accessDeniedHandler = accessDeniedHandler;
 	}
-
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/", "/index").permitAll()
-				.and().formLogin()
-				.loginPage("/acc/login")
-				.permitAll()
-				.and().logout().logoutSuccessUrl("/").permitAll()
+				.and().formLogin().loginPage("/acc/login").defaultSuccessUrl("/account").permitAll()
+				.and().rememberMe().tokenValiditySeconds(2419200).key("escapyKey")
+				.and().logout().logoutUrl("/acc/logout").logoutSuccessUrl("/").permitAll()
+				.and().exceptionHandling().accessDeniedHandler(accessDeniedHandler)
 				.and().authorizeRequests()
-				.antMatchers("/account").hasRole("USER")
-				.antMatchers(HttpMethod.POST, "/account").hasRole("USER");
+				.antMatchers("/account/**", "/rel/res/private/**").hasRole("USER")
+				.antMatchers(HttpMethod.POST, "/account/**", "/rel/res/private/**").hasRole("USER")
+				.antMatchers("/account/admin/**").hasRole("ADMIN")
+				.antMatchers(HttpMethod.POST, "/account/admin/**").hasRole("ADMIN");
 	}
 
 

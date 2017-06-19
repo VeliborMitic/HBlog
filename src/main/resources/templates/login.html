@@ -1,15 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
 <head>
     <title>Escapy | Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" th:href="@{~/css/style.css}" type="text/css" media="screen"/>
     <link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans:700i" rel="stylesheet" type="text/css"/>
+
 </head>
 <body>
 <!--start wrapper-->
 <div id="wrapper" class="clearfix">
+
+
 
     <!-- BODY -->
     <span style="float: left; width: 60%">
@@ -33,10 +38,10 @@
 
                 <div style="float: left; width: 50%">
                     <label for="username">Username or email</label><br/>
-                    <input id="username" type="text" class="input_space"/><br/>
+                    <input name="username" id="username" type="text" class="input_space"/><br/>
 
                     <label for="password">Password</label><br/>
-                    <input id="password" type="password" class="input_space"/><br/>
+                    <input name="password" id="password" type="password" class="input_space"/><br/>
 
                     <label for="remember-me">Remember Me?</label><br/>
                     <input type="checkbox" id="remember-me" name="remember-me"/><br/>

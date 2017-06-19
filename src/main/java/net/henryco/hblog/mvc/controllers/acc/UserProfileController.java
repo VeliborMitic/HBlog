@@ -10,8 +10,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  * @author Henry on 18/06/17.
  */
 @Controller
-@RequestMapping("/profile")
-public class ProfileController {
+@RequestMapping("/account/profile")
+public class UserProfileController {
 
 	@RequestMapping(method = GET)
 	public String profile(Model model) {

@@ -38,7 +38,7 @@ public class DetailsUserProfile implements UserDetails {
 
 	@Override
 	public boolean isAccountNonExpired() {
-		return !authUserProfile.isExpired();
+		return true;
 	}
 
 	@Override

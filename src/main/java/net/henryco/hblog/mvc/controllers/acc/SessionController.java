@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
-import java.util.List;
-
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
@@ -40,29 +38,26 @@ public class SessionController {
 	}
 
 
-	//	--------- LOGIN PART ------------------------------------------------------------
 
+	//	--------- ACCOUNT PART ----------------------------------------------------------
+	@RequestMapping(value = "/account", method = GET)
+	public String account() {
+		System.out.println("SUCCESS");
+		return "redirect:/";
+	}
+
+
+
+	//	--------- LOGIN PART ------------------------------------------------------------
 	@RequestMapping(value = "/login", method = GET)
 	public String login() {
 		return "redirect:/acc/login";
 	}
 
 
+
+
 	//	--------- REGISTRATION PART -----------------------------------------------------
-
-	@RequestMapping(value = "/registration", method = GET)
-	public String registration() {
-		return "redirect:/acc/registration";
-	}
-
-
-	@RequestMapping(value = "/acc/registration", method = GET)
-	public String registration(Model model) {
-		model.addAttribute("registrationForm", new RegistrationForm());
-		return "registration";
-	}
-
-
 	@RequestMapping(value = "/acc/registration/finish")
 	public String registration(@Valid @ModelAttribute RegistrationForm form,
 							   BindingResult bindingResult) {
@@ -93,5 +88,18 @@ public class SessionController {
 
 		return "redirect:/acc/login";
 	}
+
+
+	@RequestMapping(value = "/acc/registration", method = GET)
+	public String registration(Model model) {
+		model.addAttribute("registrationForm", new RegistrationForm());
+		return "registration";
+	}
+
+	@RequestMapping(value = "/registration", method = GET)
+	public String registration() {
+		return "redirect:/acc/registration";
+	}
+
 
 }

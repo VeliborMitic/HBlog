@@ -32,16 +32,19 @@ public class BaseUserProfile {
 	@Column
 	private String iconLink;
 
+	@Column
+	private String position;
 
 	public BaseUserProfile() {
 	}
 
-	public BaseUserProfile(String userName, String firstName, String lastName, String email, String iconLink) {
+	public BaseUserProfile(String userName, String firstName, String lastName, String email, String iconLink, String position) {
 		this.userName = userName;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.iconLink = iconLink;
+		this.position = position;
 	}
 
 	@Override
@@ -53,6 +56,7 @@ public class BaseUserProfile {
 				", lastName='" + lastName + '\'' +
 				", email='" + email + '\'' +
 				", iconLink='" + iconLink + '\'' +
+				", position='" + position + '\'' +
 				'}';
 	}
 
@@ -102,5 +106,13 @@ public class BaseUserProfile {
 
 	public void setIconLink(String iconLink) {
 		this.iconLink = iconLink;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
 	}
 }
