@@ -6,6 +6,9 @@ import net.henryco.hblog.mvc.servives.account.ExtendedProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +16,8 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -51,14 +56,23 @@ public class SessionController {
 	//	--------- LOGIN PART ------------------------------------------------------------
 	@RequestMapping(value = "/login", method = GET)
 	public String login() {
-		return "redirect:/acc/login";
+		return "redirect:/access/login";
 	}
 
 
 
+	//	--------- LOGOUT PART -----------------------------------------------------------
+	@RequestMapping(value="/access/logout", method = GET)
+	public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null)
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		return "redirect:/access/login?logout";
+	}
+
 
 	//	--------- REGISTRATION PART -----------------------------------------------------
-	@RequestMapping(value = "/acc/registration/finish")
+	@RequestMapping(value = "/access/registration/finish")
 	public String registration(@Valid @ModelAttribute RegistrationForm form,
 							   BindingResult bindingResult) {
 
@@ -86,11 +100,11 @@ public class SessionController {
 
 		profileService.saveNewBaseUserProfile(profile, form.getPassword(), r_admin ? ROLES_ADMIN : ROLES_USER);
 
-		return "redirect:/acc/login";
+		return "redirect:/access/login";
 	}
 
 
-	@RequestMapping(value = "/acc/registration", method = GET)
+	@RequestMapping(value = "/access/registration", method = GET)
 	public String registration(Model model) {
 		model.addAttribute("registrationForm", new RegistrationForm());
 		return "registration";
@@ -98,7 +112,7 @@ public class SessionController {
 
 	@RequestMapping(value = "/registration", method = GET)
 	public String registration() {
-		return "redirect:/acc/registration";
+		return "redirect:/access/registration";
 	}
 
 

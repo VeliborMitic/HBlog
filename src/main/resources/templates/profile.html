@@ -32,7 +32,7 @@
     <span sec:authorize="isAuthenticated()">
         Logged user: <span sec:authentication="name"></span> |
         Roles: <span sec:authentication="principal.authorities"></span> |
-        <a th:href="@{/logout}">Sign Out</a>
+        <a th:href="@{~/access/logout}">Sign Out</a>
     </span>
 
     <div class="void_space2"></div>
