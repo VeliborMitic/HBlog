@@ -1,11 +1,12 @@
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <div th:fragment="header-css">
-        <!-- this is header-css -->
-        <link rel="stylesheet" th:href="@{~/css/style.css}" type="text/css" media="screen"/>
-        <link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css"/>
-        <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans:700i" rel="stylesheet" type="text/css"/>
-    </div>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+>
+<head th:fragment="header-css">
+    <!-- this is header-css -->
+    <link rel="stylesheet" th:href="@{~/css/style.css}" type="text/css" media="screen"/>
+    <link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans:700i" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 
@@ -42,7 +43,13 @@
     <div id="footer">
         <!--start footer-->
         <div class="footer-text">
-            <p><span>&copy; Copyright 2017 <a href="#">HenryCo</a>. All Rights Reserved</span> | <a th:href="@{~/access/login}">Login</a></p>
+            <p><span>&copy; Copyright 2017 <a href="#">HenryCo</a>. All Rights Reserved</span> |
+                <span sec:authorize="isAuthenticated()">
+                    <a th:href="@{~/access/logout}">Sign Out</a> |
+                    <a th:href="@{~/account/profile}">Profile</a>
+                </span>
+                <a sec:authorize="!isAuthenticated()" th:href="@{~/access/login}">Sign In</a>
+            </p>
         </div>
     </div>
 </div>

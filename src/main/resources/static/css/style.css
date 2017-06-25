@@ -98,10 +98,15 @@ h2 {
     margin: 15px auto;
 }
 
-h2 a, h3 a, .page_linker a, .array_linker a {
+h2 a, h3 a, .page_linker a, .array_linker a, h1 a {
     text-decoration: none;
     text-transform: none;
     color: inherit;
+}
+
+h1 a {
+    font-size: inherit;
+    font-style: inherit;
 }
 
 div.page_linker, div.array_linker {

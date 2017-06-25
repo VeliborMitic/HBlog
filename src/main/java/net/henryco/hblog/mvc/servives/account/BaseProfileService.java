@@ -25,6 +25,10 @@ public class BaseProfileService {
 		return profileDao.getProfileById(id);
 	}
 
+	public BaseUserProfile getUserProfileByUserName(String name) {
+		return profileDao.getProfileByUserNameOrEmail(name);
+	}
+
 	public List<BaseUserProfile> getProfiles(int numb) {
 		return profileDao.getMany(numb);
 	}

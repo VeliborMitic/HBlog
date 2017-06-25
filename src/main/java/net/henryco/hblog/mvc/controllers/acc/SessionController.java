@@ -47,8 +47,7 @@ public class SessionController {
 	//	--------- ACCOUNT PART ----------------------------------------------------------
 	@RequestMapping(value = "/account", method = GET)
 	public String account() {
-		// TODO: 19/06/17
-		return "redirect:/";
+		return "redirect:/account/profile";
 	}
 
 
