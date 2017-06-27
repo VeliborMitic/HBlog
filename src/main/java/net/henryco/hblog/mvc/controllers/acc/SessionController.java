@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
  * @author Henry on 18/06/17.
@@ -71,7 +72,7 @@ public class SessionController {
 
 
 	//	--------- REGISTRATION PART -----------------------------------------------------
-	@RequestMapping(value = "/access/registration/finish")
+	@RequestMapping(value = "/access/registration/finish", method = POST)
 	public String registration(@Valid @ModelAttribute RegistrationForm form,
 							   BindingResult bindingResult) {
 

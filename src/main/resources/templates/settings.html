@@ -21,7 +21,7 @@
         <div class="void_space2"></div>
         <div class="intro-p">
             <span>
-                Profile
+                Settings
             </span>
         </div>
     </div>
@@ -36,9 +36,9 @@
                 <br/>
                 <a style="padding-top: 5px" th:href="@{|${def_link}/addpost|}">Add post</a>
                 <br/>
-                <a style="padding-top: 5px" th:href="@{|${def_link}/manage|}">Manage posts</a>
+                <a style="padding-top: 5px" th:href="@{|${def_link}/posts|}">Manage posts</a>
                 <br/>
-                <a style="padding-top: 5px" th:href="@{|${def_link}/settings|}">Settings</a>
+                <a style="padding-top: 5px" th:href="@{|${def_link}|}">Profile</a>
             </h2>
             <h2>
                 <a th:href="@{~/access/logout}">Sign Out</a>
@@ -47,14 +47,37 @@
         <div style="width: 70%; float: right; margin-top: 1px;">
             <div style="width: 70%; float: left; margin-top: 1px;">
                 <div style="width: 50%; float: right; padding-right: 10%;">
-                    <!--/*@thymesVar id="user_profile" type="net.henryco.hblog.mvc.model.account.BaseUserProfile"*/-->
-                    <ul>
-                        <li>Username: <span style="float: right" th:text="${user_profile.userName}"></span></li>
-                        <li>First name: <span style="float: right" th:text="${user_profile.firstName}"></span></li>
-                        <li>Last name: <span style="float: right" th:text="${user_profile.lastName}"></span></li>
-                        <li>E-mail: <span style="float: right" th:text="${user_profile.email}"></span></li>
-                        <li>Position: <span style="float: right" th:text="${user_profile.position}"></span></li>
-                    </ul>
+
+
+                    <!--/*@thymesVar id="settingsForm" type="net.henryco.hblog.mvc.controllers.acc.form.SettingsForm"*/-->
+                    <form method="post" th:object="${settingsForm}" th:action="@{|${def_link}/settings/save|}" style="padding-left: 10%">
+
+                        <div style="float: left; width: 50%">
+
+                            <label for="first_name">First name</label><br/>
+                            <input id="first_name" type="text" th:field="*{firstName}" class="input_space"/><br/>
+
+                            <label for="last_name">Last name</label><br/>
+                            <input id="last_name" type="text" th:field="*{lastName}" class="input_space"/><br/>
+
+                            <label for="position">Position</label><br/>
+                            <input id="position" type="text" th:field="*{position}" class="input_space"/>
+
+                            <label for="e_mail">Email</label><br/>
+                            <input id="e_mail" type="email" th:field="*{email}" class="input_space"/><br/>
+
+                            <label for="pass">Password</label><br/>
+                            <input id="pass" type="password" th:field="*{password}" class="input_space"/><br/>
+
+                            <br/><input type="submit" value="Save changes" class="input_submit"/>
+                        </div>
+
+                        <div class="errors" th:if="${#fields.hasErrors('*')}" style="width:50%;">
+                            <ul><li th:each="err: ${#fields.errors('*')}" th:text="${err}">Input data error</li></ul>
+                        </div>
+
+                    </form>
+
                 </div>
             </div>
             <div style="width: 30%; float: right; margin-top: 1px;">

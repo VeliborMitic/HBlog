@@ -33,6 +33,14 @@ public class ExtendedProfileService {
 		authDao.saveAuthUserProfile(auth);
 	}
 
+	public void updateBaseUserProfile(BaseUserProfile profile) {
+		profileDao.addProfile(profile);
+	}
+	public void updateAuthUserProfile(AuthUserProfile profile) {
+		authDao.saveAuthUserProfile(profile);
+	}
+
+
 	public void deleteProfile(long id) {
 		authDao.deleteAuthUserProfile(id);
 		profileDao.deleteBaseUserProfile(id);

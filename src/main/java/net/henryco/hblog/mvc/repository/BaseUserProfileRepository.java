@@ -15,5 +15,4 @@ public interface BaseUserProfileRepository extends JpaRepository<BaseUserProfile
 	List<BaseUserProfile> findAllByIdIsNotNullOrderByIdAsc(Pageable pageable);
 
 	BaseUserProfile findByUserNameOrEmail(String userName, String email);
-
 }
