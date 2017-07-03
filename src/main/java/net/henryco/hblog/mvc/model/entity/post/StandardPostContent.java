@@ -25,6 +25,9 @@ public class StandardPostContent {
 	public StandardPostContent() {
 	}
 
+	public StandardPostContent(long id) {
+		this.id = id;
+	}
 	public StandardPostContent(String content) {
 		this.content = content;
 	}

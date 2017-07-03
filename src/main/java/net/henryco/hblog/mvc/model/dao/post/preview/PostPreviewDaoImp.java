@@ -93,12 +93,12 @@ public class PostPreviewDaoImp implements PostPreviewDao {
 
 	@Override
 	public List<StandardPostPreview> getPostsByAuthor(String username) {
-		return postPreviewRepository.findAllByAuthor(username);
+		return postPreviewRepository.findAllByAuthorOrderByUpdateTimeDesc(username);
 	}
 
 	@Override
 	public List<StandardPostPreview> getPostsByAuthor(String username, int page, int pageSize) {
-		return postPreviewRepository.findByAuthor(username, new PageRequest(page, pageSize));
+		return postPreviewRepository.findByAuthorOrderByUpdateTimeDesc(username, new PageRequest(page, pageSize));
 	}
 
 	private static Date getActualDateTime() {

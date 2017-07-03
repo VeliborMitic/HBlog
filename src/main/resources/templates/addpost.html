@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+>
+<head>
+    <title sec:authentication="name">Escapy | Add post</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{~/css/style.css}" type="text/css" media="screen"/>
+    <link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans:700i" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="wrapper" class="clearfix">
+    <!--start wrapper-->
+    <div id="header" class="clearfix">
+        <!--start header-->
+        <h1 th:replace="nav :: logo"></h1>
+        <div th:replace="nav :: navigation"></div>
+        <!--end navigation-->
+        <div class="void_space2"></div>
+        <div class="intro-p">
+            <span>
+                Add new post
+            </span>
+        </div>
+    </div>
+    <!--end header-->
+    <div class="void_space"></div>
+
+    <!-- BODY -->
+    <div th:with="def_link=@{~/account/profile}">
+        <div style="width: 20%; float: left; padding-left: 10%; color: #676767">
+            <h2 style="margin-top: 0;">
+                <a style="padding-top: 5px" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{~/account/admin}">Admin panel</a>
+                <br/>
+                <a style="padding-top: 5px" th:href="@{|${def_link}|}">Profile</a>
+                <br/>
+                <a style="padding-top: 5px" th:href="@{|${def_link}/manage|}">Manage posts</a>
+                <br/>
+                <a style="padding-top: 5px" th:href="@{|${def_link}/settings|}">Settings</a>
+            </h2>
+            <h2>
+                <a th:href="@{~/access/logout}">Sign Out</a>
+            </h2>
+        </div>
+        <div style="width: 70%; float: right; margin-top: 1px;">
+            <!--/*@thymesVar id="post_form" type="net.henryco.hblog.mvc.controllers.acc.form.PostForm"*/-->
+
+
+            <form th:object="${post_form}" th:action="@{|${def_link}/addpost/submit/post|}" method="post" enctype="multipart/form-data">
+
+                <label for="title">Title</label><br/>
+                <input id="title" size="40" type="text" th:field="*{title}" class="input_space"/><br/><br/>
+                <label for="icon_prev">Image preview (300x340 px)</label><br/>
+                <input type="file" id="icon_prev" name="icon_prev" />
+                <br/><br/>
+
+                <label for="prevShort">Preview short (max 185)</label><br/>
+                <textarea id="prevShort" th:field="*{previewShort}" class="input_space"
+                          style="width: 80%;
+                          max-width: 80%;
+                          min-height: 60px;"
+                ></textarea><br/><br/>
+
+                <label for="prevLong">Preview long (max 700)</label><br/>
+                <textarea id="prevLong" th:field="*{previewLong}" class="input_space"
+                          style="width: 80%;
+                          max-width: 80%;
+                          min-height: 100px;"
+                ></textarea><br/><br/>
+
+                <label for="content">Content (max 102400)</label><br/>
+                <textarea id="content" th:field="*{content}" class="input_space"
+                          style="width: 80%;
+                          max-width: 80%;
+                          min-height: 200px;"
+                ></textarea><br/>
+
+                <div class="errors" th:if="${#fields.hasErrors('*')}" style="width:50%;">
+                    <ul><li th:each="err: ${#fields.errors('*')}" th:text="${err}">Input data error</li></ul>
+                </div><br/>
+                <input class="click_input2" type="submit" value="Add new post" />
+            </form>
+        </div>
+    </div>
+
+
+    <div class="void_space2"></div>
+    <div class="void_space2"></div>
+    <div class="clear"></div>
+    <div id="footer">
+        <!--start footer-->
+        <div class="footer-text">
+            <p><span>&copy; Copyright 2017 <a href="#">HenryCo</a>. All Rights Reserved</span> |
+                Roles: <span sec:authentication="principal.authorities"></span>
+            </p>
+        </div>
+    </div>
+
+</div>
+<!--end wrapper-->
+</body>
+</html>

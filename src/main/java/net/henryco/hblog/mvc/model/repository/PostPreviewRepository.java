@@ -36,6 +36,6 @@ public interface PostPreviewRepository extends JpaRepository<StandardPostPreview
 			@Temporal(TemporalType.TIMESTAMP) Date updateTime
 	);
 
-	List<StandardPostPreview> findByAuthor(String author, Pageable pageable);
-	List<StandardPostPreview> findAllByAuthor(String author);
+	List<StandardPostPreview> findByAuthorOrderByUpdateTimeDesc(String author, Pageable pageable);
+	List<StandardPostPreview> findAllByAuthorOrderByUpdateTimeDesc(String author);
 }
