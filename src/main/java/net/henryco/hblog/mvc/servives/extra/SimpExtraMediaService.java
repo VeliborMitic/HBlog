@@ -1,8 +1,8 @@
 package net.henryco.hblog.mvc.servives.extra;
 
 import net.henryco.hblog.mvc.model.dao.extra.ExtraContentDao;
-import net.henryco.hblog.mvc.model.dto.extra.PinnedBanners;
-import net.henryco.hblog.mvc.model.dto.extra.PinnedNews;
+import net.henryco.hblog.mvc.model.entity.extra.PinnedBanners;
+import net.henryco.hblog.mvc.model.entity.extra.PinnedNews;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

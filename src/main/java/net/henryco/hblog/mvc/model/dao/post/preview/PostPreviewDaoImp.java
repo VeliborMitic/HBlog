@@ -1,7 +1,7 @@
 package net.henryco.hblog.mvc.model.dao.post.preview;
 
-import net.henryco.hblog.mvc.model.dto.post.StandardPostPreview;
-import net.henryco.hblog.mvc.repository.PostPreviewRepository;
+import net.henryco.hblog.mvc.model.entity.post.StandardPostPreview;
+import net.henryco.hblog.mvc.model.repository.PostPreviewRepository;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package net.henryco.hblog.mvc.model.dao.account.base;
 
-import net.henryco.hblog.mvc.model.dto.account.BaseUserProfile;
+import net.henryco.hblog.mvc.model.entity.account.BaseUserProfile;
 
 import java.util.List;
 

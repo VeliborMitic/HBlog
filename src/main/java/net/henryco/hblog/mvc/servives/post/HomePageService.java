@@ -1,7 +1,7 @@
 package net.henryco.hblog.mvc.servives.post;
 
 import net.henryco.hblog.mvc.model.dao.post.preview.PostPreviewDao;
-import net.henryco.hblog.mvc.model.dto.post.StandardPostPreview;
+import net.henryco.hblog.mvc.model.entity.post.StandardPostPreview;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package net.henryco.hblog.mvc.model.dao.account.priv;
 
-import net.henryco.hblog.mvc.model.dto.account.AuthUserProfile;
-import net.henryco.hblog.mvc.repository.AuthUserProfileRepository;
+import net.henryco.hblog.mvc.model.entity.account.AuthUserProfile;
+import net.henryco.hblog.mvc.model.repository.AuthUserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

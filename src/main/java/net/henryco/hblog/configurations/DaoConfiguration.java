@@ -2,10 +2,10 @@ package net.henryco.hblog.configurations;
 
 import net.henryco.hblog.mvc.model.dao.post.preview.PostPreviewDao;
 import net.henryco.hblog.mvc.model.dao.post.preview.PostPreviewDaoImp;
-import net.henryco.hblog.mvc.model.dto.post.StandardPostContent;
-import net.henryco.hblog.mvc.model.dto.post.StandardPostPreview;
-import net.henryco.hblog.mvc.repository.PostContentRepository;
-import net.henryco.hblog.mvc.repository.PostPreviewRepository;
+import net.henryco.hblog.mvc.model.entity.post.StandardPostContent;
+import net.henryco.hblog.mvc.model.entity.post.StandardPostPreview;
+import net.henryco.hblog.mvc.model.repository.PostContentRepository;
+import net.henryco.hblog.mvc.model.repository.PostPreviewRepository;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.springframework.beans.factory.annotation.Qualifier;

@@ -1,7 +1,7 @@
 package net.henryco.hblog.mvc.controllers.pub;
 
-import net.henryco.hblog.mvc.model.dto.post.StandardPostPreview;
-import net.henryco.hblog.mvc.model.dto.extra.PinnedBanners;
+import net.henryco.hblog.mvc.model.entity.post.StandardPostPreview;
+import net.henryco.hblog.mvc.model.entity.extra.PinnedBanners;
 import net.henryco.hblog.mvc.servives.post.NewsPageService;
 import net.henryco.hblog.mvc.servives.extra.SimpExtraMediaService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package net.henryco.hblog.mvc.model.dto.account;
+package net.henryco.hblog.mvc.model.entity.account;
 
 import net.henryco.hblog.utils.Utils;
 

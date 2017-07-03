@@ -1,6 +1,6 @@
 package net.henryco.hblog.mvc.model.dao.post.preview;
 
-import net.henryco.hblog.mvc.model.dto.post.StandardPostPreview;
+import net.henryco.hblog.mvc.model.entity.post.StandardPostPreview;
 
 import java.util.List;
 

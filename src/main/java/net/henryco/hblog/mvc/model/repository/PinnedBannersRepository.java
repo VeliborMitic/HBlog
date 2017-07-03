@@ -1,6 +1,6 @@
-package net.henryco.hblog.mvc.repository;
+package net.henryco.hblog.mvc.model.repository;
 
-import net.henryco.hblog.mvc.model.dto.extra.PinnedBanners;
+import net.henryco.hblog.mvc.model.entity.extra.PinnedBanners;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 

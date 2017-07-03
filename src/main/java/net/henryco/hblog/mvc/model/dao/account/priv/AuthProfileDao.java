@@ -1,6 +1,6 @@
 package net.henryco.hblog.mvc.model.dao.account.priv;
 
-import net.henryco.hblog.mvc.model.dto.account.AuthUserProfile;
+import net.henryco.hblog.mvc.model.entity.account.AuthUserProfile;
 
 /**
  * @author Henry on 18/06/17.

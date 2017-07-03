@@ -1,6 +1,6 @@
 package net.henryco.hblog.mvc.model.dao.post.content;
 
-import net.henryco.hblog.mvc.model.dto.post.StandardPostContent;
+import net.henryco.hblog.mvc.model.entity.post.StandardPostContent;
 
 /**
  * @author Henry on 16/06/17.

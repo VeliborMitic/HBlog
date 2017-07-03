@@ -1,4 +1,4 @@
-package net.henryco.hblog.mvc.model.dto.post;
+package net.henryco.hblog.mvc.model.entity.post;
 
 
 import javax.persistence.*;

@@ -1,6 +1,6 @@
-package net.henryco.hblog.mvc.model.dto.account.details;
+package net.henryco.hblog.mvc.model.entity.account.details;
 
-import net.henryco.hblog.mvc.model.dto.account.AuthUserProfile;
+import net.henryco.hblog.mvc.model.entity.account.AuthUserProfile;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;

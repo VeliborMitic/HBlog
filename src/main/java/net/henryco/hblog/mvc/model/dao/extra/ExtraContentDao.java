@@ -1,7 +1,7 @@
 package net.henryco.hblog.mvc.model.dao.extra;
 
-import net.henryco.hblog.mvc.model.dto.extra.PinnedBanners;
-import net.henryco.hblog.mvc.model.dto.extra.PinnedNews;
+import net.henryco.hblog.mvc.model.entity.extra.PinnedBanners;
+import net.henryco.hblog.mvc.model.entity.extra.PinnedNews;
 
 import java.util.List;
 

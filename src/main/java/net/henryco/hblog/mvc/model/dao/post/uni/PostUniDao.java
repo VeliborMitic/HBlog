@@ -1,8 +1,8 @@
 package net.henryco.hblog.mvc.model.dao.post.uni;
 
 
-import net.henryco.hblog.mvc.model.dto.post.StandardPostContent;
-import net.henryco.hblog.mvc.model.dto.post.StandardPostPreview;
+import net.henryco.hblog.mvc.model.entity.post.StandardPostContent;
+import net.henryco.hblog.mvc.model.entity.post.StandardPostPreview;
 
 /**
  * @author Henry on 16/06/17.
