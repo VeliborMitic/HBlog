@@ -62,7 +62,7 @@
                             <a target="_blank" class="click_input" th:href="@{|~/news/article/${post.id}|}">[ Open ]</a>
                         </th>
                         <th style="padding-right: 10px">
-                            <a class="click_input" th:href="@{|${def_link}/manage/edit/${post.id}|}">[ Edit ]</a>
+                            <a class="click_input" th:href="@{|${def_link}/editpost/${post.id}|}">[ Edit ]</a>
                         </th>
                         <th>
                             <form method="POST" th:action="@{|${def_link}/manage/delete/${post.id}|}">

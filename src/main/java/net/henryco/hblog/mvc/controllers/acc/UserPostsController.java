@@ -18,7 +18,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  * @author Henry on 03/07/17.
  */
 @Controller
-@RequestMapping("/account/profile/manage")
+@RequestMapping("/account/profile")
 public class UserPostsController {
 
 
@@ -29,7 +29,7 @@ public class UserPostsController {
 		this.postDirectService = postDirectService;
 	}
 
-	@RequestMapping(method = GET)
+	@RequestMapping(value = "/manage", method = GET)
 	public String managePosts(Model model, Principal principal) {
 
 		List<StandardPostPreview> postPreviews = postDirectService.getAllPostsFromAuthor(principal.getName());
@@ -37,12 +37,17 @@ public class UserPostsController {
 		return "manage";
 	}
 
-	@RequestMapping("/delete/{id}")
+	@RequestMapping("/manage/delete/{id}")
 	public String deletePost(Principal principal, @PathVariable("id") long id) {
 
 		if (postDirectService.getPostById(id).getAuthor().equals(principal.getName()))
 			postDirectService.removePostById(id);
 		return "redirect:/account/profile/manage";
 	}
+
+
+
+
+
 
 }
