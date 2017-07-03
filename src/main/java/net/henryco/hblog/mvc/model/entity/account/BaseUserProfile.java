@@ -38,15 +38,6 @@ public class BaseUserProfile {
 	public BaseUserProfile() {
 	}
 
-	public BaseUserProfile(String userName, String firstName, String lastName, String email, String iconLink, String position) {
-		this.userName = userName;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.iconLink = iconLink;
-		this.position = position;
-	}
-
 	@Override
 	public String toString() {
 		return "BaseUserProfile{" +
