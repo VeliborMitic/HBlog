@@ -17,13 +17,9 @@ public class PostForm {
 	@Size(min = 5, max = 700, message = "(preview long) size <5, 700>")
 	private String previewLong;
 
-	@Size(min = 1, max = 255, message = "(image preview) cannot be empty")
-	private String imgLink;
-
 	@Size(min = 1, max = 102400, message = "(content) size <1, 102400>")
 	private String content;
 
-	public PostForm() {}
 
 	@Override
 	public String toString() {
@@ -31,7 +27,6 @@ public class PostForm {
 				"title='" + title + '\'' +
 				", previewShort='" + previewShort + '\'' +
 				", previewLong='" + previewLong + '\'' +
-				", imgLink='" + imgLink + '\'' +
 				", content='" + content + '\'' +
 				'}';
 	}
@@ -58,14 +53,6 @@ public class PostForm {
 
 	public void setPreviewLong(String previewLong) {
 		this.previewLong = previewLong;
-	}
-
-	public String getImgLink() {
-		return imgLink;
-	}
-
-	public void setImgLink(String imgLink) {
-		this.imgLink = imgLink;
 	}
 
 	public String getContent() {
