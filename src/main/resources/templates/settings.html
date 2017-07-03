@@ -30,9 +30,9 @@
 
     <!-- BODY -->
     <div th:with="def_link=@{~/account/profile}">
-        <div style="width: 20%; float: left; padding-left: 10%">
-            <h2>
-                <a style="padding-top: 15px" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{~/account/admin}">Admin panel</a>
+        <div style="width: 20%; float: left; padding-left: 10%; color: #676767">
+            <h2 style="margin-top: 0;">
+                <a style="padding-top: 5px" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{~/account/admin}">Admin panel</a>
                 <br/>
                 <a style="padding-top: 5px" th:href="@{|${def_link}/addpost|}">Add post</a>
                 <br/>

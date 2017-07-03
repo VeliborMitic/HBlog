@@ -264,6 +264,12 @@ div.nav li a.active {
     display:inline-block;
 }
 
+.avatar_icon img {
+    width: 150px;
+    height: 150px;
+    display:inline-block;
+}
+
 .intro-2 {
     width: 100%;
     font-size: 15px;

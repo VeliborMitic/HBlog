@@ -27,23 +27,21 @@
 
     <!-- BODY -->
 
-    <div class="news_container">
+    <div class="news_container" style="padding-top: 20px;">
         <th:block th:each="uProfile: ${profiles}">
             <div class="profile_container" style="padding-left: 100px;">
-                <div class="profile_img" style="float: left; width: 25%">
-                    <img th:src="@{|~/rel/res/public/av/${uProfile.iconLink}|}" style="
-                        width: auto;
-                        height: 100%;
-                        display: inline-block"
-                    />
+                <div style="float: left; width: 25%">
+                    <div class="avatar_icon">
+                        <img th:src="@{|~/rel/res/public/av/${uProfile.iconLink}|}"/>
+                    </div>
                 </div>
-                <div class="profile_text" style="float: right; width: 75%">
-                    <h2 style="float: left; padding-left: 50px; font-size: 20px; margin: 0 auto;">
+                <div class="profile_text" style="float: right; width: 75%; margin-top: 40px;">
+                    <h2 style="float: left; padding-left: 50px; font-size: 30px; margin: 0 auto;">
                         <span th:text="${uProfile.firstName}"></span>&nbsp;
                         <span th:text="${uProfile.lastName}"></span>&nbsp;
                     </h2>
                     <br/>
-                    <h3 style="float: left; padding-left: 50px; font-size: 13px; margin: 5px auto">
+                    <h3 style="float: left; padding-left: 52px; font-size: 16px; margin: 15px auto">
                         <span th:text="${uProfile.position}"></span>&nbsp;
                     </h3>
                 </div>

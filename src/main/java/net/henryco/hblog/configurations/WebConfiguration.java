@@ -26,6 +26,10 @@ import java.io.File;
 @ComponentScan(basePackageClasses = {WebConfiguration.class})
 public class WebConfiguration extends WebMvcConfigurerAdapter {
 
+	public static final String REL_FILE_PATH = System.getProperty("user.dir");
+	public static final String ABS_FILE_PATH = System.getProperty("user.home");
+
+
 	@Bean
 	@Description("Thymeleaf template resolver serving HTML 5")
 	public ClassLoaderTemplateResolver templateResolver() {
@@ -70,22 +74,19 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-		final String workDir = System.getProperty("user.dir");
-		final String homeDir = System.getProperty("user.home");
-
 		registry.addResourceHandler("/**")
 				.addResourceLocations("classpath:/static/");
 
 		registry.addResourceHandler("/rel/**")
-				.addResourceLocations("file:" + workDir + File.separator);
+				.addResourceLocations("file:" + REL_FILE_PATH + File.separator);
 
 		registry.addResourceHandler("/abs/**")
-				.addResourceLocations("file:" + homeDir + File.separator);
+				.addResourceLocations("file:" + ABS_FILE_PATH + File.separator);
 
 		System.out.println(
 				"\n***\n\n" +
-						"WORK DIR: "+workDir+" \t[mapping: /rel/**" + "]\n" +
-						"HOME DIR: "+homeDir+" \t[mapping: /abs/**" + "]\n"+
+						"WORK DIR: "+REL_FILE_PATH+" \t[mapping: /rel/**" + "]\n" +
+						"HOME DIR: "+ABS_FILE_PATH+" \t[mapping: /abs/**" + "]\n"+
 				"\n***\n"
 		);
 

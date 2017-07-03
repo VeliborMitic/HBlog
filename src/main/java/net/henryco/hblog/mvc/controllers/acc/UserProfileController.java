@@ -12,10 +12,20 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.Principal;
 
+import static java.io.File.separator;
+import static net.henryco.hblog.configurations.WebConfiguration.ABS_FILE_PATH;
+import static net.henryco.hblog.configurations.WebConfiguration.REL_FILE_PATH;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -26,6 +36,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RequestMapping("/account/profile")
 public class UserProfileController {
 
+	private static final String AVATAR_UPLOAD_DIR = REL_FILE_PATH + separator + "res" +separator + "public" + separator + "av" + separator;
 	private final BaseProfileService profileService;
 	private final ExtendedProfileService extendedProfileService;
 
@@ -51,7 +62,6 @@ public class UserProfileController {
 		settingsForm.setFirstName(profile.getFirstName());
 		settingsForm.setLastName(profile.getLastName());
 		settingsForm.setPosition(profile.getPosition());
-
 		model.addAttribute("settingsForm", settingsForm);
 		return "settings";
 	}
@@ -92,5 +102,23 @@ public class UserProfileController {
 	}
 
 
+	@RequestMapping("/upload/avatar")
+	public String upLoadAvatar(@RequestParam("file") MultipartFile file,
+							   Principal principal) {
+
+		final int i = file.getOriginalFilename().lastIndexOf(".");
+		final String name = principal.getName() + System.currentTimeMillis() + ( i != -1 ? file.getOriginalFilename().substring(i) : "");
+
+		try {
+			byte[] bytes = file.getBytes();
+			Path path = Paths.get(AVATAR_UPLOAD_DIR + name);
+			Files.write(path, bytes);
+		} catch (IOException e) {e.printStackTrace();}
+
+		BaseUserProfile profile = profileService.getUserProfileByUserName(principal.getName());
+		profile.setIconLink(name);
+		extendedProfileService.updateBaseUserProfile(profile);
+		return "redirect:/account/profile";
+	}
 
 }
