@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 /**
  * @author Henry on 15/06/17.
@@ -39,4 +41,9 @@ public class PostDirectService {
 	public boolean isPostExists(long id) {
 		return postPreviewDao.isPostExists(id);
 	}
+
+	public List<StandardPostPreview> getAllPostsFromAuthor(String name) {
+		return postPreviewDao.getPostsByAuthor(name);
+	}
+
 }

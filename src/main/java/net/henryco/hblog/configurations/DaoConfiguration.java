@@ -51,6 +51,7 @@ public class DaoConfiguration {
 			post.setPreviewShort(LOREM_IPSUM.substring(0, Math.min(LOREM_IPSUM.length(), 185)));
 			post.setPreviewLong(LOREM_IPSUM.substring(0, Math.min(LOREM_IPSUM.length(), 700)));
 			post.setUpdateTime(DateTime.now(DateTimeZone.UTC).toDate());
+			post.setAuthor("henryco");
 			StandardPostPreview saved = postFormDaoImp.addPostPreview(post);
 
 			StandardPostContent content = new StandardPostContent();

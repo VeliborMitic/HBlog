@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
  */
 public class SettingsForm {
 
-	@Size(max = 20, message = "(first name) max size is 20")
+	@Size(min = 2, max = 20, message = "(first name) field must contains at least 2 characters and max 20")
 	private String firstName;
 
 	@Size(max = 20, message = "(last name) max size is 20")

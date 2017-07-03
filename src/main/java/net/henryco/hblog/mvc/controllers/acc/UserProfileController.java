@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -24,7 +23,6 @@ import java.nio.file.Paths;
 import java.security.Principal;
 
 import static java.io.File.separator;
-import static net.henryco.hblog.configurations.WebConfiguration.ABS_FILE_PATH;
 import static net.henryco.hblog.configurations.WebConfiguration.REL_FILE_PATH;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -36,9 +34,12 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RequestMapping("/account/profile")
 public class UserProfileController {
 
+
 	private static final String AVATAR_UPLOAD_DIR = REL_FILE_PATH + separator + "res" +separator + "public" + separator + "av" + separator;
 	private final BaseProfileService profileService;
 	private final ExtendedProfileService extendedProfileService;
+
+
 
 	@Autowired
 	public UserProfileController(BaseProfileService profileService, ExtendedProfileService extendedProfileService) {
@@ -46,12 +47,16 @@ public class UserProfileController {
 		this.extendedProfileService = extendedProfileService;
 	}
 
+
+
 	@RequestMapping(method = GET)
 	public String profile(Model model, Principal principal) {
 
 		model.addAttribute("user_profile", profileService.getUserProfileByUserName(principal.getName()));
 		return "profile";
 	}
+
+
 
 	@RequestMapping(value = "/settings", method = GET)
 	public String edit(Model model, Principal principal) {
@@ -65,6 +70,8 @@ public class UserProfileController {
 		model.addAttribute("settingsForm", settingsForm);
 		return "settings";
 	}
+
+
 
 	@RequestMapping(value = "/settings/save", method = POST)
 	public String registration(@Valid @ModelAttribute SettingsForm form,
@@ -100,6 +107,7 @@ public class UserProfileController {
 
 		return "redirect:/account/profile/settings";
 	}
+
 
 
 	@RequestMapping("/upload/avatar")

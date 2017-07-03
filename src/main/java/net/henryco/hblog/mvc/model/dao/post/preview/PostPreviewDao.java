@@ -23,4 +23,7 @@ public interface PostPreviewDao {
 	StandardPostPreview getOldestPost();
 	StandardPostPreview getPostOlderThen(long id);
 	StandardPostPreview getPostYoungerThen(long id);
+
+	List<StandardPostPreview> getPostsByAuthor(String username);
+	List<StandardPostPreview> getPostsByAuthor(String username, int page, int pageSize);
 }

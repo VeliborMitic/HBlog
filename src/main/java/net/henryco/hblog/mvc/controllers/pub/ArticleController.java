@@ -1,8 +1,10 @@
 package net.henryco.hblog.mvc.controllers.pub;
 
+import net.henryco.hblog.mvc.model.entity.account.BaseUserProfile;
 import net.henryco.hblog.mvc.model.entity.post.StandardPostContent;
 import net.henryco.hblog.mvc.model.entity.post.StandardPostPreview;
 import net.henryco.hblog.mvc.model.entity.extra.PinnedBanners;
+import net.henryco.hblog.mvc.servives.account.BaseProfileService;
 import net.henryco.hblog.mvc.servives.post.ArticlePageService;
 import net.henryco.hblog.mvc.servives.extra.SimpExtraMediaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +28,14 @@ public class ArticleController {
 	private final ArticlePageService articlePageService;
 	private final SimpExtraMediaService mediaService;
 	private final SimpleDateFormat dateFormat;
-
+	private final BaseProfileService profileService;
 
 	@Autowired
 	public ArticleController(ArticlePageService articlePageService,
-							 SimpExtraMediaService mediaService) {
+							 SimpExtraMediaService mediaService,
+							 BaseProfileService profileService) {
 		this.articlePageService = articlePageService;
+		this.profileService = profileService;
 		this.mediaService = mediaService;
 		this.dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 	}
@@ -58,7 +62,16 @@ public class ArticleController {
 		StandardPostPreview preview = articlePageService.getPostPreviewById(id);
 		StandardPostContent content = articlePageService.getPostContentById(id);
 
-		model.addAttribute("post_update_time", dateFormat.format(preview.getUpdateTime()));
+		String authorUserName = preview.getAuthor();
+		String previewName = "";
+		if (authorUserName != null) {
+			BaseUserProfile profile = profileService.getUserProfileByUserName(authorUserName);
+			if (profile != null) {
+				previewName = " by "+profile.getFirstName();
+				if (profile.getLastName() != null) previewName += (" " + profile.getLastName());
+			}
+		}
+		model.addAttribute("post_update_time", dateFormat.format(preview.getUpdateTime()) + " " + previewName);
 		model.addAttribute("post_content", content.getContent());
 		model.addAttribute("post_title", preview.getTitle());
 		model.addAttribute("article_id", id);

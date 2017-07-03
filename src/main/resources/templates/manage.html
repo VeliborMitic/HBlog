@@ -4,7 +4,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
 >
 <head>
-    <title sec:authentication="name">Escapy | Profile</title>
+    <title sec:authentication="name">Escapy | Manage posts</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" th:href="@{~/css/style.css}" type="text/css" media="screen"/>
     <link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css"/>
@@ -21,7 +21,7 @@
         <div class="void_space2"></div>
         <div class="intro-p">
             <span>
-                Settings
+                Manage posts
             </span>
         </div>
     </div>
@@ -36,53 +36,43 @@
                 <br/>
                 <a style="padding-top: 5px" th:href="@{|${def_link}/addpost|}">Add post</a>
                 <br/>
-                <a style="padding-top: 5px" th:href="@{|${def_link}/manage|}">Manage posts</a>
-                <br/>
                 <a style="padding-top: 5px" th:href="@{|${def_link}|}">Profile</a>
+                <br/>
+                <a style="padding-top: 5px" th:href="@{|${def_link}/settings|}">Settings</a>
             </h2>
             <h2>
                 <a th:href="@{~/access/logout}">Sign Out</a>
             </h2>
         </div>
         <div style="width: 70%; float: right; margin-top: 1px;">
-            <div style="width: 70%; float: left; margin-top: 1px;">
-                <div style="width: 50%; float: right; padding-right: 10%;">
+            <!--/*@thymesVar id="post" type="net.henryco.hblog.mvc.model.entity.post.StandardPostPreview"*/-->
+            <table>
+                <tr>
+                    <th style="padding-right: 40px">ID</th>
+                    <th style="padding-right: 40px">Update time</th>
+                    <th style="padding-right: 40px">Title</th>
+                </tr>
 
+                <th:block th:each="post: ${posts}">
+                    <tr>
+                        <td style="padding-right: 25px" th:text="${post.id}"></td>
+                        <td style="padding-right: 40px" th:text="${post.updateTime}"></td>
+                        <td style="padding-right: 30px" th:text="${post.title}"></td>
+                        <th style="padding-right: 10px">
+                            <a target="_blank" class="click_input" th:href="@{|~/news/article/${post.id}|}">[ Open ]</a>
+                        </th>
+                        <th style="padding-right: 10px">
+                            <a class="click_input" th:href="@{|${def_link}/manage/edit/${post.id}|}">[ Edit ]</a>
+                        </th>
+                        <th>
+                            <form method="POST" th:action="@{|${def_link}/manage/delete/${post.id}|}">
+                                <input class="click_input" type="submit" value="[ Delete ]"/>
+                            </form>
+                        </th>
+                    </tr>
+                </th:block>
 
-                    <!--/*@thymesVar id="settingsForm" type="net.henryco.hblog.mvc.controllers.acc.form.SettingsForm"*/-->
-                    <form method="post" th:object="${settingsForm}" th:action="@{|${def_link}/settings/save|}" style="padding-left: 10%">
-
-                        <div style="float: left; width: 50%">
-
-                            <label for="first_name">First name</label><br/>
-                            <input id="first_name" type="text" th:field="*{firstName}" class="input_space"/><br/>
-
-                            <label for="last_name">Last name</label><br/>
-                            <input id="last_name" type="text" th:field="*{lastName}" class="input_space"/><br/>
-
-                            <label for="position">Position</label><br/>
-                            <input id="position" type="text" th:field="*{position}" class="input_space"/>
-
-                            <label for="e_mail">Email</label><br/>
-                            <input id="e_mail" type="email" th:field="*{email}" class="input_space"/><br/>
-
-                            <label for="pass">Password</label><br/>
-                            <input id="pass" type="password" th:field="*{password}" class="input_space"/><br/>
-
-                            <br/><input type="submit" value="Save changes" class="input_submit"/>
-                        </div>
-
-                        <div class="errors" th:if="${#fields.hasErrors('*')}" style="width:50%;">
-                            <ul><li th:each="err: ${#fields.errors('*')}" th:text="${err}">Input data error</li></ul>
-                        </div>
-
-                    </form>
-
-                </div>
-            </div>
-            <div style="width: 30%; float: right; margin-top: 1px;">
-
-            </div>
+            </table>
         </div>
     </div>
 

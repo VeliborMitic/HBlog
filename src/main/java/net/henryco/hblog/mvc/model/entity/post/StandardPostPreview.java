@@ -20,6 +20,7 @@ public class StandardPostPreview {
 	@Column(length = 185) private String previewShort;
 	@Column(length = 700) private String previewLong;
 	@Column private String imgLink;
+	@Column(length = 40) private String author;
 
 	@Column(name = "date")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -87,13 +88,23 @@ public class StandardPostPreview {
 		this.updateTime = updateTime;
 	}
 
+	public String getAuthor() {
+		return author;
+	}
 
+	public void setAuthor(String author) {
+		this.author = author;
+	}
 
 	@Override
 	public String toString() {
 		return "StandardPostPreview{" +
 				"id=" + id +
 				", title='" + title + '\'' +
+				", previewShort='" + previewShort + '\'' +
+				", previewLong='" + previewLong + '\'' +
+				", imgLink='" + imgLink + '\'' +
+				", author='" + author + '\'' +
 				", updateTime=" + updateTime +
 				'}';
 	}

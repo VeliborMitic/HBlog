@@ -270,6 +270,17 @@ div.nav li a.active {
     display:inline-block;
 }
 
+.click_input {
+    border: none;
+    background: none;
+    color: #2d2a2e;
+    text-decoration: underline;
+    cursor: pointer;
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
 .intro-2 {
     width: 100%;
     font-size: 15px;
