@@ -7,9 +7,6 @@ import java.util.Arrays;
  */
 public abstract class Utils {
 
-	public static final String REL_FILE_PATH = System.getProperty("user.dir");
-	public static final String ABS_FILE_PATH = System.getProperty("user.home");
-
 	public static String arrayToString(String[] array) {
 		return Arrays.toString(array);
 	}
