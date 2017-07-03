@@ -1,6 +1,6 @@
 package net.henryco.hblog.mvc.repository;
 
-import net.henryco.hblog.mvc.model.extra.PinnedNews;
+import net.henryco.hblog.mvc.model.dto.extra.PinnedNews;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 

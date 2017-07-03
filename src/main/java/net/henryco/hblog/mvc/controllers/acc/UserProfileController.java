@@ -1,8 +1,8 @@
 package net.henryco.hblog.mvc.controllers.acc;
 
 import net.henryco.hblog.mvc.controllers.acc.form.SettingsForm;
-import net.henryco.hblog.mvc.model.account.AuthUserProfile;
-import net.henryco.hblog.mvc.model.account.BaseUserProfile;
+import net.henryco.hblog.mvc.model.dto.account.AuthUserProfile;
+import net.henryco.hblog.mvc.model.dto.account.BaseUserProfile;
 import net.henryco.hblog.mvc.servives.account.BaseProfileService;
 import net.henryco.hblog.mvc.servives.account.ExtendedProfileService;
 import org.springframework.beans.factory.annotation.Autowired;

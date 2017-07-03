@@ -1,6 +1,6 @@
 package net.henryco.hblog.mvc.repository;
 
-import net.henryco.hblog.mvc.model.account.AuthUserProfile;
+import net.henryco.hblog.mvc.model.dto.account.AuthUserProfile;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

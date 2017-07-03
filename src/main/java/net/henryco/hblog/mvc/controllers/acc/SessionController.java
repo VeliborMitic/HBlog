@@ -1,7 +1,7 @@
 package net.henryco.hblog.mvc.controllers.acc;
 
 import net.henryco.hblog.mvc.controllers.acc.form.RegistrationForm;
-import net.henryco.hblog.mvc.model.account.BaseUserProfile;
+import net.henryco.hblog.mvc.model.dto.account.BaseUserProfile;
 import net.henryco.hblog.mvc.servives.account.ExtendedProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;

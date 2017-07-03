@@ -1,7 +1,7 @@
 package net.henryco.hblog.mvc.servives.account;
 
-import net.henryco.hblog.mvc.dao.account.base.BaseProfileDao;
-import net.henryco.hblog.mvc.model.account.BaseUserProfile;
+import net.henryco.hblog.mvc.model.dao.account.base.BaseProfileDao;
+import net.henryco.hblog.mvc.model.dto.account.BaseUserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

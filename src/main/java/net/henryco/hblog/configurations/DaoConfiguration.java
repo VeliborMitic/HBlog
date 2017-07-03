@@ -1,9 +1,9 @@
 package net.henryco.hblog.configurations;
 
-import net.henryco.hblog.mvc.dao.post.preview.PostPreviewDao;
-import net.henryco.hblog.mvc.dao.post.preview.PostPreviewDaoImp;
-import net.henryco.hblog.mvc.model.post.StandardPostContent;
-import net.henryco.hblog.mvc.model.post.StandardPostPreview;
+import net.henryco.hblog.mvc.model.dao.post.preview.PostPreviewDao;
+import net.henryco.hblog.mvc.model.dao.post.preview.PostPreviewDaoImp;
+import net.henryco.hblog.mvc.model.dto.post.StandardPostContent;
+import net.henryco.hblog.mvc.model.dto.post.StandardPostPreview;
 import net.henryco.hblog.mvc.repository.PostContentRepository;
 import net.henryco.hblog.mvc.repository.PostPreviewRepository;
 import org.joda.time.DateTime;
