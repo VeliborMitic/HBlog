@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+>
+<head>
+    <title sec:authentication="name">Escapy | Profiles</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{~/css/style.css}" type="text/css" media="screen"/>
+    <link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans:700i" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="wrapper" class="clearfix">
+    <!--start wrapper-->
+    <div id="header" class="clearfix">
+        <!--start header-->
+        <h1 th:replace="nav :: logo"></h1>
+        <div th:replace="nav :: navigation"></div>
+        <!--end navigation-->
+        <div class="void_space2"></div>
+        <div class="intro-p">
+            <span>
+                Manage profiles
+            </span>
+        </div>
+    </div>
+    <!--end header-->
+    <div class="void_space"></div>
+
+    <!-- BODY -->
+    <div th:with="def_link=@{~/account/admin}">
+
+        <div style="width: 20%; float: left; padding-left: 10%; color: #676767">
+            <h2 style="margin-top: 0;">
+                <a style="padding-top: 5px" th:href="@{|${def_link}|}">Admin panel</a><br/>
+                <a th:href="@{~/account/profile}">User panel</a>
+            </h2>
+            <h2>
+                <a th:href="@{|${def_link}/profiles|}">Profiles</a><br/>
+                <a th:href="@{|${def_link}/posts|}">Posts</a><br/>
+                <a th:href="@{|${def_link}/pin|}">Pinned</a>
+            </h2>
+            <h2><a th:href="@{~/access/logout}">Sign Out</a></h2>
+        </div>
+
+        <div style="width: 70%; float: right; margin-top: 1px;">
+            <table class="profile_set">
+                <tr>
+                    <th style="padding-right: 5px">ID</th>
+                    <th style="padding-right: 10px">Username</th>
+                    <th style="padding-right: 10px">Name</th>
+                    <th style="padding-right: 10px">Position</th>
+                    <th style="padding-right: 10px">Email</th>
+                    <th style="padding-right: 10px">Roles</th>
+                    <th style="padding-right: 10px">Enabled</th>
+                </tr>
+
+                <!--/*@thymesVar id="profile" type="net.henryco.hblog.mvc.controllers.acc.form.ProfileForm"*/-->
+                <th:block th:each="profile: ${profiles}">
+                    <tr>
+                        <td style="padding-right: 5px" th:text="${profile.id}"></td>
+                        <td style="padding-right: 10px" th:text="${profile.username}"></td>
+                        <td style="padding-right: 10px" th:text="${profile.name}"></td>
+                        <td style="padding-right: 10px" th:text="${profile.position}"></td>
+                        <td style="padding-right: 10px" th:text="${profile.email}"></td>
+                        <td style="padding-right: 10px" th:text="${profile.roles}"></td>
+                        <th>
+                            <form method="POST" th:action="@{|${def_link}/profiles/stat/switch/${profile.id}|}">
+                                <input class="click_input2, profile_set" type="submit" style="padding-right: 10px; cursor: pointer"
+                                       th:value="${profile.enabled}"/>
+                            </form>
+                        </th>
+                        <th>
+                            <form method="POST" th:action="@{|${def_link}/profiles/stat/delete/${profile.id}|}">
+                                <input class="click_input2, profile_set" type="submit" style="cursor: pointer" value="[ DELETE ]"/>
+                            </form>
+                        </th>
+                    </tr>
+                </th:block>
+
+            </table>
+        </div>
+    </div>
+
+
+    <div class="void_space2"></div>
+    <div class="void_space2"></div>
+    <div class="clear"></div>
+    <div id="footer">
+        <!--start footer-->
+        <div class="footer-text">
+            <p><span>&copy; Copyright 2017 <a href="#">HenryCo</a>. All Rights Reserved</span> |
+                Roles: <span sec:authentication="principal.authorities"></span>
+            </p>
+        </div>
+    </div>
+
+</div>
+<!--end wrapper-->
+</body>
+</html>

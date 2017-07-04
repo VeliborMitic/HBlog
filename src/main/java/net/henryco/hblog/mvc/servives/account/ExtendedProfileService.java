@@ -7,6 +7,8 @@ import net.henryco.hblog.mvc.model.entity.account.BaseUserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author Henry on 18/06/17.
  */
@@ -70,4 +72,7 @@ public class ExtendedProfileService {
 		return profileDao.getProfileByUserNameOrEmail(nameOrEmail);
 	}
 
+	public List<BaseUserProfile> getBaseProfiles() {
+		return profileDao.getAll();
+	}
 }

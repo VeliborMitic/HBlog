@@ -147,8 +147,10 @@ public class UserPostsController {
 		return "redirect:/account/profile";
 	}
 
+
+
 	@RequestMapping(value = "/editpost/{id}", method = GET)
-	public String edit(@PathVariable("id") long id, Model model, Principal principal, RedirectAttributes attributes) {
+	public String edit(@PathVariable("id") long id, Model model, Principal principal) {
 
 		StandardPostPreview postPreview = postDirectService.getPostPreviewById(id);
 		if (postPreview.getAuthor().equals(principal.getName())) {
@@ -161,8 +163,6 @@ public class UserPostsController {
 			postForm.setPreviewLong(postPreview.getPreviewLong());
 			postForm.setContent(postContent.getContent());
 
-
-			attributes.addFlashAttribute("post_id", postPreview.getId());
 			model.addAttribute("post_form", postForm);
 			model.addAttribute("attached_res", new MultiFileForm());
 			return "addpost";
@@ -176,7 +176,6 @@ public class UserPostsController {
 	private static String getResN(int numb) {
 		return "{res::[" + numb + "]}";
 	}
-
 
 
 	private static String saveMultiPartFile(MultipartFile file, String userName) {

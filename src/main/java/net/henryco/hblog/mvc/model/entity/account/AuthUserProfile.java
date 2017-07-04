@@ -93,7 +93,6 @@ public class AuthUserProfile {
 		this.expired = expired;
 	}
 
-	@Deprecated
 	public String getAuthorities() {
 		return authorities;
 	}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+>
+<head>
+    <title sec:authentication="name">Escapy | Admin panel</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{~/css/style.css}" type="text/css" media="screen"/>
+    <link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans:700i" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="wrapper" class="clearfix">
+    <!--start wrapper-->
+    <div id="header" class="clearfix">
+        <!--start header-->
+        <h1 th:replace="nav :: logo"></h1>
+        <div th:replace="nav :: navigation"></div>
+        <!--end navigation-->
+        <div class="void_space2"></div>
+        <div class="intro-p">
+            <span>
+                Admin panel
+            </span>
+        </div>
+    </div>
+    <!--end header-->
+    <div class="void_space"></div>
+
+    <!-- BODY -->
+    <div th:with="def_link=@{~/account/admin}">
+
+        <div style="width: 20%; float: left; padding-left: 10%; color: #676767">
+            <h2 style="margin-top: 0;">
+                <a style="padding-top: 5px" th:href="@{|${def_link}|}">Admin panel</a><br/>
+                <a th:href="@{~/account/profile}">User panel</a>
+            </h2>
+            <h2>
+                <a th:href="@{|${def_link}/profiles|}">Profiles</a><br/>
+                <a th:href="@{|${def_link}/posts|}">Posts</a><br/>
+                <a th:href="@{|${def_link}/pin|}">Pinned</a>
+            </h2>
+            <h2><a th:href="@{~/access/logout}">Sign Out</a></h2>
+        </div>
+
+        <div style="width: 70%; float: right; margin-top: 1px;">
+            <div style="width: 70%; float: left; margin-top: 1px;">
+                TODO
+            </div>
+            <div style="width: 30%; float: right; margin-top: 1px;">
+                TODO
+            </div>
+        </div>
+    </div>
+
+
+    <div class="void_space2"></div>
+    <div class="void_space2"></div>
+    <div class="clear"></div>
+    <div id="footer">
+        <!--start footer-->
+        <div class="footer-text">
+            <p><span>&copy; Copyright 2017 <a href="#">HenryCo</a>. All Rights Reserved</span> |
+                Roles: <span sec:authentication="principal.authorities"></span>
+            </p>
+        </div>
+    </div>
+
+</div>
+<!--end wrapper-->
+</body>
+</html>

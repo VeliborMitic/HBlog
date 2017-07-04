@@ -414,6 +414,11 @@ div.nav li a.active {
     width: 40.5%;
 }
 
+.profile_set, .profile_set table {
+    font-size: 10px;
+    font-family: serif;
+}
+
 .half_box a img {
     min-width: 100%;
     max-width: 100%;

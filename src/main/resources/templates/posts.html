@@ -4,7 +4,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
 >
 <head>
-    <title sec:authentication="name">Escapy | Manage posts</title>
+    <title sec:authentication="name">Escapy | Posts</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" th:href="@{~/css/style.css}" type="text/css" media="screen"/>
     <link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css"/>
@@ -29,19 +29,21 @@
     <div class="void_space"></div>
 
     <!-- BODY -->
-    <div th:with="def_link=@{~/account/profile}">
+    <div th:with="def_link=@{~/account/admin}">
+
         <div style="width: 20%; float: left; padding-left: 10%; color: #676767">
             <h2 style="margin-top: 0;">
-                <a style="padding-top: 5px" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{~/account/admin}">Admin panel</a><br/>
-                <a th:href="@{|${def_link}|}">Profile</a>
+                <a style="padding-top: 5px" th:href="@{|${def_link}|}">Admin panel</a><br/>
+                <a th:href="@{~/account/profile}">User panel</a>
             </h2>
             <h2>
-                <a th:href="@{|${def_link}/addpost|}">Add post</a><br/>
-                <a th:href="@{|${def_link}/manage|}">Manage posts</a><br/>
-                <a th:href="@{|${def_link}/settings|}">Settings</a>
+                <a th:href="@{|${def_link}/profiles|}">Profiles</a><br/>
+                <a th:href="@{|${def_link}/posts|}">Posts</a><br/>
+                <a th:href="@{|${def_link}/pin|}">Pinned</a>
             </h2>
             <h2><a th:href="@{~/access/logout}">Sign Out</a></h2>
         </div>
+
         <div style="width: 70%; float: right; margin-top: 1px;">
             <!--/*@thymesVar id="post" type="net.henryco.hblog.mvc.model.entity.post.StandardPostPreview"*/-->
             <table>
@@ -60,10 +62,10 @@
                             <a target="_blank" class="click_input" th:href="@{|~/news/article/${post.id}|}">[ Open ]</a>
                         </th>
                         <th style="padding-right: 10px">
-                            <a class="click_input" th:href="@{|${def_link}/editpost/${post.id}|}">[ Edit ]</a>
+                            <a class="click_input" th:href="@{|${def_link}/posts/edit/${post.id}|}">[ Edit ]</a>
                         </th>
                         <th>
-                            <form method="POST" th:action="@{|${def_link}/manage/delete/${post.id}|}">
+                            <form method="POST" th:action="@{|${def_link}/posts/delete/${post.id}|}">
                                 <input class="click_input" type="submit" value="[ Delete ]"/>
                             </form>
                         </th>

@@ -41,9 +41,13 @@ public class PostDirectService {
 	public void removePostById(long id) {
 
 		String imgLink = postPreviewDao.getPostById(id).getImgLink();
-		new File(UPLOAD_PATH + imgLink).deleteOnExit();
-		String[] attached = Utils.stringToArray(postContentDao.getPostContentById(id).getAttached());
-		for (String f: attached) new File(UPLOAD_PATH + f).deleteOnExit();
+		if (imgLink != null) new File(UPLOAD_PATH + imgLink).deleteOnExit();
+		String att = postContentDao.getPostContentById(id).getAttached();
+		if (att != null) {
+			String[] attached = Utils.stringToArray(postContentDao.getPostContentById(id).getAttached());
+			for (String f: attached) new File(UPLOAD_PATH + f).deleteOnExit();
+		}
+
 		postPreviewDao.removePostPreviewById(id);
 		postContentDao.removePostContentById(id);
 	}
@@ -63,4 +67,7 @@ public class PostDirectService {
 		return postPreviewDao.getPostsByAuthor(name);
 	}
 
+	public List<StandardPostPreview> getAllPosts() {
+		return postPreviewDao.getLastPosts(Integer.MAX_VALUE);
+	}
 }
