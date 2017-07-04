@@ -416,6 +416,7 @@ div.nav li a.active {
 
 .half_box a img {
     min-width: 100%;
+    max-width: 100%;
     height: auto;
     max-height: 340px;
     display:inline-block;

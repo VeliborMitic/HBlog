@@ -11,10 +11,19 @@ public class MultiFileForm {
 
 	private List<MultipartFile> files;
 
+	public MultiFileForm() {}
+
+	@Override
+	public String toString() {
+		return "MultiFileForm{" +
+				"files=" + files +
+				'}';
+	}
+
+
 	public List<MultipartFile> getFiles() {
 		return files;
 	}
-
 	public void setFiles(List<MultipartFile> files) {
 		this.files = files;
 	}

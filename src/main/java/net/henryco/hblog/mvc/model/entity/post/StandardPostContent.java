@@ -18,7 +18,7 @@ public class StandardPostContent {
 	@Column(length = 102400)
 	private String content;
 
-	@Column(length = 512)
+	@Column(length = 1024)
 	private String attached;
 
 

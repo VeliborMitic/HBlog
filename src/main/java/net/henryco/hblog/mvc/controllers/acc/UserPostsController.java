@@ -6,6 +6,7 @@ import net.henryco.hblog.mvc.controllers.acc.form.PostForm;
 import net.henryco.hblog.mvc.model.entity.post.StandardPostContent;
 import net.henryco.hblog.mvc.model.entity.post.StandardPostPreview;
 import net.henryco.hblog.mvc.servives.post.PostDirectService;
+import net.henryco.hblog.utils.Utils;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ import javax.validation.Valid;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import static java.io.File.separator;
 import static net.henryco.hblog.configurations.WebConfiguration.REL_FILE_PATH;
@@ -37,7 +38,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RequestMapping("/account/profile")
 public class UserPostsController {
 
-	private static final String UPLOAD_PATH = REL_FILE_PATH + separator + "res" +separator + "public" + separator;
+	private static final String UPLOAD_PATH = REL_FILE_PATH + separator + "res" + separator + "public" + separator;
+	private static final String DEF_PATH = separator + "rel" + separator + "res" + separator + "public" + separator;
 
 	private final PostDirectService postDirectService;
 
@@ -71,6 +73,7 @@ public class UserPostsController {
 		PostForm form = new PostForm();
 		form.setContent("For attach images use <img/> and {res::[number of attached image]} like this:\n <img src=\"{res::[1]}\"/>");
 		model.addAttribute("post_form", form);
+		model.addAttribute("attached_res", new MultiFileForm());
 		return "addpost";
 	}
 
@@ -81,13 +84,13 @@ public class UserPostsController {
 							 Principal principal) {
 
 		if (bindingResult.hasErrors()) return "addpost";
+		final String userName = principal.getName();
 
-		String iconLink = saveMultiPartFile(postForm.getFile());
+		String iconLink = saveMultiPartFile(postForm.getFile(), userName);
 		if (iconLink == null) {
 			bindingResult.addError(new ObjectError("img_prev", "Image preview cannot be empty"));
 			return "addpost";
 		}
-		System.out.println(iconLink);
 
 		StandardPostPreview post = new StandardPostPreview();
 		post.setAuthor(principal.getName());
@@ -97,20 +100,39 @@ public class UserPostsController {
 		post.setPreviewShort(postForm.getPreviewShort());
 		post.setPreviewLong(postForm.getPreviewLong());
 
+		List<String> attached = new ArrayList<>();
+		String postContent = postForm.getContent();
+		int i = 0;
+		for (MultipartFile file: postForm.getAttachedFiles()) {
+			String fileName = saveMultiPartFile(file, userName);
+			if (fileName != null) {
+				attached.add(fileName);
+				postContent = postContent.replace(getResN(i), DEF_PATH + fileName);
+			}
+			i++;
+		}
+
 		StandardPostContent content = new StandardPostContent(postDirectService.addPostPreview(post).getId());
-		content.setContent(postForm.getContent());
-		content.setAttached("TODO");
+		content.setContent(postContent);
+		content.setAttached(Utils.arrayToString(attached.toArray(new String[0])));
 		postDirectService.addPostContent(content);
 
 		return "redirect:/account/profile";
 	}
 
 
-	private static String saveMultiPartFile(MultipartFile file) {
+	private static String getResN(int numb) {
+		return "{res::[" + numb + "]}";
+	}
+
+	private static String saveMultiPartFile(MultipartFile file, String userName) {
 		try {
 			if (file.isEmpty()) return null;
 			final int i = file.getOriginalFilename().lastIndexOf(".");
-			final String name = new Random().nextLong() + System.currentTimeMillis() + ( i != -1 ? file.getOriginalFilename().substring(i) : "");
+			final String hash = Integer.toString(userName.hashCode());
+			final String time = Long.toString(System.currentTimeMillis());
+			final String name = hash + time + ( i != -1 ? file.getOriginalFilename().substring(i) : "");
+
 			Files.write(Paths.get(UPLOAD_PATH + name), file.getBytes());
 			return name;
 		} catch (Exception e) {

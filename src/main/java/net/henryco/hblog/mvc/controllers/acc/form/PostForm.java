@@ -4,6 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 /**
  * @author Henry on 03/07/17.
@@ -25,6 +26,8 @@ public class PostForm {
 	@NotNull
 	private MultipartFile file;
 
+	private List<MultipartFile> attachedFiles;
+
 	@Override
 	public String toString() {
 		return "PostForm{" +
@@ -33,7 +36,17 @@ public class PostForm {
 				", previewLong='" + previewLong + '\'' +
 				", content='" + content + '\'' +
 				", file=" + file +
+				", attachedFiles=" + attachedFiles +
 				'}';
+	}
+
+
+	public List<MultipartFile> getAttachedFiles() {
+		return attachedFiles;
+	}
+
+	public void setAttachedFiles(List<MultipartFile> attachedFiles) {
+		this.attachedFiles = attachedFiles;
 	}
 
 	public MultipartFile getFile() {
