@@ -39,16 +39,21 @@ public class AdminProfileController {
 	private final SimpExtraMediaService mediaService;
 
 	@Autowired
-	public AdminProfileController(PostDirectService postDirectService, ExtendedProfileService profileService, SimpExtraMediaService mediaService) {
+	public AdminProfileController(PostDirectService postDirectService,
+								  ExtendedProfileService profileService,
+								  SimpExtraMediaService mediaService) {
 		this.postDirectService = postDirectService;
 		this.profileService = profileService;
 		this.mediaService = mediaService;
 	}
 
+
+
 	@RequestMapping(method = GET)
 	public String mainPanel() {
 		return "admin";
 	}
+
 
 
 	@RequestMapping(value = "/posts", method = GET)
@@ -65,11 +70,13 @@ public class AdminProfileController {
 	}
 
 
+
 	@RequestMapping("/posts/delete/{id}")
 	public String deletePost(@PathVariable("id") long id) {
 		postDirectService.removePostById(id);
 		return "redirect:/account/admin/posts";
 	}
+
 
 
 	@RequestMapping(value = "/posts/edit/{id}", method = GET)
@@ -92,8 +99,9 @@ public class AdminProfileController {
 	}
 
 
+
 	@RequestMapping(value = "/posts/actual", method = POST)
-	public String setActual(@RequestParam("actual") String actual,  Authentication authentication) {
+	public String setActual(@RequestParam("actual") String actual, Authentication authentication) {
 
 		if (authentication.isAuthenticated() &&
 				authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) try {
@@ -124,6 +132,7 @@ public class AdminProfileController {
 	}
 
 
+
 	@RequestMapping(value = "/profiles", method = GET)
 	public String manageProfiles(Model model) {
 
@@ -146,6 +155,7 @@ public class AdminProfileController {
 	}
 
 
+
 	@RequestMapping(value = "/profiles/stat/switch/{id}", method = POST)
 	public String switchStat(@PathVariable("id") long id, Authentication authentication) {
 		if (authentication.isAuthenticated() &&
@@ -156,6 +166,7 @@ public class AdminProfileController {
 		}
 		return "redirect:/account/admin/profiles";
 	}
+
 
 
 	@RequestMapping(value = "/profiles/stat/delete/{id}", method = POST)

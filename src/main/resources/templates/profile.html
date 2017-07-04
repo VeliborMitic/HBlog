@@ -34,14 +34,14 @@
 
             <h2 style="margin-top: 0;">
                 <a style="padding-top: 5px" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{~/account/admin}">Admin panel</a><br/>
-                <a th:href="@{|${def_link}|}">Profile</a>
+                <a th:href="@{|${def_link}|}">User panel</a>
             </h2>
             <h2>
                 <a th:href="@{|${def_link}/addpost|}">Add post</a><br/>
                 <a th:href="@{|${def_link}/manage|}">Manage posts</a><br/>
                 <a th:href="@{|${def_link}/settings|}">Settings</a>
             </h2>
-            <h2><a th:href="@{~/access/logout}">Sign Out</a></h2>
+            <h2><a style="color: firebrick;" th:href="@{~/access/logout}">Sign Out</a></h2>
 
         </div>
         <div style="width: 70%; float: right; margin-top: 1px;">
@@ -63,13 +63,6 @@
                         <!--/*@thymesVar id="user_profile" type="net.henryco.hblog.mvc.model.entity.account.BaseUserProfile"*/-->
                         <img th:src="@{|~/rel/res/public/av/${user_profile.iconLink}|}"/>
                     </div>
-                </div>
-                <div style="height: 15%; float: left;">
-                    <form method="POST" th:action="@{|${def_link}/upload/avatar|}" enctype="multipart/form-data">
-                        <span>Image must be 150x150 px</span><br/>
-                        <input type="file" name="file" /><br/><br/>
-                        <input class="click_input2" type="submit" value="Save avatar" />
-                    </form>
                 </div>
             </div>
         </div>

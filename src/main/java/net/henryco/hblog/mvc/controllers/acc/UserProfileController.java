@@ -6,6 +6,7 @@ import net.henryco.hblog.mvc.model.entity.account.BaseUserProfile;
 import net.henryco.hblog.mvc.servives.account.BaseProfileService;
 import net.henryco.hblog.mvc.servives.account.ExtendedProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -68,6 +70,7 @@ public class UserProfileController {
 		settingsForm.setLastName(profile.getLastName());
 		settingsForm.setPosition(profile.getPosition());
 		model.addAttribute("settingsForm", settingsForm);
+		model.addAttribute("iconLink", profile.getIconLink());
 		return "settings";
 	}
 
@@ -126,7 +129,20 @@ public class UserProfileController {
 		BaseUserProfile profile = profileService.getUserProfileByUserName(principal.getName());
 		profile.setIconLink(name);
 		extendedProfileService.updateBaseUserProfile(profile);
-		return "redirect:/account/profile";
+		return "redirect:/account/profile/settings";
 	}
 
+	@RequestMapping(value = "/delete", method = POST)
+	public String selfDelete(Authentication authentication) {
+
+		if (authentication.isAuthenticated()) {
+			BaseUserProfile profile = profileService.getUserProfileByUserName(authentication.getName());
+			try {
+				new File(AVATAR_UPLOAD_DIR + profile.getIconLink()).deleteOnExit();
+			} catch (Exception ignored) {}
+			extendedProfileService.deleteProfile(profile.getId());
+			return "redirect:/access/logout";
+		}
+		return "redirect:/account/profile/settings";
+	}
 }

@@ -1,5 +1,6 @@
 package net.henryco.hblog.mvc.servives.account;
 
+import net.henryco.hblog.configurations.WebConfiguration;
 import net.henryco.hblog.mvc.model.dao.account.base.BaseProfileDao;
 import net.henryco.hblog.mvc.model.dao.account.priv.AuthProfileDao;
 import net.henryco.hblog.mvc.model.entity.account.AuthUserProfile;
@@ -7,6 +8,7 @@ import net.henryco.hblog.mvc.model.entity.account.BaseUserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.List;
 
 /**
