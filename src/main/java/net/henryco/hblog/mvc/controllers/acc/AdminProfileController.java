@@ -4,21 +4,22 @@ import net.henryco.hblog.mvc.controllers.acc.form.MultiFileForm;
 import net.henryco.hblog.mvc.controllers.acc.form.PostForm;
 import net.henryco.hblog.mvc.controllers.acc.form.ProfileForm;
 import net.henryco.hblog.mvc.model.entity.account.AuthUserProfile;
+import net.henryco.hblog.mvc.model.entity.extra.PinnedNews;
 import net.henryco.hblog.mvc.model.entity.post.StandardPostContent;
 import net.henryco.hblog.mvc.model.entity.post.StandardPostPreview;
 import net.henryco.hblog.mvc.servives.account.ExtendedProfileService;
+import net.henryco.hblog.mvc.servives.extra.SimpExtraMediaService;
 import net.henryco.hblog.mvc.servives.post.PostDirectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
-import java.security.Principal;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -35,13 +36,14 @@ public class AdminProfileController {
 
 	private final PostDirectService postDirectService;
 	private final ExtendedProfileService profileService;
+	private final SimpExtraMediaService mediaService;
 
 	@Autowired
-	public AdminProfileController(PostDirectService postDirectService, ExtendedProfileService profileService) {
+	public AdminProfileController(PostDirectService postDirectService, ExtendedProfileService profileService, SimpExtraMediaService mediaService) {
 		this.postDirectService = postDirectService;
 		this.profileService = profileService;
+		this.mediaService = mediaService;
 	}
-
 
 	@RequestMapping(method = GET)
 	public String mainPanel() {
@@ -51,6 +53,13 @@ public class AdminProfileController {
 
 	@RequestMapping(value = "/posts", method = GET)
 	public String managePosts(Model model) {
+
+		StringBuilder actual = new StringBuilder();
+		for (PinnedNews news: mediaService.getActualNews())
+			actual.append(news.getId()).append(", ");
+		if (actual.length() >= 2) actual.delete(actual.length() - 2, actual.length());
+
+		model.addAttribute("actual_news", actual.toString());
 		model.addAttribute("posts", postDirectService.getAllPosts());
 		return "posts";
 	}
@@ -80,6 +89,38 @@ public class AdminProfileController {
 		model.addAttribute("post_form", postForm);
 		model.addAttribute("attached_res", new MultiFileForm());
 		return "addpost";
+	}
+
+
+	@RequestMapping(value = "/posts/actual", method = POST)
+	public String setActual(@RequestParam("actual") String actual,  Authentication authentication) {
+
+		if (authentication.isAuthenticated() &&
+				authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) try {
+
+			for (PinnedNews news: mediaService.getActualNews()) {
+				news.setActual(false);
+				mediaService.saveNews(news);
+			}
+
+			if (actual != null && !actual.isEmpty()) {
+				String[] numb = actual.split(",");
+				for (int i = 0; i < numb.length; i++) {
+					numb[i] = numb[i].trim();
+					long n = Long.valueOf(numb[i]);
+
+					PinnedNews pinnedNews = mediaService.isActualNewsExists(n)
+							? mediaService.getNewsById(n)
+							: new PinnedNews(n);
+
+					pinnedNews.setActual(true);
+					mediaService.saveNews(pinnedNews);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/account/admin/posts";
 	}
 
 
@@ -124,4 +165,5 @@ public class AdminProfileController {
 			profileService.deleteProfile(id);
 		return "redirect:/account/admin/profiles";
 	}
+
 }

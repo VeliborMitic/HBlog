@@ -1,6 +1,6 @@
 package net.henryco.hblog.mvc.model.dao.extra;
 
-import net.henryco.hblog.mvc.model.entity.extra.PinnedBanners;
+import net.henryco.hblog.mvc.model.entity.extra.PinnedBanner;
 import net.henryco.hblog.mvc.model.entity.extra.PinnedNews;
 import net.henryco.hblog.mvc.model.repository.PinnedBannersRepository;
 import net.henryco.hblog.mvc.model.repository.PinnedNewsRepository;
@@ -32,7 +32,7 @@ public class ExtraContentDaoImp implements ExtraContentDao {
 	}
 
 	@Override
-	public PinnedBanners getPinnedBannersById(long id) {
+	public PinnedBanner getPinnedBannersById(long id) {
 		return bannersRepository.getOne(id);
 	}
 
@@ -52,7 +52,7 @@ public class ExtraContentDaoImp implements ExtraContentDao {
 	}
 
 	@Override
-	public PinnedBanners addPinnedBanners(PinnedBanners banner) {
+	public PinnedBanner addPinnedBanners(PinnedBanner banner) {
 		return bannersRepository.saveAndFlush(banner);
 	}
 
@@ -67,7 +67,7 @@ public class ExtraContentDaoImp implements ExtraContentDao {
 	}
 
 	@Override
-	public List<PinnedBanners> getActualBanners(int numb) {
+	public List<PinnedBanner> getActualBanners(int numb) {
 		return bannersRepository.findByActualIsTrueOrderByIdDesc(new PageRequest(0, numb));
 	}
 
@@ -77,7 +77,7 @@ public class ExtraContentDaoImp implements ExtraContentDao {
 	}
 
 	@Override
-	public List<PinnedBanners> getIrrelevantBanners(int numb) {
+	public List<PinnedBanner> getIrrelevantBanners(int numb) {
 		return bannersRepository.findByActualIsFalseOrderByIdDesc(new PageRequest(0, numb));
 	}
 

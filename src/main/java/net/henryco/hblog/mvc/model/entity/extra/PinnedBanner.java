@@ -6,7 +6,7 @@ import javax.persistence.*;
  * @author Henry on 17/06/17.
  */
 @Entity
-public class PinnedBanners {
+public class PinnedBanner {
 
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id @Column(name = "id", unique = true)
@@ -21,22 +21,22 @@ public class PinnedBanners {
 	@Column
 	private boolean actual;
 
-	public PinnedBanners() {}
+	public PinnedBanner() {}
 
-	public PinnedBanners(String mediaUrl, String mediaHref) {
+	public PinnedBanner(String mediaUrl, String mediaHref) {
 		this();
 		this.mediaUrl = mediaUrl;
 		this.mediaHref = mediaHref;
 	}
 
-	public PinnedBanners(String mediaUrl, String mediaHref, boolean actual) {
+	public PinnedBanner(String mediaUrl, String mediaHref, boolean actual) {
 		this(mediaUrl, mediaHref);
 		this.actual = actual;
 	}
 
 	@Override
 	public String toString() {
-		return "PinnedBanners{" +
+		return "PinnedBanner{" +
 				"id=" + id +
 				", mediaUrl='" + mediaUrl + '\'' +
 				", mediaHref='" + mediaHref + '\'' +

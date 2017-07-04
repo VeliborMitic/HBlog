@@ -1,7 +1,7 @@
 package net.henryco.hblog.mvc.controllers.pub;
 
 import net.henryco.hblog.mvc.model.entity.post.StandardPostPreview;
-import net.henryco.hblog.mvc.model.entity.extra.PinnedBanners;
+import net.henryco.hblog.mvc.model.entity.extra.PinnedBanner;
 import net.henryco.hblog.mvc.model.entity.extra.PinnedNews;
 import net.henryco.hblog.mvc.servives.post.HomePageService;
 import net.henryco.hblog.mvc.servives.extra.SimpExtraMediaService;
@@ -40,7 +40,7 @@ public class HomeController {
 		List<PinnedNews> pinnedNews = mediaService.getActualNews(1);
 		List<StandardPostPreview> actualNews = new ArrayList<>();
 
-		List<PinnedBanners> pinnedBanners = mediaService.getActualBanners(1);
+		List<PinnedBanner> pinnedBanners = mediaService.getActualBanners(1);
 		if (pinnedBanners != null)
 			model.addAttribute("banners", pinnedBanners);
 
@@ -48,7 +48,7 @@ public class HomeController {
 		if (posts == null || posts.isEmpty()) return "index";
 		if (pinnedNews != null)
 			for (PinnedNews news: pinnedNews)
-				actualNews.add(homePageService.getPostPreviewById(news.getPostId()));
+				actualNews.add(homePageService.getPostPreviewById(news.getId()));
 
 		StandardPostPreview temp;
 		if (actualNews.isEmpty())

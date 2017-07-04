@@ -3,7 +3,7 @@ package net.henryco.hblog.mvc.controllers.pub;
 import net.henryco.hblog.mvc.model.entity.account.BaseUserProfile;
 import net.henryco.hblog.mvc.model.entity.post.StandardPostContent;
 import net.henryco.hblog.mvc.model.entity.post.StandardPostPreview;
-import net.henryco.hblog.mvc.model.entity.extra.PinnedBanners;
+import net.henryco.hblog.mvc.model.entity.extra.PinnedBanner;
 import net.henryco.hblog.mvc.servives.account.BaseProfileService;
 import net.henryco.hblog.mvc.servives.post.ArticlePageService;
 import net.henryco.hblog.mvc.servives.extra.SimpExtraMediaService;
@@ -49,7 +49,7 @@ public class ArticleController {
 	@RequestMapping(value = "/{id}", method = GET)
 	public String article(@PathVariable("id") long id, Model model) {
 
-		List<PinnedBanners> pinnedBanners = mediaService.getActualBanners(1);
+		List<PinnedBanner> pinnedBanners = mediaService.getActualBanners(1);
 		if (pinnedBanners != null)
 			model.addAttribute("banners", pinnedBanners);
 

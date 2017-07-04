@@ -1,7 +1,7 @@
 package net.henryco.hblog.mvc.controllers.pub;
 
 import net.henryco.hblog.mvc.model.entity.post.StandardPostPreview;
-import net.henryco.hblog.mvc.model.entity.extra.PinnedBanners;
+import net.henryco.hblog.mvc.model.entity.extra.PinnedBanner;
 import net.henryco.hblog.mvc.servives.post.NewsPageService;
 import net.henryco.hblog.mvc.servives.extra.SimpExtraMediaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +53,7 @@ public class NewsController {
 		if (pageNumb <= 0) return news();
 		if (pageNumb > 1) model.addAttribute("pageNumber", pageNumb);
 
-		List<PinnedBanners> pinnedBanners = mediaService.getActualBanners(1);
+		List<PinnedBanner> pinnedBanners = mediaService.getActualBanners(1);
 		if (pinnedBanners != null)
 			model.addAttribute("banners", pinnedBanners);
 

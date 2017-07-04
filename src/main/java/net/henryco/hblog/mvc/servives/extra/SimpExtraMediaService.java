@@ -1,7 +1,7 @@
 package net.henryco.hblog.mvc.servives.extra;
 
 import net.henryco.hblog.mvc.model.dao.extra.ExtraContentDao;
-import net.henryco.hblog.mvc.model.entity.extra.PinnedBanners;
+import net.henryco.hblog.mvc.model.entity.extra.PinnedBanner;
 import net.henryco.hblog.mvc.model.entity.extra.PinnedNews;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class SimpExtraMediaService {
 	}
 
 
-	public List<PinnedBanners> getActualBanners(int numb) {
+	public List<PinnedBanner> getActualBanners(int numb) {
 		return mediaDao.getActualBanners(numb);
 	}
 
@@ -30,4 +30,36 @@ public class SimpExtraMediaService {
 		return mediaDao.getActualNews(numb);
 	}
 
+	public List<PinnedBanner> getActualBanners() {
+		return getActualBanners(Integer.MAX_VALUE);
+	}
+
+	public List<PinnedNews> getActualNews() {
+		return getActualNews(Integer.MAX_VALUE);
+	}
+
+	public PinnedNews getNewsById(long id) {
+		return mediaDao.getPinnedNewsById(id);
+	}
+
+	public void saveNews(PinnedNews news) {
+		mediaDao.addPinnedNews(news);
+	}
+
+	public void saveBanner(PinnedBanner banner) {
+		mediaDao.addPinnedBanners(banner);
+	}
+
+
+	public PinnedBanner getBannerById(long id) {
+		return mediaDao.getPinnedBannersById(id);
+	}
+
+	public boolean isActualNewsExists(long id) {
+		return mediaDao.isNewsExists(id);
+	}
+
+	public boolean isActualBannerExists(long id) {
+		return mediaDao.isBannerExists(id);
+	}
 }

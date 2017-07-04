@@ -45,8 +45,17 @@
         </div>
 
         <div style="width: 70%; float: right; margin-top: 1px;">
+
+            <div style="float: left; margin-bottom: 25px;">
+                <form method="POST" th:action="@{|${def_link}/posts/actual|}">
+                    <label for="actual">Actual articles</label><br/>
+                    <input id="actual" name="actual" style="margin-right: 5px;" size="30" class="input_space" type="text" th:value="${actual_news}"/>
+                    <input type="submit" value="Set actual" class="click_input2"/>
+                </form>
+            </div>
+            <br/>
             <!--/*@thymesVar id="post" type="net.henryco.hblog.mvc.model.entity.post.StandardPostPreview"*/-->
-            <table>
+            <table style="float: left;">
                 <tr>
                     <th style="padding-right: 40px">ID</th>
                     <th style="padding-right: 40px">Update time</th>

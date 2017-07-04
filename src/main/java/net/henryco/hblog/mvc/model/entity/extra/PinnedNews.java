@@ -8,12 +8,8 @@ import javax.persistence.*;
 @Entity
 public class PinnedNews {
 
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id @Column(name = "id", unique = true)
 	private long id;
-
-	@Column(unique = true)
-	private long postId;
 
 	@Column
 	private boolean actual;
@@ -23,20 +19,18 @@ public class PinnedNews {
 	public String toString() {
 		return "PinnedNews{" +
 				"id=" + id +
-				", postId=" + postId +
 				", actual=" + actual +
 				'}';
 	}
 
 	public PinnedNews() {}
 
-	public PinnedNews(long postId) {
+	public PinnedNews(long id) {
 		this();
-		this.postId = postId;
+		this.id = id;
 	}
-
-	public PinnedNews(long postId, boolean actual) {
-		this(postId);
+	public PinnedNews(long id, boolean actual) {
+		this(id);
 		this.actual = actual;
 	}
 
@@ -46,14 +40,6 @@ public class PinnedNews {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public long getPostId() {
-		return postId;
-	}
-
-	public void setPostId(long postId) {
-		this.postId = postId;
 	}
 
 	public boolean isActual() {

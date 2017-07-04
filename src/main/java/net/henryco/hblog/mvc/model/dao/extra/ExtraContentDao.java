@@ -1,6 +1,6 @@
 package net.henryco.hblog.mvc.model.dao.extra;
 
-import net.henryco.hblog.mvc.model.entity.extra.PinnedBanners;
+import net.henryco.hblog.mvc.model.entity.extra.PinnedBanner;
 import net.henryco.hblog.mvc.model.entity.extra.PinnedNews;
 
 import java.util.List;
@@ -12,7 +12,7 @@ public interface ExtraContentDao {
 
 	PinnedNews getPinnedNewsById(long id);
 
-	PinnedBanners getPinnedBannersById(long id);
+	PinnedBanner getPinnedBannersById(long id);
 
 	void removePinnedNewsById(long id);
 
@@ -20,17 +20,17 @@ public interface ExtraContentDao {
 
 	PinnedNews addPinnedNews(PinnedNews news);
 
-	PinnedBanners addPinnedBanners(PinnedBanners banner);
+	PinnedBanner addPinnedBanners(PinnedBanner banner);
 
 	boolean isBannerExists(long id);
 
 	boolean isNewsExists(long id);
 
-	List<PinnedBanners> getActualBanners(int numb);
+	List<PinnedBanner> getActualBanners(int numb);
 
 	List<PinnedNews> getActualNews(int numb);
 
-	List<PinnedBanners> getIrrelevantBanners(int numb);
+	List<PinnedBanner> getIrrelevantBanners(int numb);
 
 	List<PinnedNews> getIrrelevantNews(int numb);
 
