@@ -12,15 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
-import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.nio.file.Files;
@@ -72,7 +68,9 @@ public class UserPostsController {
 	@RequestMapping(value = "/addpost", method = GET)
 	public String addPost(Model model) {
 
-		model.addAttribute("post_form", new PostForm());
+		PostForm form = new PostForm();
+		form.setContent("For attach images use <img/> and {res::[number of attached image]} like this:\n <img src=\"{res::[1]}\"/>");
+		model.addAttribute("post_form", form);
 		return "addpost";
 	}
 
@@ -105,14 +103,6 @@ public class UserPostsController {
 		postDirectService.addPostContent(content);
 
 		return "redirect:/account/profile";
-	}
-
-
-
-	@RequestMapping(value = "/addpost/submit/resources", method = POST)
-	public String submitResources(@Valid @ModelAttribute("file_form") MultiFileForm fileForm) {
-
-		return "addpost";
 	}
 
 

@@ -9,6 +9,28 @@
     <link rel="stylesheet" th:href="@{~/css/style.css}" type="text/css" media="screen"/>
     <link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans:700i" rel="stylesheet" type="text/css"/>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script>
+        $(document)
+            .ready(
+                function() {
+                    //add more file components if Add is clicked
+                    $('#addFile')
+                        .click(
+                            function() {
+                                var fileIndex = $('#fileTable tr')
+                                        .children().length - 1;
+                                $('#fileTable')
+                                    .append(
+                                        '<tr><td>'
+                                        + '   <input type="file" name="files['+ fileIndex +']" />'
+                                        + '</td></tr>');
+                            });
+
+                });
+    </script>
+
 </head>
 <body>
 <div id="wrapper" class="clearfix">
@@ -50,38 +72,52 @@
 
             <form th:object="${post_form}" th:action="@{|${def_link}/addpost/submit/post|}" method="post" enctype="multipart/form-data">
 
+                <div class="errors" th:if="${#fields.hasErrors('*')}" style="width:50%; float: right">
+                    <ul><li th:each="err: ${#fields.errors('*')}" th:text="${err}">Input data error</li></ul>
+                </div><br/>
+
                 <label for="title">Title</label><br/>
                 <input id="title" size="40" type="text" th:field="*{title}" class="input_space"/><br/><br/>
                 <label for="icon_prev">Image preview (300x340 px)</label><br/>
                 <input type="file" id="icon_prev" th:field="*{file}" />
-                <br/><br/>
+                <br/><br/><br/>
 
                 <label for="prevShort">Preview short (max 185)</label><br/>
                 <textarea id="prevShort" th:field="*{previewShort}" class="input_space"
                           style="width: 80%;
                           max-width: 80%;
-                          min-height: 60px;"
+                          min-height: 60px;
+                          font-family: monospace;"
                 ></textarea><br/><br/>
 
                 <label for="prevLong">Preview long (max 700)</label><br/>
                 <textarea id="prevLong" th:field="*{previewLong}" class="input_space"
                           style="width: 80%;
                           max-width: 80%;
-                          min-height: 100px;"
+                          min-height: 100px;
+                          font-family: monospace;"
                 ></textarea><br/><br/>
 
                 <label for="content">Content (max 102400)</label><br/>
                 <textarea id="content" th:field="*{content}" class="input_space"
                           style="width: 80%;
                           max-width: 80%;
-                          min-height: 200px;"
+                          min-height: 200px;
+                          font-family: monospace;"
                 ></textarea><br/>
 
-                <div class="errors" th:if="${#fields.hasErrors('*')}" style="width:50%;">
-                    <ul><li th:each="err: ${#fields.errors('*')}" th:text="${err}">Input data error</li></ul>
-                </div><br/>
-
-                <input class="click_input2" type="submit" value="Add new post" />
+                <br/>
+                <div style="width: 80%;">
+                    <table id="fileTable">
+                        <tr>
+                            <td><input name="files[0]" type="file" /></td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <input id="addFile" style="font-weight: 600" class="click_input2" type="button" value="Add File" />
+                    <br/>
+                    <input class="click_input2" style="font-weight: 700; float: right;" type="submit" value="Save POST" />
+                </div>
             </form>
         </div>
     </div>
