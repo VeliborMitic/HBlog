@@ -3,8 +3,10 @@ package net.henryco.hblog.mvc.controllers.acc;
 
 import net.henryco.hblog.mvc.controllers.acc.form.MultiFileForm;
 import net.henryco.hblog.mvc.controllers.acc.form.PostForm;
+import net.henryco.hblog.mvc.model.entity.account.AuthUserProfile;
 import net.henryco.hblog.mvc.model.entity.post.StandardPostContent;
 import net.henryco.hblog.mvc.model.entity.post.StandardPostPreview;
+import net.henryco.hblog.mvc.servives.account.ExtendedProfileService;
 import net.henryco.hblog.mvc.servives.post.PostDirectService;
 import net.henryco.hblog.utils.Utils;
 import org.joda.time.DateTime;
@@ -41,14 +43,14 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class UserPostsController {
 
 
-
+	private final ExtendedProfileService profileService;
 	private final PostDirectService postDirectService;
 
 	@Autowired
-	public UserPostsController(PostDirectService postDirectService) {
+	public UserPostsController(ExtendedProfileService profileService, PostDirectService postDirectService) {
+		this.profileService = profileService;
 		this.postDirectService = postDirectService;
 	}
-
 
 	@RequestMapping(value = "/manage", method = GET)
 	public String managePosts(Model model, Principal principal) {
@@ -93,6 +95,18 @@ public class UserPostsController {
 
 		Long id = postForm.getId();
 		StandardPostPreview post = id != null ? postDirectService.getPostPreviewById(id) : new StandardPostPreview();
+		if (id != null && !post.getAuthor().equals(principal.getName())) {
+
+			AuthUserProfile profile = profileService.getAuthProfile(profileService.getBaseProfileByNameOrEmail(principal.getName()).getId());
+			boolean redirect = true;
+			for (String auth: profile.getAuthoritiesArray()) {
+				if (auth.equals("ROLE_ADMIN")) {
+					redirect = false;
+					break;
+				}
+			}
+			if (redirect) return "redirect:/account/profile";
+		}
 
 		String iconLink = saveMultiPartFile(postForm.getFile(), userName);
 		if (iconLink == null) {
