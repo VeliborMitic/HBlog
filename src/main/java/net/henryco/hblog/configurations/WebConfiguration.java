@@ -31,6 +31,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 	public static final String REL_FILE_PATH = System.getProperty("user.dir");
 	public static final String ABS_FILE_PATH = System.getProperty("user.home");
 
+	public static final String AVATAR_UPLOAD_DIR = REL_FILE_PATH + separator + "res" +separator + "public" + separator + "av" + separator;
 	public static final String UPLOAD_PATH = REL_FILE_PATH + separator + "res" + separator + "public" + separator;
 	public static final String DEF_PATH = separator + "rel" + separator + "res" + separator + "public" + separator;
 

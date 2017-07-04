@@ -260,6 +260,7 @@ div.nav li a.active {
 
 .post_content img, .banner-right img {
     width: 100%;
+    max-width: 220px;
     height: auto;
     display:inline-block;
 }

@@ -29,7 +29,9 @@
 
 
 <div th:fragment="img_banner" class="banner-right">
+    
     <th:block th:each="banner: ${banners}">
+        <!--/*@thymesVar id="banner" type="net.henryco.hblog.mvc.model.entity.extra.PinnedBanner"*/-->
         <a th:href="@{|${banner.mediaHref}|}">
             <img th:src="@{|~/rel/res/public/${banner.mediaUrl}|}"/>
         </a>

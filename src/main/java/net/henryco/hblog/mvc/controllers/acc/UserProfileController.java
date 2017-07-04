@@ -24,8 +24,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.Principal;
 
-import static java.io.File.separator;
-import static net.henryco.hblog.configurations.WebConfiguration.REL_FILE_PATH;
+import static net.henryco.hblog.configurations.WebConfiguration.AVATAR_UPLOAD_DIR;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -37,7 +36,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class UserProfileController {
 
 
-	private static final String AVATAR_UPLOAD_DIR = REL_FILE_PATH + separator + "res" +separator + "public" + separator + "av" + separator;
+
 	private final BaseProfileService profileService;
 	private final ExtendedProfileService extendedProfileService;
 

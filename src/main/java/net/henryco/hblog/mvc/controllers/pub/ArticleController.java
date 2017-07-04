@@ -49,7 +49,7 @@ public class ArticleController {
 	@RequestMapping(value = "/{id}", method = GET)
 	public String article(@PathVariable("id") long id, Model model) {
 
-		List<PinnedBanner> pinnedBanners = mediaService.getActualBanners(1);
+		List<PinnedBanner> pinnedBanners = mediaService.getActualBanners(2);
 		if (pinnedBanners != null)
 			model.addAttribute("banners", pinnedBanners);
 

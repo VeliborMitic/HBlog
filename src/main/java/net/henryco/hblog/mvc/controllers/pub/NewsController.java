@@ -53,7 +53,7 @@ public class NewsController {
 		if (pageNumb <= 0) return news();
 		if (pageNumb > 1) model.addAttribute("pageNumber", pageNumb);
 
-		List<PinnedBanner> pinnedBanners = mediaService.getActualBanners(1);
+		List<PinnedBanner> pinnedBanners = mediaService.getActualBanners(2);
 		if (pinnedBanners != null)
 			model.addAttribute("banners", pinnedBanners);
 

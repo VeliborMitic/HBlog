@@ -50,6 +50,10 @@ public class ExtendedProfileService {
 		profileDao.deleteBaseUserProfile(id);
 	}
 
+	public BaseUserProfile getBaseProfile(long id) {
+		return profileDao.getProfileById(id);
+	}
+
 	public void setPassword(long id, String password) {
 		authDao.setPassword(id, password);
 	}

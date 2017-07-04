@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
+import static net.henryco.hblog.configurations.WebConfiguration.AVATAR_UPLOAD_DIR;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -172,8 +174,12 @@ public class AdminProfileController {
 	@RequestMapping(value = "/profiles/stat/delete/{id}", method = POST)
 	public String deleteProfile(@PathVariable("id") long id, Authentication authentication) {
 		if (authentication.isAuthenticated() &&
-				authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN")))
+				authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+			try {
+				new File(AVATAR_UPLOAD_DIR + profileService.getBaseProfile(id).getIconLink()).deleteOnExit();
+			} catch (Exception ignored) {}
 			profileService.deleteProfile(id);
+		}
 		return "redirect:/account/admin/profiles";
 	}
 
