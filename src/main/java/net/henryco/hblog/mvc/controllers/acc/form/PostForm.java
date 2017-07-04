@@ -11,6 +11,8 @@ import java.util.List;
  */
 public class PostForm {
 
+	private Long id;
+
 	@NotNull @Size(min = 2, max = 40, message = "(tittle) size: <2, 40>")
 	private String title;
 
@@ -31,7 +33,8 @@ public class PostForm {
 	@Override
 	public String toString() {
 		return "PostForm{" +
-				"title='" + title + '\'' +
+				"id=" + id +
+				", title='" + title + '\'' +
 				", previewShort='" + previewShort + '\'' +
 				", previewLong='" + previewLong + '\'' +
 				", content='" + content + '\'' +
@@ -40,6 +43,13 @@ public class PostForm {
 				'}';
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public List<MultipartFile> getAttachedFiles() {
 		return attachedFiles;

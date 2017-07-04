@@ -17,6 +17,8 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 import java.io.File;
 
+import static java.io.File.separator;
+
 
 /**
  * @author Henry on 14/06/17.
@@ -28,6 +30,9 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 
 	public static final String REL_FILE_PATH = System.getProperty("user.dir");
 	public static final String ABS_FILE_PATH = System.getProperty("user.home");
+
+	public static final String UPLOAD_PATH = REL_FILE_PATH + separator + "res" + separator + "public" + separator;
+	public static final String DEF_PATH = separator + "rel" + separator + "res" + separator + "public" + separator;
 
 
 	@Bean

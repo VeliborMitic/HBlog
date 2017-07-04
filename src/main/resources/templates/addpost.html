@@ -4,7 +4,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
 >
 <head>
-    <title sec:authentication="name">Escapy | Add post</title>
+    <title sec:authentication="name">Escapy | Post form</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" th:href="@{~/css/style.css}" type="text/css" media="screen"/>
     <link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css"/>
@@ -44,7 +44,7 @@
         <div class="void_space2"></div>
         <div class="intro-p">
             <span>
-                Add new post
+                Post form
             </span>
         </div>
     </div>
@@ -76,6 +76,8 @@
                 <div class="errors" th:if="${#fields.hasErrors('*')}" style="width:50%; float: right">
                     <ul><li th:each="err: ${#fields.errors('*')}" th:text="${err}">Input data error</li></ul>
                 </div><br/>
+
+                <input type="hidden" th:field="*{id}"/>
 
                 <label for="title">Title</label><br/>
                 <input id="title" size="40" type="text" th:field="*{title}" class="input_space"/><br/><br/>
