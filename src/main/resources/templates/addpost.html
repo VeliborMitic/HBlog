@@ -53,7 +53,7 @@
                 <label for="title">Title</label><br/>
                 <input id="title" size="40" type="text" th:field="*{title}" class="input_space"/><br/><br/>
                 <label for="icon_prev">Image preview (300x340 px)</label><br/>
-                <input type="file" id="icon_prev" name="icon_prev" />
+                <input type="file" id="icon_prev" th:field="*{file}" />
                 <br/><br/>
 
                 <label for="prevShort">Preview short (max 185)</label><br/>
@@ -80,6 +80,7 @@
                 <div class="errors" th:if="${#fields.hasErrors('*')}" style="width:50%;">
                     <ul><li th:each="err: ${#fields.errors('*')}" th:text="${err}">Input data error</li></ul>
                 </div><br/>
+
                 <input class="click_input2" type="submit" value="Add new post" />
             </form>
         </div>

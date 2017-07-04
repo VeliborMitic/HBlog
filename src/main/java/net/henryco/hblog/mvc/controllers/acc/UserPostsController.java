@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -68,30 +70,26 @@ public class UserPostsController {
 
 
 	@RequestMapping(value = "/addpost", method = GET)
-	public String addPost(Model model, RedirectAttributes attributes) {
+	public String addPost(Model model) {
 
-		Object some = attributes.getFlashAttributes().get("post_form");
-		PostForm form = some != null ? (PostForm) some : new PostForm();
-
-		model.addAttribute("post_form", form);
-		attributes.addFlashAttribute("post_form", form);
+		model.addAttribute("post_form", new PostForm());
 		return "addpost";
 	}
 
 
 	@RequestMapping(value = "/addpost/submit/post", method = POST)
 	public String submitPost(@Valid @ModelAttribute("post_form") PostForm postForm,
-							 @RequestParam("icon_prev") MultipartFile file,
-							 RedirectAttributes attributes,
 							 BindingResult bindingResult,
 							 Principal principal) {
 
 		if (bindingResult.hasErrors()) return "addpost";
-		String iconLink = saveMultiPartFile(file);
+
+		String iconLink = saveMultiPartFile(postForm.getFile());
 		if (iconLink == null) {
 			bindingResult.addError(new ObjectError("img_prev", "Image preview cannot be empty"));
 			return "addpost";
 		}
+		System.out.println(iconLink);
 
 		StandardPostPreview post = new StandardPostPreview();
 		post.setAuthor(principal.getName());
@@ -112,7 +110,7 @@ public class UserPostsController {
 
 
 	@RequestMapping(value = "/addpost/submit/resources", method = POST)
-	public String submitResources(@ModelAttribute("file_form") MultiFileForm fileForm) {
+	public String submitResources(@Valid @ModelAttribute("file_form") MultiFileForm fileForm) {
 
 		return "addpost";
 	}
@@ -120,6 +118,7 @@ public class UserPostsController {
 
 	private static String saveMultiPartFile(MultipartFile file) {
 		try {
+			if (file.isEmpty()) return null;
 			final int i = file.getOriginalFilename().lastIndexOf(".");
 			final String name = new Random().nextLong() + System.currentTimeMillis() + ( i != -1 ? file.getOriginalFilename().substring(i) : "");
 			Files.write(Paths.get(UPLOAD_PATH + name), file.getBytes());

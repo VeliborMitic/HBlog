@@ -1,5 +1,7 @@
 package net.henryco.hblog.mvc.controllers.acc.form;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -20,6 +22,8 @@ public class PostForm {
 	@Size(min = 1, max = 102400, message = "(content) size <1, 102400>")
 	private String content;
 
+	@NotNull
+	private MultipartFile file;
 
 	@Override
 	public String toString() {
@@ -28,7 +32,16 @@ public class PostForm {
 				", previewShort='" + previewShort + '\'' +
 				", previewLong='" + previewLong + '\'' +
 				", content='" + content + '\'' +
+				", file=" + file +
 				'}';
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 
 	public String getTitle() {
