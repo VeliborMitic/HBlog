@@ -118,9 +118,9 @@ public class UserPostsController {
 			iconLink = post.getImgLink();
 		}
 
-		post.setAuthor(principal.getName());
 		post.setImgLink(iconLink);
 		post.setTitle(postForm.getTitle());
+		post.setAuthor(id == null ? principal.getName() : post.getAuthor());
 		post.setUpdateTime(id == null ? DateTime.now(DateTimeZone.UTC).toDate() : post.getUpdateTime());
 		post.setPreviewShort(postForm.getPreviewShort());
 		post.setPreviewLong(postForm.getPreviewLong());
