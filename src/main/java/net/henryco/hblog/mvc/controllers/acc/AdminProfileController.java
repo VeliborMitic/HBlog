@@ -4,6 +4,7 @@ import net.henryco.hblog.mvc.controllers.acc.form.MultiFileForm;
 import net.henryco.hblog.mvc.controllers.acc.form.PostForm;
 import net.henryco.hblog.mvc.controllers.acc.form.ProfileForm;
 import net.henryco.hblog.mvc.model.entity.account.AuthUserProfile;
+import net.henryco.hblog.mvc.model.entity.extra.PinnedBanner;
 import net.henryco.hblog.mvc.model.entity.extra.PinnedNews;
 import net.henryco.hblog.mvc.model.entity.post.StandardPostContent;
 import net.henryco.hblog.mvc.model.entity.post.StandardPostPreview;
@@ -119,7 +120,7 @@ public class AdminProfileController {
 					numb[i] = numb[i].trim();
 					long n = Long.valueOf(numb[i]);
 
-					PinnedNews pinnedNews = mediaService.isActualNewsExists(n)
+					PinnedNews pinnedNews = mediaService.isNewsExists(n)
 							? mediaService.getNewsById(n)
 							: new PinnedNews(n);
 
@@ -131,6 +132,20 @@ public class AdminProfileController {
 			e.printStackTrace();
 		}
 		return "redirect:/account/admin/posts";
+	}
+
+
+	@RequestMapping("/banners")
+	public String banners(Model model) {
+
+		StringBuilder actual = new StringBuilder();
+		for (PinnedBanner banner : mediaService.getActualBanners())
+			actual.append(banner.getId()).append(", ");
+		if (actual.length() >= 2) actual.delete(actual.length() - 2, actual.length());
+
+		model.addAttribute("banners", mediaService.getAllBanners());
+		model.addAttribute("actual_banners", actual.toString());
+		return "banners";
 	}
 
 

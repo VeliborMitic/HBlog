@@ -51,15 +51,19 @@ public class SimpExtraMediaService {
 	}
 
 
+	public List<PinnedBanner> getAllBanners() {
+		return mediaDao.getAllBanners();
+	}
+
 	public PinnedBanner getBannerById(long id) {
 		return mediaDao.getPinnedBannersById(id);
 	}
 
-	public boolean isActualNewsExists(long id) {
+	public boolean isNewsExists(long id) {
 		return mediaDao.isNewsExists(id);
 	}
 
-	public boolean isActualBannerExists(long id) {
+	public boolean isBannerExists(long id) {
 		return mediaDao.isBannerExists(id);
 	}
 }

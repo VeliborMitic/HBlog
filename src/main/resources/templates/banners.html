@@ -4,7 +4,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
 >
 <head>
-    <title sec:authentication="name">Escapy | Posts</title>
+    <title sec:authentication="name">Escapy | Banners</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" th:href="@{~/css/style.css}" type="text/css" media="screen"/>
     <link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css"/>
@@ -47,37 +47,53 @@
         <div style="width: 70%; float: right; margin-top: 1px;">
 
             <div style="float: left; margin-bottom: 25px;">
-                <form method="POST" th:action="@{|${def_link}/posts/actual|}">
-                    <label for="actual">Actual articles</label><br/>
-                    <input id="actual" name="actual" style="margin-right: 5px;" size="30" class="input_space" type="text" th:value="${actual_news}"/>
-                    <input type="submit" value="Set actual" class="click_input2"/>
+                <form method="POST" th:action="@{|${def_link}/banners/actual|}">
+                    <label for="actual">Actual banners</label><br/>
+                    <!--/*@thymesVar id="actual_banners" type="java.lang.String"*/-->
+                    <input id="actual" name="actual" style="margin-right: 5px;" size="30" class="input_space" type="text" th:value="${actual_banners}"/>
+                    <input type="submit" value="Set actual" class="click_input2" style="margin-right: 5px;"/>|
+                    <a style="text-decoration: none; margin-left: 20px; text-transform: none; color: inherit;"
+                       th:href="@{|${def_link}/banners/add|}"> Add new banner</a>
                 </form>
             </div>
             <br/>
-            <!--/*@thymesVar id="post" type="net.henryco.hblog.mvc.model.entity.post.StandardPostPreview"*/-->
+
+            <!--/*@thymesVar id="banner" type="net.henryco.hblog.mvc.model.entity.extra.PinnedBanner"*/-->
             <table style="float: left; clear: both; font-size: 13px;" class="profile_set">
                 <tr>
-                    <th style="padding-right: 40px">ID</th>
-                    <th style="padding-right: 40px">Update time</th>
-                    <th style="padding-right: 40px">Title</th>
+                    <th style="padding-right: 5px">ID</th>
+                    <th style="padding-right: 10px">Name</th>
+                    <th style="padding-right: 10px">Actual</th>
+                    <th style="padding-right: 10px">Media</th>
+                    <th style="padding-right: 10px">External reference</th>
                 </tr>
 
-                <th:block th:each="post: ${posts}">
+                <th:block th:each="banner: ${banners}">
                     <tr>
-                        <td style="padding-right: 25px" th:text="${post.id}"></td>
-                        <td style="padding-right: 40px" th:text="${post.updateTime}"></td>
-                        <td style="padding-right: 30px" th:text="${post.title}"></td>
-                        <th style="padding-right: 10px">
-                            <a target="_blank" class="click_input" th:href="@{|~/news/article/${post.id}|}">[ Open ]</a>
-                        </th>
-                        <th style="padding-right: 10px">
-                            <a class="click_input" th:href="@{|${def_link}/posts/edit/${post.id}|}">[ Edit ]</a>
-                        </th>
-                        <th>
-                            <form method="POST" th:action="@{|${def_link}/posts/delete/${post.id}|}">
-                                <input class="click_input" type="submit" value="[ Delete ]"/>
+
+                        <td style="padding-right: 5px" th:text="${banner.id}"></td>
+                        <td style="padding-right: 10px" th:text="${banner.name}"></td>
+                        <td style="padding-right: 10px" th:text="${banner.actual}"></td>
+
+                        <td style="padding-right: 10px">
+                            <form method="POST" th:action="@{|${def_link}/banners/stat/switch/${banner.id}|}">
+                                <input class="click_input2, profile_set" type="submit" style="padding-right: 10px; cursor: pointer"
+                                       th:value="${banner.actual}"/>
                             </form>
-                        </th>
+                        </td>
+
+                        <td style="padding-right: 10px">
+                            <a th:href="@{|~/rel/res/public/${banner.mediaUrl}|}" th:text="${banner.mediaUrl}"></a>
+                        </td>
+
+                        <td style="padding-right: 10px">
+                            <a th:href="@{|${banner.mediaHref}|}" th:text="${banner.mediaHref}"></a>
+                        </td>
+
+                        <th><form method="POST" th:action="@{|${def_link}/banners/stat/delete/${banner.id}|}">
+                                <input class="click_input2, profile_set" type="submit" style="cursor: pointer" value="[ DELETE ]"/>
+                        </form></th>
+
                     </tr>
                 </th:block>
 

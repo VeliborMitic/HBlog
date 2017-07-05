@@ -34,5 +34,6 @@ public interface ExtraContentDao {
 
 	List<PinnedNews> getIrrelevantNews(int numb);
 
+	List<PinnedBanner> getAllBanners();
 
 }

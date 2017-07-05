@@ -85,4 +85,9 @@ public class ExtraContentDaoImp implements ExtraContentDao {
 	public List<PinnedNews> getIrrelevantNews(int numb) {
 		return newsRepository.findByActualIsFalseOrderByIdDesc(new PageRequest(0, numb));
 	}
+
+	@Override
+	public List<PinnedBanner> getAllBanners() {
+		return bannersRepository.findAll();
+	}
 }

@@ -120,7 +120,7 @@ public class UserPostsController {
 		post.setAuthor(principal.getName());
 		post.setImgLink(iconLink);
 		post.setTitle(postForm.getTitle());
-		post.setUpdateTime(DateTime.now(DateTimeZone.UTC).toDate());
+		post.setUpdateTime(id == null ? DateTime.now(DateTimeZone.UTC).toDate() : post.getUpdateTime());
 		post.setPreviewShort(postForm.getPreviewShort());
 		post.setPreviewLong(postForm.getPreviewLong());
 

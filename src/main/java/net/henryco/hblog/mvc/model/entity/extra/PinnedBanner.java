@@ -13,6 +13,9 @@ public class PinnedBanner {
 	private long id;
 
 	@Column
+	private String name;
+
+	@Column
 	private String mediaUrl;
 
 	@Column
@@ -21,27 +24,25 @@ public class PinnedBanner {
 	@Column
 	private boolean actual;
 
-	public PinnedBanner() {}
-
-	public PinnedBanner(String mediaUrl, String mediaHref) {
-		this();
-		this.mediaUrl = mediaUrl;
-		this.mediaHref = mediaHref;
-	}
-
-	public PinnedBanner(String mediaUrl, String mediaHref, boolean actual) {
-		this(mediaUrl, mediaHref);
-		this.actual = actual;
-	}
 
 	@Override
 	public String toString() {
 		return "PinnedBanner{" +
 				"id=" + id +
+				", name='" + name + '\'' +
 				", mediaUrl='" + mediaUrl + '\'' +
 				", mediaHref='" + mediaHref + '\'' +
 				", actual=" + actual +
 				'}';
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public long getId() {
