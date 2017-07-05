@@ -66,4 +66,13 @@ public class SimpExtraMediaService {
 	public boolean isBannerExists(long id) {
 		return mediaDao.isBannerExists(id);
 	}
+
+	public void deleteBanner(long id) {
+		mediaDao.removePinnedBannersById(id);
+	}
+
+	public void deleteNews(long id) {
+		mediaDao.removePinnedNewsById(id);
+	}
+
 }

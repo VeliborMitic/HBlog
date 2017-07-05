@@ -26,6 +26,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import static net.henryco.hblog.configurations.WebConfiguration.AVATAR_UPLOAD_DIR;
+import static net.henryco.hblog.configurations.WebConfiguration.UPLOAD_PATH;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -104,7 +105,7 @@ public class AdminProfileController {
 
 
 	@RequestMapping(value = "/posts/actual", method = POST)
-	public String setActual(@RequestParam("actual") String actual, Authentication authentication) {
+	public String setActualNews(@RequestParam("actual") String actual, Authentication authentication) {
 
 		if (authentication.isAuthenticated() &&
 				authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) try {
@@ -135,6 +136,7 @@ public class AdminProfileController {
 	}
 
 
+
 	@RequestMapping("/banners")
 	public String banners(Model model) {
 
@@ -148,6 +150,71 @@ public class AdminProfileController {
 		return "banners";
 	}
 
+
+
+	@RequestMapping(value = "/banners/actual", method = POST)
+	public String setActualBanners(@RequestParam("actual") String actual, Authentication authentication) {
+
+		if (authentication.isAuthenticated() &&
+				authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) try {
+
+			for (PinnedBanner banner: mediaService.getActualBanners()) {
+				banner.setActual(false);
+				mediaService.saveBanner(banner);
+			}
+
+			if (actual != null && !actual.isEmpty()) {
+				String[] numb = actual.split(",");
+				for (int i = 0; i < numb.length; i++) {
+					numb[i] = numb[i].trim();
+					long n = Long.valueOf(numb[i]);
+					if (mediaService.isBannerExists(n)) {
+						PinnedBanner banner = mediaService.getBannerById(n);
+						banner.setActual(true);
+						mediaService.saveBanner(banner);
+					}
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "redirect:/account/admin/banners";
+	}
+
+
+
+	@RequestMapping(value = "/banners/stat/delete/{id}", method = POST)
+	public String deleteBanner(@PathVariable("id") long id, Authentication authentication) {
+
+		if (authentication.isAuthenticated() &&
+				authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) try {
+			if (mediaService.isBannerExists(id)) {
+				String icon = mediaService.getBannerById(id).getMediaUrl();
+				mediaService.deleteBanner(id);
+				new File(UPLOAD_PATH + icon).deleteOnExit();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/account/admin/banners";
+	}
+
+
+	@RequestMapping(value = "/banners/stat/switch/{id}", method = POST)
+	public String switchBannerStat(@PathVariable("id") long id, Authentication authentication) {
+
+		if (authentication.isAuthenticated() &&
+				authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+			if (mediaService.isBannerExists(id)) {
+				PinnedBanner banner = mediaService.getBannerById(id);
+				banner.setActual(!banner.isActual());
+				mediaService.saveBanner(banner);
+			}
+		}
+		return "redirect:/account/admin/banners";
+	}
 
 
 	@RequestMapping(value = "/profiles", method = GET)
@@ -174,7 +241,8 @@ public class AdminProfileController {
 
 
 	@RequestMapping(value = "/profiles/stat/switch/{id}", method = POST)
-	public String switchStat(@PathVariable("id") long id, Authentication authentication) {
+	public String switchNewsStat(@PathVariable("id") long id, Authentication authentication) {
+
 		if (authentication.isAuthenticated() &&
 				authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
 			AuthUserProfile authProfile = profileService.getAuthProfile(id);
@@ -188,6 +256,7 @@ public class AdminProfileController {
 
 	@RequestMapping(value = "/profiles/stat/delete/{id}", method = POST)
 	public String deleteProfile(@PathVariable("id") long id, Authentication authentication) {
+
 		if (authentication.isAuthenticated() &&
 				authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
 			try {
