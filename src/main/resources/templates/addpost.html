@@ -24,8 +24,8 @@
                                 $('#fileTable')
                                     .append(
                                         '<tr><td>'
-//                                        + '   <input type="file" name="files['+ fileIndex +']" />'
-                                        + '   <input type="file" name="attachedFiles" />'
+//                                        + '   <input type="file" name="attachedFiles['+ fileIndex +']" />'
+                                        + '   <input type="file" id="attachedFiles" name="attachedFiles" />'
                                         + '</td></tr>');
                             });
 
@@ -111,7 +111,7 @@
                 <div style="width: 80%;">
                     <table id="fileTable">
                         <tr>
-                            <td><input name="attachedFiles" type="file" /></td>
+                            <td><input type="file" th:field="*{attachedFiles}" /></td>
                         </tr>
                     </table>
                     <br/>

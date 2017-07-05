@@ -33,7 +33,7 @@ import java.util.List;
 
 import static net.henryco.hblog.configurations.WebConfiguration.AVATAR_UPLOAD_DIR;
 import static net.henryco.hblog.configurations.WebConfiguration.UPLOAD_PATH;
-import static net.henryco.hblog.utils.Utils.saveMultiPartFile;
+import static net.henryco.hblog.utils.Utils.saveMultiPartFileWithNewName;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -211,7 +211,7 @@ public class AdminProfileController {
 			if (mediaService.isBannerExists(id)) {
 				String icon = mediaService.getBannerById(id).getMediaUrl();
 				mediaService.deleteBanner(id);
-				new File(UPLOAD_PATH + icon).delete();
+				new File(UPLOAD_PATH + icon).deleteOnExit();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -252,7 +252,7 @@ public class AdminProfileController {
 		if (bindingResult.hasErrors()) return "addbanner";
 		if (authentication.isAuthenticated() &&
 				authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
-			String imageLink = saveMultiPartFile(bannerForm.getImage(),
+			String imageLink = saveMultiPartFileWithNewName(bannerForm.getImage(),
 					authentication.getName()+"_BANNER_", UPLOAD_PATH);
 			if (imageLink == null) {
 				bindingResult.addError(new ObjectError("image", "Banner image cannot be null"));
@@ -313,7 +313,7 @@ public class AdminProfileController {
 		if (authentication.isAuthenticated() &&
 				authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
 			try {
-				new File(AVATAR_UPLOAD_DIR + profileService.getBaseProfile(id).getIconLink()).delete();
+				new File(AVATAR_UPLOAD_DIR + profileService.getBaseProfile(id).getIconLink()).deleteOnExit();
 			} catch (Exception ignored) {}
 			profileService.deleteProfile(id);
 		}

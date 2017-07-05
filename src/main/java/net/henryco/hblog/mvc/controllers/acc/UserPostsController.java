@@ -20,11 +20,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,7 +29,7 @@ import java.util.List;
 
 import static net.henryco.hblog.configurations.WebConfiguration.DEF_PATH;
 import static net.henryco.hblog.configurations.WebConfiguration.UPLOAD_PATH;
-import static net.henryco.hblog.utils.Utils.saveMultiPartFile;
+import static net.henryco.hblog.utils.Utils.saveMultiPartFileWithNewName;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -109,7 +106,7 @@ public class UserPostsController {
 			if (redirect) return "redirect:/account/profile";
 		}
 
-		String iconLink = saveMultiPartFile(postForm.getFile(), userName, UPLOAD_PATH);
+		String iconLink = saveMultiPartFileWithNewName(postForm.getFile(), userName, UPLOAD_PATH);
 		if (iconLink == null) {
 			if (id == null) {
 				bindingResult.addError(new ObjectError("img_prev", "Image preview cannot be empty"));
@@ -129,7 +126,7 @@ public class UserPostsController {
 		String postContent = postForm.getContent();
 		int i = 0;
 		for (MultipartFile file: postForm.getAttachedFiles()) {
-			String fileName = saveMultiPartFile(file, userName, UPLOAD_PATH);
+			String fileName = saveMultiPartFileWithNewName(file, userName, UPLOAD_PATH);
 			if (fileName != null) {
 				attached.add(fileName);
 				postContent = postContent.replace(getResN(i), DEF_PATH + fileName);
