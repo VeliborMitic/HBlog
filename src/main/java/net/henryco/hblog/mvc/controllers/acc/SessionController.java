@@ -1,5 +1,6 @@
 package net.henryco.hblog.mvc.controllers.acc;
 
+import net.henryco.hblog.configurations.WebConfiguration;
 import net.henryco.hblog.mvc.controllers.acc.form.RegistrationForm;
 import net.henryco.hblog.mvc.model.entity.account.BaseUserProfile;
 import net.henryco.hblog.mvc.servives.account.ExtendedProfileService;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+
+import java.io.File;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -99,6 +102,12 @@ public class SessionController {
 		profile.setEmail(form.getEmail());
 
 		profileService.saveNewBaseUserProfile(profile, form.getPassword(), r_admin ? ROLES_ADMIN : ROLES_USER);
+
+		try {
+			new File(WebConfiguration.USER_FILE_PATH + form.getUserName()).mkdirs();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		return "redirect:/access/login";
 	}

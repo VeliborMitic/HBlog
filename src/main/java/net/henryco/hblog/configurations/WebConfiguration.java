@@ -34,6 +34,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 	public static final String AVATAR_UPLOAD_DIR = REL_FILE_PATH + separator + "res" +separator + "public" + separator + "av" + separator;
 	public static final String UPLOAD_PATH = REL_FILE_PATH + separator + "res" + separator + "public" + separator;
 	public static final String DEF_PATH = separator + "rel" + separator + "res" + separator + "public" + separator;
+	public static final String USER_FILE_PATH = REL_FILE_PATH + separator + "res" + separator + "private" + separator;
 
 
 	@Bean

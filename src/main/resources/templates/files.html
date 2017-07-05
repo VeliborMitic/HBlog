@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+>
+<head>
+    <title sec:authentication="name">Escapy | Files</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{~/css/style.css}" type="text/css" media="screen"/>
+    <link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans:700i" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="wrapper" class="clearfix">
+    <!--start wrapper-->
+    <div id="header" class="clearfix">
+        <!--start header-->
+        <h1 th:replace="nav :: logo"></h1>
+        <div th:replace="nav :: navigation"></div>
+        <!--end navigation-->
+        <div class="void_space2"></div>
+        <div class="intro-p2">
+            <span>
+                Files
+            </span>
+        </div>
+    </div>
+    <!--end header-->
+    <div class="void_space"></div>
+
+    <!-- BODY -->
+    <div th:with="def_link=@{~/account/profile}">
+
+        <div style="width: 20%; float: left; padding-left: 10%; color: #676767">
+            <h2 style="margin-top: 0;">
+                <a style="padding-top: 5px" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{~/account/admin}">Admin panel</a><br/>
+                <a th:href="@{|${def_link}|}">User panel</a>
+            </h2>
+            <h2>
+                <a th:href="@{|${def_link}/addpost|}">Add post</a><br/>
+                <a th:href="@{|${def_link}/manage|}">Manage posts</a><br/>
+                <a th:href="@{|${def_link}/files|}">Files</a><br/>
+                <a th:href="@{|${def_link}/settings|}">Settings</a>
+            </h2>
+            <h2><a style="color: firebrick;" th:href="@{~/access/logout}">Sign Out</a></h2>
+        </div>
+
+        <!--/*@thymesVar id="username" type="java.lang.String"*/-->
+        <div style="width: 70%; float: right; margin-top: 1px;">
+            <div style="float: left; margin-bottom: 25px;">
+
+                <!--/*@thymesVar id="upload_form" type="net.henryco.hblog.mvc.controllers.acc.form.UserFileForm"*/-->
+                <form method="POST" th:object="${upload_form}"
+                      th:action="@{|${def_link}/files/upload/${username}|}" enctype="multipart/form-data">
+
+                    <div class="errors" th:if="${#fields.hasErrors('*')}" style="width:50%; float: right">
+                        <ul><li th:each="err: ${#fields.errors('*')}" th:text="${err}">Input data error</li></ul>
+                    </div><br/>
+
+                    <table>
+                        <tr>
+                            <th style="text-align: left"><label for="addFile">File tag</label><br/></th>
+                            <th style="text-align: left"><label for="upFile">Max size 10MB</label></th>
+                        </tr>
+                        <tr>
+                            <td style="padding-right: 5px;">
+                                <input id="addFile" style="margin-right: 5px;"
+                                       size="40" class="input_space" type="text" th:field="*{name}"/>
+                            </td>
+                            <td><input type="file" style="padding-right: 30px;" id="upFile" th:field="*{file}" /><br/></td>
+                            <td><input type="submit" value="Upload" class="click_input2"
+                                       style="margin-right: 5px; font-weight: 700; font-size: 14px;"/></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <br/>
+
+            <table style="float: left; clear: both; font-size: 13px;" class="profile_set">
+                <tr>
+                    <th style="padding-right: 10px">ID</th>
+                    <th style="padding-right: 15px">Tag</th>
+                    <th style="padding-right: 15px">Update time</th>
+                    <th style="padding-right: 15px">File</th>
+                </tr>
+
+                <th:block th:each="user_file: ${files}">
+                    <tr>
+
+                        <!--/*@thymesVar id="user_file" type="net.henryco.hblog.mvc.model.entity.account.files.BaseUserFile"*/-->
+                        <td style="padding-right: 10px" th:text="${user_file.id}"></td>
+                        <td style="padding-right: 15px" th:text="${user_file.name}"></td>
+                        <td style="padding-right: 15px" th:text="${user_file.updateTime}"></td>
+
+                        <td style="padding-right: 15px">
+                            <a target="_blank" style="text-transform: none; text-decoration: underline; color:inherit;"
+                               th:href="@{|~/rel/res/private/${username}/${user_file.file}|}" th:text="${user_file.file}"></a>
+                        </td>
+
+                        <th><form method="POST" th:action="@{|${def_link}/files/delete/${user_file.id}|}">
+                                <input class="click_input2, profile_set" type="submit" style="cursor: pointer" value="[ DELETE ]"/>
+                        </form></th>
+
+                    </tr>
+                </th:block>
+
+            </table>
+        </div>
+    </div>
+
+
+    <div class="void_space2"></div>
+    <div class="void_space2"></div>
+    <div class="clear"></div>
+    <div id="footer">
+        <!--start footer-->
+        <div class="footer-text">
+            <p><span>&copy; Copyright 2017 <a href="#">HenryCo</a>. All Rights Reserved</span> |
+                Roles: <span sec:authentication="principal.authorities"></span>
+            </p>
+        </div>
+    </div>
+
+</div>
+<!--end wrapper-->
+</body>
+</html>

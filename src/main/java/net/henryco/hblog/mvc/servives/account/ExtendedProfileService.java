@@ -1,6 +1,5 @@
 package net.henryco.hblog.mvc.servives.account;
 
-import net.henryco.hblog.configurations.WebConfiguration;
 import net.henryco.hblog.mvc.model.dao.account.base.BaseProfileDao;
 import net.henryco.hblog.mvc.model.dao.account.priv.AuthProfileDao;
 import net.henryco.hblog.mvc.model.entity.account.AuthUserProfile;
@@ -10,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.util.List;
+
+import static net.henryco.hblog.configurations.WebConfiguration.USER_FILE_PATH;
 
 /**
  * @author Henry on 18/06/17.
@@ -46,6 +47,9 @@ public class ExtendedProfileService {
 
 
 	public void deleteProfile(long id) {
+		try {
+			new File(USER_FILE_PATH + profileDao.getProfileById(id).getUserName()).deleteOnExit();
+		} catch (Exception e) {e.printStackTrace();}
 		authDao.deleteAuthUserProfile(id);
 		profileDao.deleteBaseUserProfile(id);
 	}
