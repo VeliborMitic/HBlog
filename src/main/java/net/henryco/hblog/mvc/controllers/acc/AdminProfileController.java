@@ -13,6 +13,7 @@ import net.henryco.hblog.mvc.servives.account.ExtendedProfileService;
 import net.henryco.hblog.mvc.servives.extra.SimpExtraMediaService;
 import net.henryco.hblog.mvc.servives.post.PostDirectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
@@ -47,20 +48,29 @@ public class AdminProfileController {
 	private final PostDirectService postDirectService;
 	private final ExtendedProfileService profileService;
 	private final SimpExtraMediaService mediaService;
+	private final Environment environment;
 
 	@Autowired
 	public AdminProfileController(PostDirectService postDirectService,
 								  ExtendedProfileService profileService,
-								  SimpExtraMediaService mediaService) {
+								  SimpExtraMediaService mediaService,
+								  Environment environment) {
 		this.postDirectService = postDirectService;
 		this.profileService = profileService;
 		this.mediaService = mediaService;
+		this.environment = environment;
 	}
 
 
 
 	@RequestMapping(method = GET)
-	public String mainPanel() {
+	public String mainPanel(Model model, Authentication authentication) {
+
+		if (authentication.isAuthenticated() &&
+				authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+			model.addAttribute("user_gpg", environment.getProperty("access.keys.gpg.user"));
+			model.addAttribute("admin_gpg", environment.getProperty("access.keys.gpg.admin"));
+		}
 		return "admin";
 	}
 
@@ -199,7 +209,7 @@ public class AdminProfileController {
 			if (mediaService.isBannerExists(id)) {
 				String icon = mediaService.getBannerById(id).getMediaUrl();
 				mediaService.deleteBanner(id);
-				new File(UPLOAD_PATH + icon).deleteOnExit();
+				new File(UPLOAD_PATH + icon).delete();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -301,7 +311,7 @@ public class AdminProfileController {
 		if (authentication.isAuthenticated() &&
 				authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
 			try {
-				new File(AVATAR_UPLOAD_DIR + profileService.getBaseProfile(id).getIconLink()).deleteOnExit();
+				new File(AVATAR_UPLOAD_DIR + profileService.getBaseProfile(id).getIconLink()).delete();
 			} catch (Exception ignored) {}
 			profileService.deleteProfile(id);
 		}

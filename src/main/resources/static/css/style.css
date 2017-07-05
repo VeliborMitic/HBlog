@@ -200,12 +200,19 @@ div.nav li a.active {
     color: #56a8d8;
 }
 
-.intro-p {
+.intro-p, .intro-p2 {
     padding-top: 20px;
     width: 100%;
+    font-size: 20px;
+}
+
+.intro-p {
     /*TODO change font*/
     font-family: 'Quattrocento Sans', sans-serif;
-    font-size: 20px;
+}
+
+.intro-p2 {
+    font-family: sans-serif;
 }
 
 .contact_container {
@@ -232,14 +239,14 @@ div.nav li a.active {
     font-weight: 700;
 }
 
-.intro-p h1 {
+.intro-p h1, .intro-p2 h1 {
     font-size: 31px;
     margin-top: 10px;
     margin-bottom: 10px;
     float: left;
 }
 
-.intro-p, .date_span {
+.intro-p, .date_span, .intro-p2 {
     color: #414141;
     float: left;
 }

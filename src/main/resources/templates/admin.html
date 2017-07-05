@@ -19,7 +19,7 @@
         <div th:replace="nav :: navigation"></div>
         <!--end navigation-->
         <div class="void_space2"></div>
-        <div class="intro-p">
+        <div class="intro-p2">
             <span>
                 Admin panel
             </span>
@@ -44,11 +44,14 @@
             <h2><a style="color: firebrick;" th:href="@{~/access/logout}">Sign Out</a></h2>
         </div>
 
-        <div style="width: 70%; float: right; margin-top: 1px;">
+        <div style="width: 50%; float: right; margin-top: 1px;">
             <div style="width: 70%; float: left; margin-top: 1px;">
-
-
-
+                <span>GPG USER: </span>
+                <span style="font-size: 15px; color: dimgray; margin-left: 10px; font-weight: 700;"
+                      th:text="${user_gpg}"></span><br/><br/>
+                <span>GPG ADMIN: </span>
+                <span style="font-size: 15px; color: dimgray; margin-left: 10px; font-weight: 700;"
+                      th:text="${admin_gpg}"></span>
             </div>
             <div style="width: 30%; float: right; margin-top: 1px;">
 

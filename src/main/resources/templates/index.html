@@ -20,7 +20,7 @@
         </div>
     </div>
     <!--end header-->
-    <div class="banner-image"><img th:src="@{~/images/bg.jpg}" alt=""/></div>
+    <div class="banner-image"><img th:src="@{~/rel/res/public/critical/background.jpg}" alt=""/></div>
 
     <th:block th:each="hot_post: ${actual_news}">
         <div class="intro-2" th:with="linkVariable=@{|~/news/article/${hot_post.id}|}">
