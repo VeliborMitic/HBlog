@@ -137,12 +137,14 @@ public class AdminProfileController {
 					numb[i] = numb[i].trim();
 					long n = Long.valueOf(numb[i]);
 
-					PinnedNews pinnedNews = mediaService.isNewsExists(n)
-							? mediaService.getNewsById(n)
-							: new PinnedNews(n);
+					if (postDirectService.isPostExists(n)) {
+						PinnedNews pinnedNews = mediaService.isNewsExists(n)
+								? mediaService.getNewsById(n)
+								: new PinnedNews(n);
 
-					pinnedNews.setActual(true);
-					mediaService.saveNews(pinnedNews);
+						pinnedNews.setActual(true);
+						mediaService.saveNews(pinnedNews);
+					}
 				}
 			}
 		} catch (Exception e) {
