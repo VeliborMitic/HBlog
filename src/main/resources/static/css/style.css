@@ -263,6 +263,7 @@ div.nav li a.active {
     width: 75%;
     font-size: 15px;
     margin: 0 0 85px;
+    word-wrap: break-word;
 }
 
 .post_content img, .banner-right img {
@@ -296,6 +297,7 @@ div.nav li a.active {
     width: 100%;
     font-size: 15px;
     margin: 0 0 50px;
+    word-wrap: break-word;
 }
 
 .intro-2, .post_content {
@@ -440,6 +442,7 @@ div.nav li a.active {
     margin-bottom: 20px;
     float: left;
     color: #414141;
+    word-wrap: break-word;
 }
 
 .column-last {
