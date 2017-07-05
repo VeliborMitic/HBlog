@@ -20,7 +20,7 @@ public class ArticlePageService {
 	private final PostContentDao contentDao;
 
 	@Autowired
-	public ArticlePageService(@Qualifier("testMockDao") PostPreviewDao previewDao,
+	public ArticlePageService(@Qualifier("postPreviewDaoImp") PostPreviewDao previewDao,
 							  PostContentDao contentDao) {
 		this.previewDao = previewDao;
 		this.contentDao = contentDao;

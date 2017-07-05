@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Escapy | News</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{~/css/style.css}" type="text/css" media="screen"/>
+    <link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans:700i" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="wrapper" class="clearfix">
+    <!--start wrapper-->
+    <div id="header" class="clearfix">
+        <!--start header-->
+        <h1 th:replace="nav :: logo"></h1>
+        <div th:replace="nav :: navigation"></div>
+        <!--end navigation-->
+        <div class="void_space2"></div>
+        <div class="intro-p2">
+            <h1><span>
+                There are no news yet...
+            </span></h1>
+        </div>
+    </div>
+    <!--end header-->
+    <div class="void_space"></div>
+
+    <!-- BODY -->
+
+
+    <div class="void_space2"></div>
+    <div class="void_space2"></div>
+
+    <div th:replace="nav :: nav_footer"></div>
+
+</div>
+<!--end wrapper-->
+</body>
+</html>

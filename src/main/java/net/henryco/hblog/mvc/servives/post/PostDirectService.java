@@ -25,7 +25,7 @@ public class PostDirectService {
 	private final PostContentDao postContentDao;
 
 	@Autowired
-	public PostDirectService(@Qualifier("testMockDao") PostPreviewDao postPreviewDao,
+	public PostDirectService(@Qualifier("postPreviewDaoImp") PostPreviewDao postPreviewDao,
 							 PostContentDao postContentDao) {
 		this.postPreviewDao = postPreviewDao;
 		this.postContentDao = postContentDao;

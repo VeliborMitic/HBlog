@@ -17,7 +17,7 @@ public class NewsPageService {
 	private final PostPreviewDao postPreviewDao;
 
 	@Autowired
-	public NewsPageService(@Qualifier("testMockDao") PostPreviewDao postPreviewDao) {
+	public NewsPageService(@Qualifier("postPreviewDaoImp") PostPreviewDao postPreviewDao) {
 		this.postPreviewDao = postPreviewDao;
 	}
 

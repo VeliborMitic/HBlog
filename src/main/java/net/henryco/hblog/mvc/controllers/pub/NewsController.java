@@ -38,15 +38,21 @@ public class NewsController {
 
 	@RequestMapping(method = GET)
 	public String news() {
+
 		return "redirect:/news/1";
 	}
 
-
+	@RequestMapping(value = "/empty", method = GET)
+	public String noNewsPage() {
+		return "nonews";
+	}
 
 	@RequestMapping(value = "/{numb}", method = GET)
 	public String newsPage(@PathVariable("numb") long pageNumb, Model model) {
 
 		long newsCount = newsPageService.getNewsCount();
+		if (newsCount == 0) return "redirect:/news/empty";
+
 		long maxPages = (long) Math.ceil((double)newsCount / (double)NEWS_ON_PAGE);
 
 		if (pageNumb > maxPages) return "redirect:/news/"+maxPages;

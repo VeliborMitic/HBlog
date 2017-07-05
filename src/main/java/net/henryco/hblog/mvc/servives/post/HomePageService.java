@@ -17,7 +17,7 @@ public class HomePageService {
 	private final PostPreviewDao postPreviewDao;
 
 	@Autowired
-	public HomePageService(@Qualifier("testMockDao") PostPreviewDao postPreviewDao) {
+	public HomePageService(@Qualifier("postPreviewDaoImp") PostPreviewDao postPreviewDao) {
 		this.postPreviewDao = postPreviewDao;
 	}
 
