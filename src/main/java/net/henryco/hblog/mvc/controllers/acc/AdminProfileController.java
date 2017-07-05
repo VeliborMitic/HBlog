@@ -1,5 +1,6 @@
 package net.henryco.hblog.mvc.controllers.acc;
 
+import net.henryco.hblog.mvc.controllers.acc.form.BannerForm;
 import net.henryco.hblog.mvc.controllers.acc.form.MultiFileForm;
 import net.henryco.hblog.mvc.controllers.acc.form.PostForm;
 import net.henryco.hblog.mvc.controllers.acc.form.ProfileForm;
@@ -16,17 +17,22 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+import javax.validation.Valid;
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
 import static net.henryco.hblog.configurations.WebConfiguration.AVATAR_UPLOAD_DIR;
 import static net.henryco.hblog.configurations.WebConfiguration.UPLOAD_PATH;
+import static net.henryco.hblog.utils.Utils.saveMultiPartFile;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -202,6 +208,7 @@ public class AdminProfileController {
 	}
 
 
+
 	@RequestMapping(value = "/banners/stat/switch/{id}", method = POST)
 	public String switchBannerStat(@PathVariable("id") long id, Authentication authentication) {
 
@@ -215,6 +222,40 @@ public class AdminProfileController {
 		}
 		return "redirect:/account/admin/banners";
 	}
+
+
+
+	@RequestMapping(value = "/banners/add", method = GET)
+	public String addNewBanner(Model model) {
+		model.addAttribute("banner_form", new BannerForm());
+		return "addbanner";
+	}
+
+
+
+	@RequestMapping("/banners/add/submit")
+	public String saveBanner(@Valid @ModelAttribute("banner_form") BannerForm bannerForm,
+							 BindingResult bindingResult, Authentication authentication) {
+
+		if (bindingResult.hasErrors()) return "addbanner";
+		if (authentication.isAuthenticated() &&
+				authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+			String imageLink = saveMultiPartFile(bannerForm.getImage(),
+					authentication.getName()+"_BANNER_", UPLOAD_PATH);
+			if (imageLink == null) {
+				bindingResult.addError(new ObjectError("image", "Banner image cannot be null"));
+				return "addbanner";
+			}
+
+			PinnedBanner banner = new PinnedBanner();
+			banner.setMediaUrl(imageLink);
+			banner.setMediaHref(bannerForm.getLink());
+			banner.setName(bannerForm.getName());
+			mediaService.saveBanner(banner);
+		}
+		return "redirect:/account/admin/banners";
+	}
+
 
 
 	@RequestMapping(value = "/profiles", method = GET)

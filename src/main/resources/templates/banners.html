@@ -73,21 +73,22 @@
 
                         <td style="padding-right: 5px" th:text="${banner.id}"></td>
                         <td style="padding-right: 10px" th:text="${banner.name}"></td>
-                        <td style="padding-right: 10px" th:text="${banner.actual}"></td>
-
                         <td style="padding-right: 10px">
                             <form method="POST" th:action="@{|${def_link}/banners/stat/switch/${banner.id}|}">
-                                <input class="click_input2, profile_set" type="submit" style="padding-right: 10px; cursor: pointer"
+                                <input class="click_input2, profile_set" type="submit"
+                                       style="padding-right: 10px; cursor: pointer; font-size: 12px;"
                                        th:value="${banner.actual}"/>
                             </form>
                         </td>
 
                         <td style="padding-right: 10px">
-                            <a th:href="@{|~/rel/res/public/${banner.mediaUrl}|}" th:text="${banner.mediaUrl}"></a>
+                            <a style="text-transform: none; text-decoration: none; color:inherit;"
+                               th:href="@{|~/rel/res/public/${banner.mediaUrl}|}" th:text="${banner.mediaUrl}"></a>
                         </td>
 
                         <td style="padding-right: 10px">
-                            <a th:href="@{|${banner.mediaHref}|}" th:text="${banner.mediaHref}"></a>
+                            <a style="text-transform: none; text-decoration: none; color:inherit;"
+                               th:href="@{|${banner.mediaHref}|}" th:text="${banner.mediaHref}"></a>
                         </td>
 
                         <th><form method="POST" th:action="@{|${def_link}/banners/stat/delete/${banner.id}|}">

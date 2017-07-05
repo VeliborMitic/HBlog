@@ -4,7 +4,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
 >
 <head>
-    <title sec:authentication="name">Escapy | Profiles</title>
+    <title sec:authentication="name">Escapy | Post form</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" th:href="@{~/css/style.css}" type="text/css" media="screen"/>
     <link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css"/>
@@ -21,7 +21,7 @@
         <div class="void_space2"></div>
         <div class="intro-p">
             <span>
-                Manage profiles
+                Banner form
             </span>
         </div>
     </div>
@@ -30,7 +30,6 @@
 
     <!-- BODY -->
     <div th:with="def_link=@{~/account/admin}">
-
         <div style="width: 20%; float: left; padding-left: 10%; color: #676767">
             <h2 style="margin-top: 0;">
                 <a style="padding-top: 5px" th:href="@{|${def_link}|}">Admin panel</a><br/>
@@ -43,44 +42,35 @@
             </h2>
             <h2><a style="color: firebrick;" th:href="@{~/access/logout}">Sign Out</a></h2>
         </div>
-
         <div style="width: 70%; float: right; margin-top: 1px;">
-            <table class="profile_set">
-                <tr>
-                    <th style="padding-right: 5px">ID</th>
-                    <th style="padding-right: 10px">Username</th>
-                    <th style="padding-right: 10px">Name</th>
-                    <th style="padding-right: 10px">Position</th>
-                    <th style="padding-right: 10px">Email</th>
-                    <th style="padding-right: 10px">Roles</th>
-                    <th style="padding-right: 10px">Enabled</th>
-                </tr>
 
-                <!--/*@thymesVar id="profile" type="net.henryco.hblog.mvc.controllers.acc.form.ProfileForm"*/-->
-                <th:block th:each="profile: ${profiles}">
-                    <tr>
-                        <td style="padding-right: 5px" th:text="${profile.id}"></td>
-                        <td style="padding-right: 10px" th:text="${profile.username}"></td>
-                        <td style="padding-right: 10px" th:text="${profile.name}"></td>
-                        <td style="padding-right: 10px" th:text="${profile.position}"></td>
-                        <td style="padding-right: 10px" th:text="${profile.email}"></td>
-                        <td style="padding-right: 10px" th:text="${profile.roles}"></td>
-                        <th>
-                            <form method="POST" th:action="@{|${def_link}/profiles/stat/switch/${profile.id}|}">
-                                <input class="click_input2, profile_set" type="submit"
-                                       style="padding-right: 10px; cursor: pointer; font-size: 12px;"
-                                       th:value="${profile.enabled}"/>
-                            </form>
-                        </th>
-                        <th>
-                            <form method="POST" th:action="@{|${def_link}/profiles/stat/delete/${profile.id}|}">
-                                <input class="click_input2, profile_set" type="submit" style="cursor: pointer" value="[ DELETE ]"/>
-                            </form>
-                        </th>
-                    </tr>
-                </th:block>
+            <!--/*@thymesVar id="banner_form" type="net.henryco.hblog.mvc.controllers.acc.form.BannerForm"*/-->
+            <form th:object="${banner_form}" th:action="@{|${def_link}/banners/add/submit|}"
+                  method="post" enctype="multipart/form-data">
 
-            </table>
+                <div class="errors" th:if="${#fields.hasErrors('*')}" style="width:50%; float: right">
+                    <ul><li th:each="err: ${#fields.errors('*')}" th:text="${err}">Input data error</li></ul>
+                </div><br/>
+
+
+                <label for="banner_name">Name</label><br/>
+                <input id="banner_name" size="30" type="text" th:field="*{name}" class="input_space"/><br/><br/>
+
+                <label for="banner_link">External link</label><br/>
+                <input id="banner_link" size="60" type="text" th:field="*{link}" class="input_space"/><br/><br/>
+
+                <label for="icon_prev">Banner image (220x... px)</label><br/>
+                <input type="file" id="icon_prev" th:field="*{image}" />
+                <br/><br/>
+
+
+                <br/>
+
+                <div style="width: 80%;">
+                    <input class="click_input2" style="font-weight: 700; float: right; font-size: 18px; color: dimgray;"
+                           type="submit" value="Save Banner" />
+                </div>
+            </form>
         </div>
     </div>
 

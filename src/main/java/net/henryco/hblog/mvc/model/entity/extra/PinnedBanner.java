@@ -18,7 +18,7 @@ public class PinnedBanner {
 	@Column
 	private String mediaUrl;
 
-	@Column
+	@Column(length = 400)
 	private String mediaHref;
 
 	@Column

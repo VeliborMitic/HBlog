@@ -32,6 +32,7 @@ import java.util.List;
 
 import static net.henryco.hblog.configurations.WebConfiguration.DEF_PATH;
 import static net.henryco.hblog.configurations.WebConfiguration.UPLOAD_PATH;
+import static net.henryco.hblog.utils.Utils.saveMultiPartFile;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -108,7 +109,7 @@ public class UserPostsController {
 			if (redirect) return "redirect:/account/profile";
 		}
 
-		String iconLink = saveMultiPartFile(postForm.getFile(), userName);
+		String iconLink = saveMultiPartFile(postForm.getFile(), userName, UPLOAD_PATH);
 		if (iconLink == null) {
 			if (id == null) {
 				bindingResult.addError(new ObjectError("img_prev", "Image preview cannot be empty"));
@@ -128,7 +129,7 @@ public class UserPostsController {
 		String postContent = postForm.getContent();
 		int i = 0;
 		for (MultipartFile file: postForm.getAttachedFiles()) {
-			String fileName = saveMultiPartFile(file, userName);
+			String fileName = saveMultiPartFile(file, userName, UPLOAD_PATH);
 			if (fileName != null) {
 				attached.add(fileName);
 				postContent = postContent.replace(getResN(i), DEF_PATH + fileName);
@@ -178,19 +179,6 @@ public class UserPostsController {
 	}
 
 
-	private static String saveMultiPartFile(MultipartFile file, String userName) {
-		try {
-			if (file.isEmpty()) return null;
-			final int i = file.getOriginalFilename().lastIndexOf(".");
-			final String hash = Integer.toString(userName.hashCode());
-			final String time = Long.toString(System.currentTimeMillis());
-			final String name = hash + time + ( i != -1 ? file.getOriginalFilename().substring(i) : "");
-			Files.write(Paths.get(UPLOAD_PATH + name), file.getBytes());
-			return name;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+
 
 }
