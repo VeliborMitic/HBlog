@@ -39,28 +39,28 @@ public class DaoConfiguration {
 
 
 
-	@Bean @Qualifier("testMockDao")
-	public PostPreviewDao mockDao(PostPreviewRepository previewRepository,
-								  PostContentRepository contentRepository) {
-
-		PostPreviewDaoImp postFormDaoImp = new PostPreviewDaoImp(previewRepository);
-		for (int i = 0; i < 76; i++) {
-			StandardPostPreview post = new StandardPostPreview();
-			post.setTitle("Some lorem ipsum tittle"+Integer.toString(i + 1));
-			post.setImgLink("some_img.png");
-			post.setPreviewShort(LOREM_IPSUM.substring(0, Math.min(LOREM_IPSUM.length(), 185)));
-			post.setPreviewLong(LOREM_IPSUM.substring(0, Math.min(LOREM_IPSUM.length(), 700)));
-			post.setUpdateTime(DateTime.now(DateTimeZone.UTC).toDate());
-			post.setAuthor("henryco");
-			StandardPostPreview saved = postFormDaoImp.addPostPreview(post);
-
-			StandardPostContent content = new StandardPostContent();
-			content.setId(saved.getId());
-			content.setContent(LOREM_IPSUM);
-			contentRepository.saveAndFlush(content);
-		}
-		return postFormDaoImp;
-	}
+//	@Bean @Qualifier("testMockDao")
+//	public PostPreviewDao mockDao(PostPreviewRepository previewRepository,
+//								  PostContentRepository contentRepository) {
+//
+//		PostPreviewDaoImp postFormDaoImp = new PostPreviewDaoImp(previewRepository);
+//		for (int i = 0; i < 76; i++) {
+//			StandardPostPreview post = new StandardPostPreview();
+//			post.setTitle("Some lorem ipsum tittle"+Integer.toString(i + 1));
+//			post.setImgLink("some_img.png");
+//			post.setPreviewShort(LOREM_IPSUM.substring(0, Math.min(LOREM_IPSUM.length(), 185)));
+//			post.setPreviewLong(LOREM_IPSUM.substring(0, Math.min(LOREM_IPSUM.length(), 700)));
+//			post.setUpdateTime(DateTime.now(DateTimeZone.UTC).toDate());
+//			post.setAuthor("henryco");
+//			StandardPostPreview saved = postFormDaoImp.addPostPreview(post);
+//
+//			StandardPostContent content = new StandardPostContent();
+//			content.setId(saved.getId());
+//			content.setContent(LOREM_IPSUM);
+//			contentRepository.saveAndFlush(content);
+//		}
+//		return postFormDaoImp;
+//	}
 
 
 }
