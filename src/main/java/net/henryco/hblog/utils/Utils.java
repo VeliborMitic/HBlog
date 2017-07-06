@@ -1,5 +1,7 @@
 package net.henryco.hblog.utils;
 
+import net.henryco.hblog.mvc.controllers.form.PostForm;
+import net.henryco.hblog.mvc.model.entity.post.StandardPostPreview;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.nio.file.Files;
@@ -24,7 +26,8 @@ public abstract class Utils {
 
 	/**
 	 * @return name of saved file or Null
-	 */ public static String saveMultiPartFileWithOldName(MultipartFile file, String upload_path) {
+	 */
+	public static String saveMultiPartFileWithOldName(MultipartFile file, String upload_path) {
 		try {
 			if (file.isEmpty()) return null;
 			Files.write(Paths.get(upload_path + file.getOriginalFilename()), file.getBytes());
@@ -37,7 +40,8 @@ public abstract class Utils {
 
 	/**
 	 * @return New name of saved file or Null
-	 */ public static String saveMultiPartFileWithNewName(MultipartFile file, String userName, String upload_path) {
+	 */
+	public static String saveMultiPartFileWithNewName(MultipartFile file, String userName, String upload_path) {
 		try {
 			if (file.isEmpty()) return null;
 			final String fileName = file.getOriginalFilename();
@@ -54,4 +58,14 @@ public abstract class Utils {
 			return null;
 		}
 	}
+
+	public static PostForm loadPostForm(PostForm postForm,
+										 StandardPostPreview postPreview) {
+		postForm.setId(postPreview.getId());
+		postForm.setTitle(postPreview.getTitle());
+		postForm.setPreviewShort(postPreview.getPreviewShort());
+		postForm.setPreviewLong(postPreview.getPreviewLong());
+		return postForm;
+	}
+
 }

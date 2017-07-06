@@ -49,7 +49,7 @@
         <div style="width: 70%; float: right; margin-top: 1px;">
             <div style="float: left; margin-bottom: 25px;">
 
-                <!--/*@thymesVar id="upload_form" type="net.henryco.hblog.mvc.controllers.acc.form.UserFileForm"*/-->
+                <!--/*@thymesVar id="upload_form" type="net.henryco.hblog.mvc.controllers.form.UserFileForm"*/-->
                 <form method="POST" th:object="${upload_form}"
                       th:action="@{|${def_link}/files/upload/${username}|}" enctype="multipart/form-data">
 

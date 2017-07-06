@@ -1,4 +1,4 @@
-package net.henryco.hblog.mvc.controllers.acc.form;
+package net.henryco.hblog.mvc.controllers.form;
 
 import org.hibernate.validator.constraints.Email;
 

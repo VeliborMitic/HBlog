@@ -1,6 +1,6 @@
-package net.henryco.hblog.mvc.controllers.acc;
+package net.henryco.hblog.mvc.controllers.acc.user;
 
-import net.henryco.hblog.mvc.controllers.acc.form.SettingsForm;
+import net.henryco.hblog.mvc.controllers.form.SettingsForm;
 import net.henryco.hblog.mvc.model.entity.account.AuthUserProfile;
 import net.henryco.hblog.mvc.model.entity.account.BaseUserProfile;
 import net.henryco.hblog.mvc.servives.account.BaseProfileService;

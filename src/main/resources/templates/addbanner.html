@@ -44,7 +44,7 @@
         </div>
         <div style="width: 50%; float: right; margin-top: 1px;">
 
-            <!--/*@thymesVar id="banner_form" type="net.henryco.hblog.mvc.controllers.acc.form.BannerForm"*/-->
+            <!--/*@thymesVar id="banner_form" type="net.henryco.hblog.mvc.controllers.form.BannerForm"*/-->
             <form th:object="${banner_form}" th:action="@{|${def_link}/banners/add/submit|}"
                   method="post" enctype="multipart/form-data">
 

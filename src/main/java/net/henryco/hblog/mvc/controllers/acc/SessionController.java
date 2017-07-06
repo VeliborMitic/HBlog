@@ -1,7 +1,7 @@
 package net.henryco.hblog.mvc.controllers.acc;
 
 import net.henryco.hblog.configurations.WebConfiguration;
-import net.henryco.hblog.mvc.controllers.acc.form.RegistrationForm;
+import net.henryco.hblog.mvc.controllers.form.RegistrationForm;
 import net.henryco.hblog.mvc.model.entity.account.BaseUserProfile;
 import net.henryco.hblog.mvc.servives.account.ExtendedProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +75,7 @@ public class SessionController {
 
 
 	//	--------- REGISTRATION PART -----------------------------------------------------
+	@SuppressWarnings("ResultOfMethodCallIgnored")
 	@RequestMapping(value = "/access/registration/finish", method = POST)
 	public String registration(@Valid @ModelAttribute RegistrationForm form,
 							   BindingResult bindingResult) {

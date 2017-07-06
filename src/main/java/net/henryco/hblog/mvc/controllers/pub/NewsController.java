@@ -47,6 +47,7 @@ public class NewsController {
 		return "nonews";
 	}
 
+
 	@RequestMapping(value = "/{numb}", method = GET)
 	public String newsPage(@PathVariable("numb") long pageNumb, Model model) {
 

@@ -68,7 +68,7 @@
         </div>
         <div style="width: 70%; float: right; margin-top: 1px;">
 
-            <!--/*@thymesVar id="post_form" type="net.henryco.hblog.mvc.controllers.acc.form.PostForm"*/-->
+            <!--/*@thymesVar id="post_form" type="net.henryco.hblog.mvc.controllers.form.PostForm"*/-->
             <form th:object="${post_form}" th:action="@{|${def_link}/addpost/submit/post|}"
                   method="post" enctype="multipart/form-data">
 

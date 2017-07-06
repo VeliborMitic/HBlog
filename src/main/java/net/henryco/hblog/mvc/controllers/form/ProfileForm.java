@@ -1,4 +1,4 @@
-package net.henryco.hblog.mvc.controllers.acc.form;
+package net.henryco.hblog.mvc.controllers.form;
 
 /**
  * @author Henry on 04/07/17.

@@ -1,6 +1,6 @@
 package net.henryco.hblog.mvc.controllers.pub;
 
-import net.henryco.hblog.mvc.controllers.acc.form.UserFileForm;
+import net.henryco.hblog.mvc.controllers.form.UserFileForm;
 import net.henryco.hblog.mvc.model.entity.account.BaseUserProfile;
 import net.henryco.hblog.mvc.model.entity.account.files.BaseUserFile;
 import net.henryco.hblog.mvc.servives.account.BaseFileService;
