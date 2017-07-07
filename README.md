@@ -1,4 +1,4 @@
-# HBlog <br>[![codebeat badge](https://codebeat.co/badges/51cb78f5-5096-4baa-b9de-b0909e143715)](https://codebeat.co/projects/github-com-henryco-hblog-master)
+# HBlog <br>[![codebeat badge](https://codebeat.co/badges/2bdd3b2a-0568-4514-a3ce-f875232768f9)](https://codebeat.co/projects/github-com-henryco-hblog-master)
 Simple blog engine based on Spring (MVC + JPA + SECURITY)
 <br>
 ## Screenshots
