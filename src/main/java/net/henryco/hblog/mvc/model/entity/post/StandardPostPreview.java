@@ -1,6 +1,9 @@
 package net.henryco.hblog.mvc.model.entity.post;
 
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -8,7 +11,7 @@ import java.util.Date;
  * @author Henry on 15/06/17.
  */
 
-@Entity
+@Entity @Data @NoArgsConstructor
 @Table(name = "standard_post_preview")
 public class StandardPostPreview {
 
@@ -26,10 +29,6 @@ public class StandardPostPreview {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updateTime;
 
-
-	public StandardPostPreview() {
-	}
-
 	public StandardPostPreview(String title) {
 		this.title = title;
 	}
@@ -39,73 +38,4 @@ public class StandardPostPreview {
 		this.id = id;
 	}
 
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getPreviewShort() {
-		return previewShort;
-	}
-
-	public void setPreviewShort(String previewShort) {
-		this.previewShort = previewShort;
-	}
-
-	public String getPreviewLong() {
-		return previewLong;
-	}
-
-	public void setPreviewLong(String previewLong) {
-		this.previewLong = previewLong;
-	}
-
-	public String getImgLink() {
-		return imgLink;
-	}
-
-	public void setImgLink(String imgLink) {
-		this.imgLink = imgLink;
-	}
-
-	public Date getUpdateTime() {
-		return updateTime;
-	}
-
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
-
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
-	@Override
-	public String toString() {
-		return "StandardPostPreview{" +
-				"id=" + id +
-				", title='" + title + '\'' +
-				", previewShort='" + previewShort + '\'' +
-				", previewLong='" + previewLong + '\'' +
-				", imgLink='" + imgLink + '\'' +
-				", author='" + author + '\'' +
-				", updateTime=" + updateTime +
-				'}';
-	}
 }

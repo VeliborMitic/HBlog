@@ -1,5 +1,7 @@
 package net.henryco.hblog.mvc.model.entity.account;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 import static javax.persistence.GenerationType.AUTO;
@@ -7,7 +9,7 @@ import static javax.persistence.GenerationType.AUTO;
 /**
  * @author Henry on 18/06/17.
  */
-@Entity
+@Entity @Data
 public class BaseUserProfile {
 
 	@Column(name = "id") @Id
@@ -35,75 +37,4 @@ public class BaseUserProfile {
 	@Column
 	private String position;
 
-	public BaseUserProfile() {
-	}
-
-	@Override
-	public String toString() {
-		return "BaseUserProfile{" +
-				"id=" + id +
-				", userName='" + userName + '\'' +
-				", firstName='" + firstName + '\'' +
-				", lastName='" + lastName + '\'' +
-				", email='" + email + '\'' +
-				", iconLink='" + iconLink + '\'' +
-				", position='" + position + '\'' +
-				'}';
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getIconLink() {
-		return iconLink;
-	}
-
-	public void setIconLink(String iconLink) {
-		this.iconLink = iconLink;
-	}
-
-	public String getPosition() {
-		return position;
-	}
-
-	public void setPosition(String position) {
-		this.position = position;
-	}
 }

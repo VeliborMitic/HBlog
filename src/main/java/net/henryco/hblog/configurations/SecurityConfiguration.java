@@ -31,6 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/", "/index").permitAll()
+				.and().authorizeRequests().antMatchers("/access/**").anonymous()
 				.and().formLogin().loginPage("/access/login").defaultSuccessUrl("/account").permitAll()
 				.and().rememberMe().tokenValiditySeconds(2419200).key("escapyKey")
 				.and().exceptionHandling().accessDeniedHandler(accessDeniedHandler)

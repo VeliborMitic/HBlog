@@ -1,5 +1,7 @@
 package net.henryco.hblog.mvc.model.entity.account.files;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 import java.util.Date;
@@ -9,7 +11,7 @@ import static javax.persistence.GenerationType.AUTO;
 /**
  * @author Henry on 05/07/17.
  */
-@Entity
+@Entity @Data
 public class BaseUserFile {
 
 	@Column @Id
@@ -29,56 +31,4 @@ public class BaseUserFile {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updateTime;
 
-
-	@Override
-	public String toString() {
-		return "BaseUserFile{" +
-				"id=" + id +
-				", userID=" + userID +
-				", file='" + file + '\'' +
-				", name='" + name + '\'' +
-				", updateTime=" + updateTime +
-				'}';
-	}
-
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public long getUserID() {
-		return userID;
-	}
-
-	public void setUserID(long userID) {
-		this.userID = userID;
-	}
-
-	public String getFile() {
-		return file;
-	}
-
-	public void setFile(String file) {
-		this.file = file;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Date getUpdateTime() {
-		return updateTime;
-	}
-
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
 }

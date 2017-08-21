@@ -1,5 +1,7 @@
 package net.henryco.hblog.mvc.controllers.form;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
@@ -9,6 +11,8 @@ import java.util.List;
 /**
  * @author Henry on 03/07/17.
  */
+
+@Data @NoArgsConstructor
 public class PostForm {
 
 	private Long id;
@@ -30,72 +34,4 @@ public class PostForm {
 
 	private List<MultipartFile> attachedFiles;
 
-	@Override
-	public String toString() {
-		return "PostForm{" +
-				"id=" + id +
-				", title='" + title + '\'' +
-				", previewShort='" + previewShort + '\'' +
-				", previewLong='" + previewLong + '\'' +
-				", content='" + content + '\'' +
-				", file=" + file +
-				", attachedFiles=" + attachedFiles +
-				'}';
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public List<MultipartFile> getAttachedFiles() {
-		return attachedFiles;
-	}
-
-	public void setAttachedFiles(List<MultipartFile> attachedFiles) {
-		this.attachedFiles = attachedFiles;
-	}
-
-	public MultipartFile getFile() {
-		return file;
-	}
-
-	public void setFile(MultipartFile file) {
-		this.file = file;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getPreviewShort() {
-		return previewShort;
-	}
-
-	public void setPreviewShort(String previewShort) {
-		this.previewShort = previewShort;
-	}
-
-	public String getPreviewLong() {
-		return previewLong;
-	}
-
-	public void setPreviewLong(String previewLong) {
-		this.previewLong = previewLong;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
 }

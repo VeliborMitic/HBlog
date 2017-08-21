@@ -1,5 +1,7 @@
 package net.henryco.hblog.mvc.controllers.form;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -7,6 +9,8 @@ import javax.validation.constraints.Size;
 /**
  * @author Henry on 18/06/17.
  */
+
+@Data @NoArgsConstructor
 public class RegistrationForm {
 
 	@NotNull
@@ -31,68 +35,4 @@ public class RegistrationForm {
 	@Size(min = 8, max = 8, message = "Size of (pgp public key) field is 8")
 	private String gpgPubKey;
 
-
-	public RegistrationForm() {
-	}
-
-	@Override
-	public String toString() {
-		return "RegistrationForm{" +
-				"userName='" + userName + '\'' +
-				", firstName='" + firstName + '\'' +
-				", lastName='" + lastName + '\'' +
-				", email='" + email + '\'' +
-				", password='" + password + '\'' +
-				", gpgPubKey='" + gpgPubKey + '\'' +
-				'}';
-	}
-
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getGpgPubKey() {
-		return gpgPubKey;
-	}
-
-	public void setGpgPubKey(String gpgPubKey) {
-		this.gpgPubKey = gpgPubKey;
-	}
 }
