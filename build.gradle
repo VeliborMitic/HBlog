@@ -29,7 +29,7 @@ jar {
     manifest {
         attributes('Main-Class': 'net.henryco.hblog.HblogApplication')
     }
-    archiveName = 'HBlog-'+ version
+    archiveName = 'HBlog-'+ version + '.jar'
 }
 
 dependencies {
