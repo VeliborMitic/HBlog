@@ -1,5 +1,5 @@
 # HBlog <br>[![codebeat badge](https://codebeat.co/badges/2bdd3b2a-0568-4514-a3ce-f875232768f9)](https://codebeat.co/projects/github-com-henryco-hblog-master)
-## Simple blog engine based on Spring (MVC + JPA + SECURITY) <br><br> Check it out <a href="http://174.138.0.194:1995/">here</a>
+### Simple blog engine based on Spring (MVC + JPA + SECURITY) <br><br> Check it out <a href="http://174.138.0.194:1995/">here</a>
 <img src="https://raw.githubusercontent.com/henryco/HBlog/master/promo/1.png" /><br><br><hr><br>
 <img src="https://raw.githubusercontent.com/henryco/HBlog/master/promo/2.png" /><br><br><hr><br>
 <img src="https://raw.githubusercontent.com/henryco/HBlog/master/promo/3.png" /><br><br><hr><br>
