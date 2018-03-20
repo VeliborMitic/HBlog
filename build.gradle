@@ -10,6 +10,10 @@ buildscript {
 	}
 }
 
+plugins {
+    id 'net.ltgt.apt' version '0.10'
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
@@ -19,10 +23,6 @@ sourceCompatibility = 1.8
 
 repositories {
 	mavenCentral()
-}
-
-plugins {
-    id 'net.ltgt.apt' version '0.10'
 }
 
 jar {
