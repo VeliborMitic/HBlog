@@ -15,8 +15,7 @@ pipeline {
     }
     stage('Test') {
       steps {
-        sh '''gradle test --stacktrace
-'''
+        sh 'gradle test --stacktrace'
       }
     }
     stage('Prepare results') {
@@ -40,11 +39,11 @@ pipeline {
         sh 'rm -f /home/Programs/Hblog/out/HBlog-0.0.1.jar'
         sh 'cp build/libs/HBlog-0.0.1.jar /home/Programs/Hblog/out/HBlog-0.0.1.jar'
         sh 'chmod a+x /home/Programs/Hblog/out/HBlog-0.0.1.jar'
-        script{
-                withEnv(['BUILD_ID=dontkill']) {
-                    sh "cd /home/Programs/Hblog/out/ && ./hblog_bg.sh &"
-                }
-            }
+        sh 'cd /home/Programs/Hblog/out/ && ./hblog_bg.sh'
+        withEnv(['BUILD_ID=dontkill']) {
+          sh 'cd /home/Programs/Hblog/out/ && ./hblog_bg.sh'
+        }
+   }
       }
     }
     stage('Clean') {
