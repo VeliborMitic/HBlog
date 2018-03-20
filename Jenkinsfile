@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Check and Prepare') {
       steps {
-        sh 'pkill -f HBlog || true'
+        sh '(pkill -f HBlog) || true'
         sh 'rm -f src/main/resources/application.properties'
         sh 'cp /home/deploy-props/Hblog/application.properties src/main/resources/application.properties'
         sh 'gradle check -x build -x test --stacktrace'
@@ -36,7 +36,7 @@ pipeline {
     }
     stage('Clean') {
       steps {
-        sh 'pkill -f gradle || true'
+        sh '(pkill -f gradle) || true'
       }
     }
     stage('Deploy') {
