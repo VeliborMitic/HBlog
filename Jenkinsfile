@@ -45,7 +45,7 @@ pipeline {
         sh 'cp build/libs/HBlog-0.0.1.jar /home/Programs/Hblog/out/HBlog-0.0.1.jar'
         sh 'chmod a+x /home/Programs/Hblog/out/HBlog-0.0.1.jar'
         withEnv(['BUILD_ID=dontkill']) {
-            sh 'cd /home/Programs/Hblog/out/ && (echo y | nohup ./hblog_bg.sh) &'
+            sh 'cd /home/Programs/Hblog/out/ && ./hblog_bg.sh'
         }
       }
     }
