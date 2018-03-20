@@ -44,7 +44,8 @@ pipeline {
         sh 'cp build/libs/HBlog-0.0.1.jar /home/Programs/Hblog/out/HBlog-0.0.1.jar'
         sh 'chmod a+x /home/Programs/Hblog/out/HBlog-0.0.1.jar'
         withEnv(overrides: ['JENKINS_NODE_COOKIE=dontKillMe']) {
-          sh 'cd /home/Programs/Hblog/out/ && nohup java -jar HBlog-0.0.1.jar > hblog.log 2>&1 &'
+          sh '''# cd /home/Programs/Hblog/out/ && nohup java -jar HBlog-0.0.1.jar > hblog.log 2>&1 &
+cd /home/Programs/Hblog/out/ && ./hblog_bg.sh'''
         }
         
       }
