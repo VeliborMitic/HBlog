@@ -14,23 +14,14 @@ import javax.persistence.Id;
 @Entity @Data @NoArgsConstructor
 public class AuthUserProfile {
 
-	@Column @Id
-	private long id;
+	@Column @Id private long id;
+	@Column(nullable = false) private String password;
+	@Column(nullable = false) private boolean enabled;
+	@Column(nullable = false) private boolean locked;
+	@Column(nullable = false) private boolean expired;
 
-	@Column(nullable = false)
-	private String password;
+	@Column private String authorities;
 
-	@Column(nullable = false)
-	private boolean enabled;
-
-	@Column(nullable = false)
-	private boolean locked;
-
-	@Column(nullable = false)
-	private boolean expired;
-
-	@Column
-	private String authorities;
 
 	public AuthUserProfile(long id, String password, String ... authorities) {
 		this();
@@ -52,4 +43,5 @@ public class AuthUserProfile {
 	public void setAuthorityArray(String ... authorities) {
 		this.authorities = Utils.arrayToString(authorities);
 	}
+
 }

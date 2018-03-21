@@ -89,8 +89,11 @@ public class SubmitPostController {
 
 
 
-	private StandardPostPreview loadPostPreview(StandardPostPreview post, Principal principal,
-												PostForm postForm, String iconLink, Long id) {
+	private StandardPostPreview loadPostPreview(StandardPostPreview post,
+												Principal principal,
+												PostForm postForm,
+												String iconLink,
+												Long id) {
 
 		post.setImgLink(iconLink);
 		post.setTitle(postForm.getTitle());
@@ -103,7 +106,8 @@ public class SubmitPostController {
 
 
 	private StandardPostContent loadStandardPostContent(Long id, Long newId,
-														List<String> attached, String postContent) {
+														List<String> attached,
+														String postContent) {
 		StandardPostContent content = id == null
 				? new StandardPostContent(newId)
 				: postDirectService.getPostContentById(id);
