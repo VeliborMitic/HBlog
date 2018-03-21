@@ -10,36 +10,36 @@ pipeline {
         sh 'gradle check -x build -x test --stacktrace'
       }
     }
+    
+    stage('test') {
+      steps {
+        sh '(gradle test --stacktrace) || true'
+        junit 'build/test-results/*.xml'
+        sh 'rm -f -r test-arch'
+        sh 'mkdir test-arch'
+        sh 'zip -r test-arch/test-report.zip build/reports'
+        archiveArtifacts 'test-arch/*.zip'
+      }
+    }
+    
     stage('Build') {
       steps {
-        sh 'gradle build -x test --stacktrace'
+        sh 'gradle build --stacktrace'
       }
     }
-    stage('Test') {
+    
+    stage('Artifacts') {
       steps {
-        sh 'gradle test --stacktrace'
+        archiveArtifacts(artifacts: 'build/libs/*', allowEmptyArchive: true, onlyIfSuccessful: true)
       }
     }
-    stage('Prepare results') {
-      parallel {
-        stage('Tests') {
-          steps {
-            junit(allowEmptyResults: true, testResults: 'build/reports/tests/*')
-            junit(testResults: 'build/test-results/*', allowEmptyResults: true)
-          }
-        }
-        stage('Artifacts') {
-          steps {
-            archiveArtifacts(artifacts: 'build/libs/*', allowEmptyArchive: true, onlyIfSuccessful: true)
-          }
-        }
-      }
-    }
+    
     stage('Clean') {
       steps {
         sh '(pkill -f gradle) || true'
       }
     }
+    
     stage('Deploy') {
       steps {
         sh 'rm -f /home/Programs/Hblog/out/HBlog-0.0.1.jar'
